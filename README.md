@@ -1,6 +1,6 @@
 # Monolith
 
-Monolith is a tower-defense game. The player's objective is to protect the monolith from the invaders by building towers along the perimiter of the level.
+Monolith is a tower defense game. The player's objective is to protect the monolith from the invaders by building towers along the perimiter of the level.
 
 ## Background and Overview
 
