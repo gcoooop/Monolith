@@ -6,7 +6,7 @@ Monolith is a tower defense game. The player's objective is to protect the monol
 
 The year is 9,000 BC. Your people have recently uncovered a mysterious ancient monolith. Perhaps it was fate, or maybe just luck. Within hours of handling the monolith, your people have experienced intense visions, sudden bouts of insight, and waves of unfathomable knowledge. As time has passed, neighboring settlements' jealousy and skepticism grows with every report about the alleged power of the monolith. Your neighbors' collective response is to band together and take the monolith for themselves, or destroy it in the process. 
 
-It is up to you to protect the monolith! Use your new found wisdom to build towers to defend the monolith, your people, and perhaps the world from the monolith falling into the wrong hands!
+It is up to you to protect the monolith! Use your new found wisdom to build towers to defend the monolith, your people, and perhaps the world if the monolith falls into the wrong hands!
 
 ## MVP
 
