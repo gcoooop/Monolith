@@ -1,0 +1,14 @@
+{ "columns":8,
+ "image":"map_tileset\/2x_Complete_Tileset.png",
+ "imageheight":450,
+ "imagewidth":400,
+ "margin":0,
+ "name":"MonolithTileset",
+ "spacing":0,
+ "tilecount":72,
+ "tiledversion":"1.2.4",
+ "tileheight":50,
+ "tilewidth":50,
+ "type":"tileset",
+ "version":1.2
+}
