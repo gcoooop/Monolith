@@ -7,3 +7,5 @@ class Caveman extends NPC {
     super(options);
   }
 }
+
+module.exports = Caveman;
