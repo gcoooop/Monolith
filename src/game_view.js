@@ -3,5 +3,6 @@ class GameView {
     this.game = game;
     this.ctx = ctx;
   }
+};
 
-}ß
+module.exports = GameView;

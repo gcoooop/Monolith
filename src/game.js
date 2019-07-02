@@ -5,3 +5,5 @@ class Game {
     this.projectiles = [];
   }
 }
+
+module.exports = Game;
