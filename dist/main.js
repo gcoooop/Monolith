@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/npc.js\");\n\nclass Caveman extends NPC {\n  constructor(options) {\n    options.velocity = 5;\n    options.sprite = \"caveman\";\n    super(options);\n  }\n}\n\nmodule.exports = Caveman;\n\n//# sourceURL=webpack:///./src/caveman.js?");
+eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/npc.js\");\n\nclass Caveman extends NPC {\n  constructor(options) {\n    options.vel = [0.5, 0.5];\n    options.sprite = \"caveman\";\n    super(options);\n  }\n}\n\nmodule.exports = Caveman;\n\n//# sourceURL=webpack:///./src/caveman.js?");
 
 /***/ }),
 
@@ -102,9 +102,9 @@ eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/npc.js\");\n\nclass C
   !*** ./src/game.js ***!
   \*********************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("class Game {\n  constructor() {\n    this.towers = [];\n    this.npcs = [];\n    this.projectiles = [];\n  }\n}\n\nmodule.exports = Game;\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/npc.js\");\nconst Caveman = __webpack_require__(/*! ./caveman */ \"./src/caveman.js\");\n\nclass Game {\n  constructor() {\n    this.towers = [];\n    this.npcs = [];\n    this.projectiles = [];\n    this.test();\n  }\n\n  test() {\n    const caveman = new Caveman({ pos: [100, 100] });\n    this.add(caveman);\n  }\n\n  add(object) {\n    if (object instanceof NPC) {\n      this.npcs.push(object);\n    } else {\n      throw new Error(\"unknown object!!!\")\n    }\n  }\n\n  allObjects() {\n    return [].concat(this.npcs, this.projectiles, this.towers);\n  }\n\n  draw(ctx) {\n    // clears the canvas area\n    ctx.clearRect(0, 0, 1500, 1000);\n\n    this.allObjects().forEach(object => {\n      object.draw(ctx);\n    });\n  }\n\n  moveObjects(dt) {\n    this.allObjects().forEach(object => {\n      object.move(dt);\n    });\n  }\n\n  step(dt) {\n    this.moveObjects(dt);\n  }\n}\n\nmodule.exports = Game;\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -115,7 +115,7 @@ eval("class Game {\n  constructor() {\n    this.towers = [];\n    this.npcs = []
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class GameView {\n  constructor(game, ctx) {\n    this.game = game;\n    this.ctx = ctx;\n  }\n};\n\nmodule.exports = GameView;\n\n//# sourceURL=webpack:///./src/game_view.js?");
+eval("class GameView {\n  constructor(game, ctx) {\n    this.game = game;\n    this.ctx = ctx;\n  }\n\n  start() {\n    this.lastTime = 0;\n    requestAnimationFrame(this.animate.bind(this));\n  }\n\n  animate(time) {\n    const dt = time - this.lastTime;\n\n    this.game.step(dt);\n    this.game.draw(this.ctx);\n    this.lastTime = time;\n\n    requestAnimationFrame(this.animate.bind(this));\n  }\n};\n\nmodule.exports = GameView;\n\n//# sourceURL=webpack:///./src/game_view.js?");
 
 /***/ }),
 
@@ -126,7 +126,7 @@ eval("class GameView {\n  constructor(game, ctx) {\n    this.game = game;\n    t
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst GameView = __webpack_require__(/*! ./game_view */ \"./src/game_view.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const canvasEl = document.getElementById(\"monolith-canvas\");\n\n  const ctx = canvasEl.getContext(\"2d\");\n  const game = new Game();\n  // new GameView(game, ctx).start();\n\n  const Caveman = __webpack_require__(/*! ./caveman */ \"./src/caveman.js\");\n\n  const caveman = new Caveman({ pos: [100, 100] });\n  caveman.draw(ctx)\n\n});\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst GameView = __webpack_require__(/*! ./game_view */ \"./src/game_view.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const canvasEl = document.getElementById(\"monolith-canvas\");\n\n  const ctx = canvasEl.getContext(\"2d\");\n  const game = new Game();\n  new GameView(game, ctx).start();\n});\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -137,7 +137,7 @@ eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class MovingObject {\n  constructor(options = {}) {\n    this.pos = options.pos;\n    this.vel = options.vel;\n    this.hitRadius = options.hitRadius;\n    this.game = options.game;\n    this.sprite = document.getElementById(options.sprite);\n  }\n\n  draw(ctx) {\n    console.log(this.sprite)\n    ctx.drawImage(this.sprite, this.pos[0], this.pos[1]);\n  }\n\n  move(dt) {\n    this.pos = [\n      this.pos[0] + this.vel[0] * dt,\n      this.pos[1] + this.vel[1] * dt\n    ];\n  }\n\n  remove() {\n    this.game.remove(this);\n  }\n}\n\nmodule.exports = MovingObject;\n\n//# sourceURL=webpack:///./src/moving_object.js?");
+eval("class MovingObject {\n  constructor(options = {}) {\n    this.pos = options.pos;\n    this.vel = options.vel;\n    this.hitRadius = options.hitRadius;\n    this.game = options.game;\n    this.sprite = document.getElementById(options.sprite);\n  }\n\n  draw(ctx) {\n    ctx.drawImage(this.sprite, this.pos[0], this.pos[1]);\n  }\n\n  move(dt) {\n    const x = this.pos[0] + this.vel[0] * (dt / normalFrameRate);\n    const y = this.pos[1] + this.vel[1] * (dt / normalFrameRate);\n    this.pos = [ x, y ];\n  }\n\n  remove() {\n    this.game.remove(this);\n  }\n}\n\nconst normalFrameRate = 1000 / 60;\n\nmodule.exports = MovingObject;\n\n//# sourceURL=webpack:///./src/moving_object.js?");
 
 /***/ }),
 
