@@ -19,7 +19,12 @@ class NPC extends MovingObject {
   }
   
   followPath() {
-    const theta = Math.atan( (this.pos[1] - this.dest[1]) / (this.pos[0] - this.dest[0]) );
+    const dx = this.pos[0] - this.dest[0];
+    const dy = this.pos[1] - this.dest[1];
+    let theta = Math.atan( dy / dx );
+    if (dx > 0 && dy > 0) {
+      theta += Math.PI;
+    }
     this.vel = [ this.speed * Math.cos(theta), this.speed * Math.sin(theta)];
   }
   
