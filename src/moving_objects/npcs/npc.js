@@ -35,9 +35,12 @@ class NPC extends MovingObject {
   }
 
   updateDest() {
-    this.dest = this.path.dequeue();
-    this.followPath();
-    console.log(this.dest)
+    if (this.path.points.length) {
+      this.dest = this.path.dequeue();
+      this.followPath();
+    } else {
+      this.vel = [0, 0];
+    }
   }
 }
 
