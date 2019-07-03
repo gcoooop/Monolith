@@ -1,0 +1,8 @@
+#selected-tower {
+  pointer-events: none;
+  position: absolute;
+}
+
+#monolith-game {
+  display: flex; 
+}

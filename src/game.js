@@ -1,4 +1,5 @@
 const NPC = require("./moving_objects/npcs/npc");
+const Tower = require("./towers/tower");
 const Caveman = require("./moving_objects/npcs/caveman");
 const Spider = require("./moving_objects/npcs/spider");
 const Eagle = require("./moving_objects/npcs/eagle");
@@ -22,7 +23,9 @@ class Game {
 
   add(object) {
     if (object instanceof NPC) {
-      this.npcs.push(object);
+      this.npcs.push(object); 
+    } else if (object instanceof Tower)  {    
+
     } else {
       throw new Error("unknown object!!!")
     }

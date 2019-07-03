@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="index.css">
   <title>Monolith</title>
 </head>
 <body>
@@ -15,8 +16,21 @@
     <img id="mammoth" src="../assets/npcs/Mammoth.png">
   </div>
 
-  <div style="background: no-repeat url(../assets/map/MonolithMap_wide.png)">
+  <img id="selected-tower">
+
+  <div id="monolith-game" style="background: no-repeat url(../assets/map/MonolithMap_wide.png)">
     <canvas id="monolith-canvas" width="1500" height="1000"></canvas>
+    <div id="towers-pane">
+      <div id="earth">
+        <img id="earth-tower" src="../assets/towers/earth_tower.png">
+      </div>
+      <div id="water">
+        <img id="water-tower" src="../assets/towers/water_tower.png">
+      </div>
+      <div id="fire">
+        <img id="fire-tower" src="../assets/towers/fire_tower.png">
+      </div>
+    </div>
   </div>
 
   <script type="application/javascript" src="./main.js"></script>
