@@ -1,4 +1,4 @@
-const MovingObject = require("./moving_object");
+const MovingObject = require("../moving_object");
 
 class NPC extends MovingObject {
   constructor(options) {

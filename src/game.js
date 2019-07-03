@@ -1,5 +1,8 @@
-const NPC = require("./npc");
-const Caveman = require("./caveman");
+const NPC = require("./moving_objects/npcs/npc");
+const Caveman = require("./moving_objects/npcs/caveman");
+const Spider = require("./moving_objects/npcs/spider");
+const Eagle = require("./moving_objects/npcs/eagle");
+const Mammoth = require("./moving_objects/npcs/mammoth");
 
 class Game {
   constructor() {
@@ -10,8 +13,11 @@ class Game {
   }
 
   test() {
-    const caveman = new Caveman({ pos: [100, 100] });
-    this.add(caveman);
+    const sample = new Caveman({ pos: [100, 100] });
+    // const sample = new Spider({ pos: [100, 100] });
+    // const sample = new Eagle({ pos: [100, 100] });
+    // const sample = new Mammoth({ pos: [100, 100] });
+    this.add(sample);
   }
 
   add(object) {

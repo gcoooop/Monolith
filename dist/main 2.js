@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const NPC = __webpack_require__(/*! ./moving_objects/npcs/npc */ \"./src/moving_objects/npcs/npc.js\");\nconst Caveman = __webpack_require__(/*! ./moving_objects/npcs/caveman */ \"./src/moving_objects/npcs/caveman.js\");\nconst Spider = __webpack_require__(/*! ./moving_objects/npcs/spider */ \"./src/moving_objects/npcs/spider.js\");\nconst Eagle = __webpack_require__(/*! ./moving_objects/npcs/eagle */ \"./src/moving_objects/npcs/eagle.js\");\nconst Mammoth = __webpack_require__(/*! ./moving_objects/npcs/mammoth */ \"./src/moving_objects/npcs/mammoth.js\");\n\nclass Game {\n  constructor() {\n    this.towers = [];\n    this.npcs = [];\n    this.projectiles = [];\n    this.test();\n  }\n\n  test() {\n    const sample = new Caveman({ pos: [100, 100] });\n    // const sample = new Spider({ pos: [100, 100] });\n    // const sample = new Eagle({ pos: [100, 100] });\n    // const sample = new Mammoth({ pos: [100, 100] });\n    this.add(sample);\n  }\n\n  add(object) {\n    if (object instanceof NPC) {\n      this.npcs.push(object);\n    } else {\n      throw new Error(\"unknown object!!!\")\n    }\n  }\n\n  allObjects() {\n    return [].concat(this.npcs, this.projectiles, this.towers);\n  }\n\n  draw(ctx) {\n    // clears the canvas area\n    ctx.clearRect(0, 0, 1500, 1000);\n\n    this.allObjects().forEach(object => {\n      object.draw(ctx);\n    });\n  }\n\n  moveObjects(dt) {\n    this.allObjects().forEach(object => {\n      object.move(dt);\n    });\n  }\n\n  step(dt) {\n    this.moveObjects(dt);\n  }\n}\n\nmodule.exports = Game;\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("const NPC = __webpack_require__(/*! ./npcs/npc */ \"./src/npcs/npc.js\");\nconst Caveman = __webpack_require__(/*! ./npcs/caveman */ \"./src/npcs/caveman.js\");\nconst Spider = __webpack_require__(/*! ./npcs/spider */ \"./src/npcs/spider.js\");\nconst Eagle = __webpack_require__(/*! ./npcs/eagle */ \"./src/npcs/eagle.js\");\nconst Mammoth = __webpack_require__(/*! ./npcs/mammoth */ \"./src/npcs/mammoth.js\");\n\nclass Game {\n  constructor() {\n    this.towers = [];\n    this.npcs = [];\n    this.projectiles = [];\n    this.test();\n  }\n\n  test() {\n    const sample = new Caveman({ pos: [100, 100] });\n    // const sample = new Spider({ pos: [100, 100] });\n    // const sample = new Eagle({ pos: [100, 100] });\n    // const sample = new Mammoth({ pos: [100, 100] });\n    this.add(sample);\n  }\n\n  add(object) {\n    if (object instanceof NPC) {\n      this.npcs.push(object);\n    } else {\n      throw new Error(\"unknown object!!!\")\n    }\n  }\n\n  allObjects() {\n    return [].concat(this.npcs, this.projectiles, this.towers);\n  }\n\n  draw(ctx) {\n    // clears the canvas area\n    ctx.clearRect(0, 0, 1500, 1000);\n\n    this.allObjects().forEach(object => {\n      object.draw(ctx);\n    });\n  }\n\n  moveObjects(dt) {\n    this.allObjects().forEach(object => {\n      object.move(dt);\n    });\n  }\n\n  step(dt) {\n    this.moveObjects(dt);\n  }\n}\n\nmodule.exports = Game;\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -119,69 +119,69 @@ eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst 
 
 /***/ }),
 
-/***/ "./src/moving_objects/moving_object.js":
-/*!*********************************************!*\
-  !*** ./src/moving_objects/moving_object.js ***!
-  \*********************************************/
+/***/ "./src/moving_object.js":
+/*!******************************!*\
+  !*** ./src/moving_object.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class MovingObject {\n  constructor(options = {}) {\n    this.pos = options.pos;\n    this.vel = options.vel;\n    this.hitRadius = options.hitRadius;\n    this.game = options.game;\n    this.sprite = document.getElementById(options.sprite);\n  }\n\n  draw(ctx) {\n    ctx.drawImage(this.sprite, this.pos[0], this.pos[1]);\n  }\n\n  move(dt) {\n    const x = this.pos[0] + this.vel[0] * (dt / normalFrameRate);\n    const y = this.pos[1] + this.vel[1] * (dt / normalFrameRate);\n    this.pos = [ x, y ];\n  }\n\n  remove() {\n    this.game.remove(this);\n  }\n}\n\nconst normalFrameRate = 1000 / 60;\n\nmodule.exports = MovingObject;\n\n//# sourceURL=webpack:///./src/moving_objects/moving_object.js?");
+eval("class MovingObject {\n  constructor(options = {}) {\n    this.pos = options.pos;\n    this.vel = options.vel;\n    this.hitRadius = options.hitRadius;\n    this.game = options.game;\n    this.sprite = document.getElementById(options.sprite);\n  }\n\n  draw(ctx) {\n    ctx.drawImage(this.sprite, this.pos[0], this.pos[1]);\n  }\n\n  move(dt) {\n    const x = this.pos[0] + this.vel[0] * (dt / normalFrameRate);\n    const y = this.pos[1] + this.vel[1] * (dt / normalFrameRate);\n    this.pos = [ x, y ];\n  }\n\n  remove() {\n    this.game.remove(this);\n  }\n}\n\nconst normalFrameRate = 1000 / 60;\n\nmodule.exports = MovingObject;\n\n//# sourceURL=webpack:///./src/moving_object.js?");
 
 /***/ }),
 
-/***/ "./src/moving_objects/npcs/caveman.js":
-/*!********************************************!*\
-  !*** ./src/moving_objects/npcs/caveman.js ***!
-  \********************************************/
+/***/ "./src/npcs/caveman.js":
+/*!*****************************!*\
+  !*** ./src/npcs/caveman.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/moving_objects/npcs/npc.js\");\n\nclass Caveman extends NPC {\n  constructor(options) {\n    options.vel = [0.5, 0.5];\n    options.sprite = \"caveman\";\n    super(options);\n  }\n}\n\nmodule.exports = Caveman;\n\n//# sourceURL=webpack:///./src/moving_objects/npcs/caveman.js?");
+eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/npcs/npc.js\");\n\nclass Caveman extends NPC {\n  constructor(options) {\n    options.vel = [0.5, 0.5];\n    options.sprite = \"caveman\";\n    super(options);\n  }\n}\n\nmodule.exports = Caveman;\n\n//# sourceURL=webpack:///./src/npcs/caveman.js?");
 
 /***/ }),
 
-/***/ "./src/moving_objects/npcs/eagle.js":
-/*!******************************************!*\
-  !*** ./src/moving_objects/npcs/eagle.js ***!
-  \******************************************/
+/***/ "./src/npcs/eagle.js":
+/*!***************************!*\
+  !*** ./src/npcs/eagle.js ***!
+  \***************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/moving_objects/npcs/npc.js\");\n\nclass Eagle extends NPC {\n  constructor(options) {\n    options.vel = [0.5, 0.5];\n    options.sprite = \"eagle\";\n    super(options);\n  }\n}\n\nmodule.exports = Eagle;\n\n//# sourceURL=webpack:///./src/moving_objects/npcs/eagle.js?");
+eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/npcs/npc.js\");\n\nclass Eagle extends NPC {\n  constructor(options) {\n    options.vel = [0.5, 0.5];\n    options.sprite = \"eagle\";\n    super(options);\n  }\n}\n\nmodule.exports = Eagle;\n\n//# sourceURL=webpack:///./src/npcs/eagle.js?");
 
 /***/ }),
 
-/***/ "./src/moving_objects/npcs/mammoth.js":
-/*!********************************************!*\
-  !*** ./src/moving_objects/npcs/mammoth.js ***!
-  \********************************************/
+/***/ "./src/npcs/mammoth.js":
+/*!*****************************!*\
+  !*** ./src/npcs/mammoth.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/moving_objects/npcs/npc.js\");\n\nclass Mammoth extends NPC {\n  constructor(options) {\n    options.vel = [0.5, 0.5];\n    options.sprite = \"mammoth\";\n    super(options);\n  }\n}\n\nmodule.exports = Mammoth;\n\n//# sourceURL=webpack:///./src/moving_objects/npcs/mammoth.js?");
+eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/npcs/npc.js\");\n\nclass Mammoth extends NPC {\n  constructor(options) {\n    options.vel = [0.5, 0.5];\n    options.sprite = \"mammoth\";\n    super(options);\n  }\n}\n\nmodule.exports = Mammoth;\n\n//# sourceURL=webpack:///./src/npcs/mammoth.js?");
 
 /***/ }),
 
-/***/ "./src/moving_objects/npcs/npc.js":
-/*!****************************************!*\
-  !*** ./src/moving_objects/npcs/npc.js ***!
-  \****************************************/
+/***/ "./src/npcs/npc.js":
+/*!*************************!*\
+  !*** ./src/npcs/npc.js ***!
+  \*************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const MovingObject = __webpack_require__(/*! ../moving_object */ \"./src/moving_objects/moving_object.js\");\n\nclass NPC extends MovingObject {\n  constructor(options) {\n    super(options);\n    this.health = options.health;\n    this.damage = options.damage;\n  }\n}\n\nmodule.exports = NPC;\n\n//# sourceURL=webpack:///./src/moving_objects/npcs/npc.js?");
+eval("const MovingObject = __webpack_require__(/*! ../moving_object */ \"./src/moving_object.js\");\n\nclass NPC extends MovingObject {\n  constructor(options) {\n    super(options);\n    this.health = options.health;\n    this.damage = options.damage;\n  }\n}\n\nmodule.exports = NPC;\n\n//# sourceURL=webpack:///./src/npcs/npc.js?");
 
 /***/ }),
 
-/***/ "./src/moving_objects/npcs/spider.js":
-/*!*******************************************!*\
-  !*** ./src/moving_objects/npcs/spider.js ***!
-  \*******************************************/
+/***/ "./src/npcs/spider.js":
+/*!****************************!*\
+  !*** ./src/npcs/spider.js ***!
+  \****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/moving_objects/npcs/npc.js\");\n\nclass Spider extends NPC {\n  constructor(options) {\n    options.vel = [0.5, 0.5];\n    options.sprite = \"spider\";\n    super(options);\n  }\n}\n\nmodule.exports = Spider;\n\n//# sourceURL=webpack:///./src/moving_objects/npcs/spider.js?");
+eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/npcs/npc.js\");\n\nclass Spider extends NPC {\n  constructor(options) {\n    options.vel = [0.5, 0.5];\n    options.sprite = \"spider\";\n    super(options);\n  }\n}\n\nmodule.exports = Spider;\n\n//# sourceURL=webpack:///./src/npcs/spider.js?");
 
 /***/ })
 
