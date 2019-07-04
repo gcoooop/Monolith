@@ -8,6 +8,7 @@ const AllTowers = {
   fire: FireTower
 };
 
+const styleSheetEle = document.getElementById("css");
 const selectedTowerContainerEle = document.getElementById("selected-tower-container");
 const selectedTowerImgEle = document.getElementById("selected-tower-img");
 
@@ -87,21 +88,19 @@ class UI {
     const style = selectedTowerContainerEle.style;
     const domTowerImg = `<img src="${selectedTowerImgEle.src}"/>`
     const domTower = document.createElement("DIV");
-    domTower.id = `dom-tower ${this.selectedTowerType}-dom-tower`;
+    domTower.id = "dom-tower";
+    domTower.className = `${this.selectedTowerType}-dom-tower`;
     domTower.innerHTML = domTowerImg;
-    domTower.style.position = "absolute";
     domTower.style.left = style.left;
     domTower.style.top = style.top;
     domTower.style.height = style.height;
     domTower.style.width = style.width;
-    domTower.style.background = "rgb(0,0,0,0.5)";
-    domTower.style.borderRadius = "50%";
-    domTower.style.display = "flex";
-    domTower.style.justifyContent = "center";
-    domTower.style.alignItems = "center";
-
 
     document.body.appendChild(domTower);
+  }
+
+  showRangeIndicator(event) {
+
   }
 }
 

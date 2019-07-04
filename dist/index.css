@@ -12,6 +12,15 @@
   pointer-events: none;
 }
 
+#dom-tower {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
 #monolith-game {
   display: flex; 
 }
