@@ -14,7 +14,7 @@ class TargetingQueue {
   }
 
   removeTarget(target) {
-    this.targets.filter(ele => ele != target);
+    this.targets = this.targets.filter(ele => ele != target);
     return target;
   }
 

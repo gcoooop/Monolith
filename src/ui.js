@@ -76,7 +76,6 @@ class UI {
     const rect = this.canvasEl.getBoundingClientRect()
     const x = event.clientX - rect.left
     const y = event.clientY - rect.top
-    console.log("x: " + x + " y: " + y)
     return [x, y];
   }
 

@@ -18,8 +18,7 @@ class Tower {
     this.reload = options.reload;
     this.sprite = AllTowerImgs[options.type];
     this.targets = new TargetingQueue();
-    console.log(this.pos);
-  }
+  } 
 
   draw(ctx) {
     ctx.drawImage(this.sprite, this.pos[0] - Tower.DIMENSION  * 0.5, this.pos[1] - Tower.DIMENSION  * 0.5);
@@ -29,10 +28,8 @@ class Tower {
     npcs.forEach(npc => {
       const inRange = this.inRange(npc);
       const targeted = this.targets.includes(npc);
-
       if (inRange && !targeted) {
         this.addTarget(npc);
-        throw new Error();
       } else if (!inRange && targeted) {
         this.removeTarget(npc);
       }

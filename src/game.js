@@ -57,7 +57,6 @@ class Game {
   runTargeting() {
     this.towers.forEach(tower => {
       tower.calcTargets(this.npcs);
-      console.log(tower.targets.targets)
     });
   }
 
