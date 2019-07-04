@@ -1,10 +1,10 @@
 const MovingObject = require("../moving_object");
 
-class Projectile extends MovingObject {
+class Artillery extends MovingObject {
   constructor(options) {
     this.damage = options.damage;
     super(options);
   }
 }
 
-module.exports = Projectile;
+module.exports = Artillery;
