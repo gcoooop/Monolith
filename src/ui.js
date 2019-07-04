@@ -1,48 +1,62 @@
-const EarthTower = require("./towers/fire_tower");
+const EarthTower = require("./towers/earth_tower");
 const WaterTower = require("./towers/water_tower");
 const FireTower = require("./towers/fire_tower");
+
+const AllTowers = {
+  earth: EarthTower,
+  water: WaterTower,
+  fire: FireTower
+};
 
 class UI {
   constructor(canvasEl, game) {
     this.canvasEl = canvasEl;
     this.selectedTowerEle = document.getElementById("selected-tower");
     this.game = game;
-    this.initializeControlPanel();
+    this.selectedTowerType = null;
 
-    // this.selectTower = this.selectTower.bind(this);
-    // this.followMouse = this.followMouse.bind(this);
-    // this.placeTower = this.placeTower.bind(this);
+    this.initializeControlPanel = this.initializeControlPanel.bind(this);
+    this.selectTower = this.selectTower.bind(this);
+    this.followMouse = this.followMouse.bind(this);
+    this.placeTower = this.placeTower.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
+    this.initializeControlPanel();
+    document.addEventListener("mousemove", this.followMouse);
+  }
+
+  followMouse(event) {
+    this.selectedTowerEle.style.left = `calc(${event.pageX}px - 50px)`;
+    this.selectedTowerEle.style.top = `calc(${event.pageY}px - 50px)`;
   }
 
   initializeControlPanel() {
     const towerButtons = [...document.getElementById("towers-pane").children];
-    towerButtons.forEach(towerButton => {
-      towerButton.addEventListener("mousedown", this.selectTower.bind(this))
-    });
+    towerButtons.forEach( towerButton => towerButton.addEventListener("click", this.selectTower) );
   }
 
   selectTower(event) {
-    const towerType = event.currentTarget.id;
-    const towerImgEle = document.getElementById(`${towerType}-tower`)
+    event.stopPropagation();
+    this.selectedTowerType = event.currentTarget.id;
+
+    const towerImgEle = document.getElementById(`${this.selectedTowerType}-tower`)
     this.selectedTowerEle.src = towerImgEle.src;
     
-    document.addEventListener("mousemove", this.followMouse.bind(this));
-
-    this.canvasEl.addEventListener("click", this.placeTower.bind(this));
+    document.addEventListener("click", this.handleClick);
   }
 
-  followMouse(event) {
-    this.selectedTowerEle.style.left = `calc(${event.pageX}px - 37.5px)`;
-    this.selectedTowerEle.style.top = `calc(${event.pageY}px - 37.5px)`;
+  handleClick(event) {
+    if (event.target.nodeName === "CANVAS") {
+      this.placeTower(event);
+    } 
+    document.removeEventListener("click", this.handleClick);
+    this.selectedTowerEle.src = "";
   }
 
   placeTower(event) {
-    document.removeEventListener("mousemove", this.followMouse.bind(this));
-    this.canvasEl.removeEventListener("click", this.placeTower.bind(this));
-    // const towerClass = `${}Tower`
-    if (event.target.id === "monolith-canvas") {
-      // this.game.add(new )
-    }
+    const pos = [ event.offsetX - 50, event.offsetY - 50 ];
+    const options = { pos };
+    this.game.add( new AllTowers[this.selectedTowerType](options) );
   }
 }
 
