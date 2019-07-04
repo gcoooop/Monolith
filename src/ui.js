@@ -56,6 +56,7 @@ class UI {
     event.stopPropagation();
     this.selectedTowerType = event.currentTarget.id;
     selectedTowerImgEle.src = AllTowerImgs[this.selectedTowerType];
+    this.followMouse(event)
 
     document.addEventListener("click", this.handleClick);
   }
