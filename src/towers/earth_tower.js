@@ -2,12 +2,17 @@ const Tower = require("./tower");
 
 class EarthTower extends Tower {
   constructor(options) {
-    options.type = "earth";
-    options.range = 200;
-    options.damage = 1;
-    options.reload = 1000;
+    options.type = EarthTower.TYPE;
+    options.range = EarthTower.RANGE;
+    options.damage = EarthTower.DAMAGE;
+    options.reload = EarthTower.RELOAD;
     super(options);
   }
 }
+
+EarthTower.TYPE = "earth";
+EarthTower.RANGE = 400;
+EarthTower.DAMAGE = 1;
+EarthTower.RELOAD = 1000;
 
 module.exports = EarthTower;

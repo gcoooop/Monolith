@@ -8,10 +8,22 @@ const AllTowers = {
   fire: FireTower
 };
 
+const selectedTowerContainerEle = document.getElementById("selected-tower-container");
+const selectedTowerImgEle = document.getElementById("selected-tower-img");
+
+const earthTowerImg = document.getElementById("earth-tower");
+const waterTowerImg = document.getElementById("water-tower");
+const fireTowerImg = document.getElementById("fire-tower");
+
+const AllTowerImgs = {
+  earth: earthTowerImg.src,
+  water: waterTowerImg.src,
+  fire: fireTowerImg.src
+};
+
 class UI {
   constructor(canvasEl, game) {
     this.canvasEl = canvasEl;
-    this.selectedTowerEle = document.getElementById("selected-tower");
     this.game = game;
     this.selectedTowerType = null;
 
@@ -26,8 +38,13 @@ class UI {
   }
 
   followMouse(event) {
-    this.selectedTowerEle.style.left = `calc(${event.pageX}px - 50px)`;
-    this.selectedTowerEle.style.top = `calc(${event.pageY}px - 50px)`;
+    if (this.selectedTowerType) {
+      const towerRange = AllTowers[this.selectedTowerType].RANGE;
+      selectedTowerContainerEle.style.left = `calc(${event.pageX}px - ${towerRange * 0.5}px)`;
+      selectedTowerContainerEle.style.top = `calc(${event.pageY}px - ${towerRange * 0.5}px)`;
+      selectedTowerContainerEle.style.height = `${towerRange}px`;
+      selectedTowerContainerEle.style.width = `${towerRange}px`;
+    }
   }
 
   initializeControlPanel() {
@@ -38,10 +55,8 @@ class UI {
   selectTower(event) {
     event.stopPropagation();
     this.selectedTowerType = event.currentTarget.id;
+    selectedTowerImgEle.src = AllTowerImgs[this.selectedTowerType];
 
-    const towerImgEle = document.getElementById(`${this.selectedTowerType}-tower`)
-    this.selectedTowerEle.src = towerImgEle.src;
-    
     document.addEventListener("click", this.handleClick);
   }
 
@@ -50,7 +65,10 @@ class UI {
       this.placeTower(event);
     } 
     document.removeEventListener("click", this.handleClick);
-    this.selectedTowerEle.src = "";
+    selectedTowerImgEle.src = "";
+    this.selectedTowerType = null;
+    selectedTowerContainerEle.style.height = `0px`;
+    selectedTowerContainerEle.style.width = `0px`;
   }
 
   placeTower(event) {

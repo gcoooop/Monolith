@@ -2,12 +2,17 @@ const Tower = require("./tower");
 
 class FireTower extends Tower {
   constructor(options) {
-    options.type = "fire";
-    options.range = 50;
-    options.damage = 5;
-    options.reload = 4000;
+    options.type = FireTower.TYPE;
+    options.range = FireTower.RANGE;
+    options.damage = FireTower.DAMAGE;
+    options.reload = FireTower.RELOAD;
     super(options);
   }
 }
+
+FireTower.TYPE = "fire";
+FireTower.RANGE = 250;
+FireTower.DAMAGE = 5;
+FireTower.RELOAD = 4000;
 
 module.exports = FireTower;
