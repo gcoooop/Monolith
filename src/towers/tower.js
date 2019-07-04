@@ -21,7 +21,7 @@ class Tower {
   } 
 
   draw(ctx) {
-    ctx.drawImage(this.sprite, this.pos[0] - Tower.DIMENSION  * 0.5, this.pos[1] - Tower.DIMENSION  * 0.5);
+    // ctx.drawImage(this.sprite, this.pos[0] - Tower.DIMENSION  * 0.5, this.pos[1] - Tower.DIMENSION  * 0.5);
   }
 
   calcTargets(npcs) {

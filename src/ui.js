@@ -83,6 +83,25 @@ class UI {
     const pos = this.getCursorPosition(event);
     const options = { pos };
     this.game.add( new AllTowers[this.selectedTowerType](options) );
+
+    const style = selectedTowerContainerEle.style;
+    const domTowerImg = `<img src="${selectedTowerImgEle.src}"/>`
+    const domTower = document.createElement("DIV");
+    domTower.id = `dom-tower ${this.selectedTowerType}-dom-tower`;
+    domTower.innerHTML = domTowerImg;
+    domTower.style.position = "absolute";
+    domTower.style.left = style.left;
+    domTower.style.top = style.top;
+    domTower.style.height = style.height;
+    domTower.style.width = style.width;
+    domTower.style.background = "rgb(0,0,0,0.5)";
+    domTower.style.borderRadius = "50%";
+    domTower.style.display = "flex";
+    domTower.style.justifyContent = "center";
+    domTower.style.alignItems = "center";
+
+
+    document.body.appendChild(domTower);
   }
 }
 
