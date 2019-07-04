@@ -1,15 +1,21 @@
+const Queue = require("../util/queue");
+
 class Path {
   constructor(number) {
-    this.points = [];
+    this.points = new Queue();
     this[`path${number}`]();
   }
 
   enqueue(point) {
-    return this.points.push(point);
+    return this.points.enqueue(point);
   }
 
   dequeue() {
-    return this.points.shift();
+    return this.points.dequeue();
+  }
+
+  pointCount() {
+    return this.points.length();
   }
 
   path1() {
