@@ -8,16 +8,16 @@
   align-items: center;
 }
 
-#selected-tower-img {
-  pointer-events: none;
-}
-
-#dom-tower {
+.dom-tower {
   position: absolute;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: transparent;
+}
+
+.dom-tower-selected {
   background: rgba(0, 0, 0, 0.5);
 }
 

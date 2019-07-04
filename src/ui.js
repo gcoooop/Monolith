@@ -1,3 +1,4 @@
+const Tower = require("./towers/tower");
 const EarthTower = require("./towers/earth_tower");
 const WaterTower = require("./towers/water_tower");
 const FireTower = require("./towers/fire_tower");
@@ -33,19 +34,10 @@ class UI {
     this.followMouse = this.followMouse.bind(this);
     this.placeTower = this.placeTower.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.showRangeIndicator = this.showRangeIndicator.bind(this);
 
     this.initializeControlPanel();
     document.addEventListener("mousemove", this.followMouse);
-  }
-
-  followMouse(event) {
-    if (this.selectedTowerType) {
-      const towerRange = AllTowers[this.selectedTowerType].RANGE;
-      selectedTowerContainerEle.style.left = `calc(${event.pageX}px - ${towerRange}px)`;
-      selectedTowerContainerEle.style.top = `calc(${event.pageY}px - ${towerRange}px)`;
-      selectedTowerContainerEle.style.height = `${towerRange * 2}px`;
-      selectedTowerContainerEle.style.width = `${towerRange * 2}px`;
-    }
   }
 
   initializeControlPanel() {
@@ -54,12 +46,25 @@ class UI {
   }
 
   selectTower(event) {
-    event.stopPropagation();
-    this.selectedTowerType = event.currentTarget.id;
-    selectedTowerImgEle.src = AllTowerImgs[this.selectedTowerType];
-    this.followMouse(event)
+    if (!this.selectedTowerType) {
+      this.selectedTowerType = event.currentTarget.id;
+      selectedTowerImgEle.src = AllTowerImgs[this.selectedTowerType];
+      this.followMouse(event)
+  
+      setTimeout(() => {
+        document.addEventListener("click", this.handleClick);
+      }, 50);
+    }
+  }
 
-    document.addEventListener("click", this.handleClick);
+  followMouse(event) {
+    if (this.selectedTowerType) {
+      const towerRange = AllTowers[this.selectedTowerType].RANGE;
+      selectedTowerContainerEle.style.left = `${event.pageX - towerRange}px`;
+      selectedTowerContainerEle.style.top = `${event.pageY - towerRange}px`;
+      selectedTowerContainerEle.style.height = `${towerRange * 2}px`;
+      selectedTowerContainerEle.style.width = `${towerRange * 2}px`;
+    }
   }
 
   handleClick(event) {
@@ -85,22 +90,45 @@ class UI {
     const options = { pos };
     this.game.add( new AllTowers[this.selectedTowerType](options) );
 
-    const style = selectedTowerContainerEle.style;
-    const domTowerImg = `<img src="${selectedTowerImgEle.src}"/>`
+    const domTowerImg = document.createElement("IMG");
+    domTowerImg.src = selectedTowerImgEle.src;
     const domTower = document.createElement("DIV");
-    domTower.id = "dom-tower";
-    domTower.className = `${this.selectedTowerType}-dom-tower`;
-    domTower.innerHTML = domTowerImg;
-    domTower.style.left = style.left;
-    domTower.style.top = style.top;
-    domTower.style.height = style.height;
-    domTower.style.width = style.width;
+    domTower.className = "dom-tower";
+    domTower.id = `${this.selectedTowerType}-dom-tower`;
+    domTower.appendChild(domTowerImg);
+    domTower.style.left = `${event.pageX}px`;
+    domTower.style.top = `${event.pageY}px`;
+    domTower.style.width = "0px";
+    domTower.style.height = "0px";
 
     document.body.appendChild(domTower);
+    domTowerImg.addEventListener("click", this.showRangeIndicator);
   }
 
   showRangeIndicator(event) {
+    const domTower = event.currentTarget.parentNode;
+    const domTowerType = domTower.id.replace("-dom-tower", "");
+    const towerRange = AllTowers[domTowerType].RANGE;
+    if (!domTower.className.includes("dom-tower-selected")) {
+      domTower.className += " dom-tower-selected";
+      domTower.style.width = `${2 * towerRange}px`;
+      domTower.style.height = `${2 * towerRange}px`;
+      domTower.style.left = `calc(${domTower.style.left} - ${towerRange}px)`;
+      domTower.style.top = `calc(${domTower.style.top} - ${towerRange}px)`;
 
+      const hideRangeIndicator = function(event) {
+        domTower.className = domTower.className.replace(" dom-tower-selected", "");
+        domTower.style.width = "0px";
+        domTower.style.height = "0px";
+        domTower.style.left = `calc(${domTower.style.left} + ${towerRange}px)`;
+        domTower.style.top = `calc(${domTower.style.top} + ${towerRange}px)`;
+        document.removeEventListener("click", hideRangeIndicator);
+      };
+
+      setTimeout(() => {
+        document.addEventListener("click", hideRangeIndicator);
+      }, 50);
+    }
   }
 }
 
