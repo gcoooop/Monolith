@@ -40,10 +40,10 @@ class UI {
   followMouse(event) {
     if (this.selectedTowerType) {
       const towerRange = AllTowers[this.selectedTowerType].RANGE;
-      selectedTowerContainerEle.style.left = `calc(${event.pageX}px - ${towerRange * 0.5}px)`;
-      selectedTowerContainerEle.style.top = `calc(${event.pageY}px - ${towerRange * 0.5}px)`;
-      selectedTowerContainerEle.style.height = `${towerRange}px`;
-      selectedTowerContainerEle.style.width = `${towerRange}px`;
+      selectedTowerContainerEle.style.left = `calc(${event.pageX}px - ${towerRange}px)`;
+      selectedTowerContainerEle.style.top = `calc(${event.pageY}px - ${towerRange}px)`;
+      selectedTowerContainerEle.style.height = `${towerRange * 2}px`;
+      selectedTowerContainerEle.style.width = `${towerRange * 2}px`;
     }
   }
 
@@ -72,8 +72,16 @@ class UI {
     selectedTowerContainerEle.style.width = `0px`;
   }
 
+  getCursorPosition(event) {
+    const rect = this.canvasEl.getBoundingClientRect()
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
+    console.log("x: " + x + " y: " + y)
+    return [x, y];
+  }
+
   placeTower(event) {
-    const pos = [ event.offsetX - 50, event.offsetY - 50 ];
+    const pos = this.getCursorPosition(event);
     const options = { pos };
     this.game.add( new AllTowers[this.selectedTowerType](options) );
   }

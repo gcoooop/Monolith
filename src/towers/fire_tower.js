@@ -11,7 +11,7 @@ class FireTower extends Tower {
 }
 
 FireTower.TYPE = "fire";
-FireTower.RANGE = 250;
+FireTower.RANGE = 125;
 FireTower.DAMAGE = 5;
 FireTower.RELOAD = 4000;
 

@@ -11,7 +11,7 @@ class WaterTower extends Tower {
 }
 
 WaterTower.TYPE = "water";
-WaterTower.RANGE = 600;
+WaterTower.RANGE = 300;
 WaterTower.DAMAGE = 0.2;
 WaterTower.RELOAD = 20;
 

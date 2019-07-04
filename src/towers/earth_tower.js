@@ -11,7 +11,7 @@ class EarthTower extends Tower {
 }
 
 EarthTower.TYPE = "earth";
-EarthTower.RANGE = 400;
+EarthTower.RANGE = 200;
 EarthTower.DAMAGE = 1;
 EarthTower.RELOAD = 1000;
 
