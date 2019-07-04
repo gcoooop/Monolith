@@ -1,0 +1,17 @@
+#selected-tower-container {
+  pointer-events: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#selected-tower-img {
+  pointer-events: none;
+}
+
+#monolith-game {
+  display: flex; 
+}

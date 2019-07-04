@@ -1,4 +1,5 @@
 const NPC = require("./moving_objects/npcs/npc");
+const Tower = require("./towers/tower");
 const Caveman = require("./moving_objects/npcs/caveman");
 const Spider = require("./moving_objects/npcs/spider");
 const Eagle = require("./moving_objects/npcs/eagle");
@@ -13,7 +14,7 @@ class Game {
   }
 
   test() {
-    const sample = new Caveman({ path: 4 });
+    const sample = new Caveman({ path: 2 });
     // const sample = new Spider({ pos: [100, 100] });
     // const sample = new Eagle({ pos: [100, 100] });
     // const sample = new Mammoth({ pos: [100, 100] });
@@ -22,7 +23,9 @@ class Game {
 
   add(object) {
     if (object instanceof NPC) {
-      this.npcs.push(object);
+      this.npcs.push(object); 
+    } else if (object instanceof Tower)  {    
+      this.towers.push(object);
     } else {
       throw new Error("unknown object!!!")
     }
@@ -30,6 +33,10 @@ class Game {
 
   allObjects() {
     return [].concat(this.npcs, this.projectiles, this.towers);
+  }
+
+  allMoveableObjects() {
+    return [].concat(this.npcs, this.projectiles);
   }
 
   draw(ctx) {
@@ -42,7 +49,7 @@ class Game {
   }
 
   moveObjects(dt) {
-    this.allObjects().forEach(object => {
+    this.allMoveableObjects().forEach(object => {
       object.move(dt);
     });
   }
