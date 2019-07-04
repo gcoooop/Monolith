@@ -6,6 +6,13 @@ class Mammoth extends NPC {
     options.sprite = "mammoth";
     super(options);
   }
+
+  draw(ctx) {
+    ctx.drawImage(this.sprite, this.pos[0] - Mammoth.DIMENSION_X * 0.5, this.pos[1] - Mammoth.DIMENSION_Y  * 0.5);
+  }
 }
+
+Mammoth.DIMENSION_X = 32;
+Mammoth.DIMENSION_Y = 50;
 
 module.exports = Mammoth;
