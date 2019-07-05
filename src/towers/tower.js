@@ -1,4 +1,5 @@
 const TargetingQueue = require("./targeting_queue");
+const Util = require("../util/util");
 
 class Tower {
   constructor(options) {
@@ -9,6 +10,7 @@ class Tower {
     this.reload = options.reload;
     this.artillery = options.artillery;
     this.targets = new TargetingQueue();
+    this.throttledFire = Util.throttle(this.fire.bind(this), this.reload);
   } 
 
   draw(ctx) {
@@ -42,6 +44,10 @@ class Tower {
     this.targets.removeTarget(target);
   }
 
+  noTargets() {
+    return this.targets.empty();
+  }
+
   primaryTarget() {
     return this.targets.primaryTarget();
   }
@@ -50,7 +56,7 @@ class Tower {
     const target = this.primaryTarget();
     if (target) {
       const targetLocation = target.pos;
-      const artillery = new this.artillery({ targetLocation, tower: this, game: this.game });
+      const artillery = new this.artillery({ target, tower: this, game: this.game });
       this.game.add(artillery);
     }
   }

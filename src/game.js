@@ -69,7 +69,7 @@ class Game {
 
   launchArtillery() {
     this.towers.forEach(tower => {
-      tower.fire();
+      if (!tower.noTargets()) tower.throttledFire();
     });
   }
 

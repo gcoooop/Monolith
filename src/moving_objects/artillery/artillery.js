@@ -8,12 +8,14 @@ class Artillery extends MovingObject {
     this.pos = options.tower.pos;
     this.speed = options.speed;
     this.damage = options.tower.damage;
-    this.targetLocation = options.targetLocation;
+    this.target = options.target
+    this.calcTargetLocation();
     this.calculateVelocity();
   }
 
   move(dt) {
     if (this.isAtTargetLocation() || this.isOutOfBounds()) this.explode();
+    this.calcTargetLocation();
     super.move(dt)
   }
 
@@ -21,10 +23,13 @@ class Artillery extends MovingObject {
     this.game.remove(this);
   }
 
+  calcTargetLocation() {
+    this.targetLocation = this.target.pos;
+  }
+
   calculateVelocity() {
     const dx = this.pos[0] - this.targetLocation[0];
     const dy = this.pos[1] - this.targetLocation[1];
-    console.log(dx, dy);
     let theta = Math.atan(dy / dx);
     if (dx > 0 && dy > 0) {
       theta += Math.PI;

@@ -6,12 +6,11 @@ class Droplet extends Artillery {
     options.speed = Droplet.SPEED;
     options.sprite = "droplet";
     super(options);
-
   }
 }
 
 Droplet.DIMENSION_X = 34;
 Droplet.DIMENSION_Y = 22;
-Droplet.SPEED = 3;
+Droplet.SPEED = 10;
 
 module.exports = Droplet;

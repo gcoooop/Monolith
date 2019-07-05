@@ -6,12 +6,11 @@ class Boulder extends Artillery {
     options.speed = Boulder.SPEED;
     options.sprite = "boulder"
     super(options);
-
   }
 }
 
 Boulder.DIMENSION_X = 34;
 Boulder.DIMENSION_Y = 22;
-Boulder.SPEED = 3;
+Boulder.SPEED = 7;
 
 module.exports = Boulder;

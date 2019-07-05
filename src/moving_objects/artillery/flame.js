@@ -6,12 +6,11 @@ class Flame extends Artillery {
     options.speed = Flame.SPEED;
     options.sprite = "flame";
     super(options);
-
   }
 }
 
 Flame.DIMENSION_X = 34;
 Flame.DIMENSION_Y = 22;
-Flame.SPEED = 3;
+Flame.SPEED = 20;
 
 module.exports = Flame;

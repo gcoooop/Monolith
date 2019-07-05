@@ -4,6 +4,10 @@ class TargetingQueue {
     this.order = "first";
   }
 
+  empty() {
+    return !this.targets.length;
+  }
+
   includes(target) {
     return this.targets.includes(target);
   }
