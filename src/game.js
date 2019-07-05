@@ -71,6 +71,10 @@ class Game {
     });
   }
 
+  damageMonolith(damage) {
+    this.monolith.takeDamage(damage);
+  }
+
   step(dt) {
     this.moveObjects(dt);
     this.runTargeting();

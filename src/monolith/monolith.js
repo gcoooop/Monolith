@@ -14,6 +14,10 @@ class Monolith {
     ctx.fillStyle = "#201e23"
     ctx.stroke()
   }
+
+  takeDamage(damage) {
+    this.health -= damage;
+  }
 }
 
 Monolith.POS = [1200, 215];

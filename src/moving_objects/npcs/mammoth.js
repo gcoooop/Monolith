@@ -6,6 +6,7 @@ class Mammoth extends NPC {
     options.speed = Mammoth.SPEED;
     options.hitRadius = Mammoth.HIT_RADIUS;
     options.health = Mammoth.HEALTH;
+    options.damage = Mammoth.DAMAGE;
     options.sprite = "mammoth";
     super(options);
   }
@@ -16,5 +17,6 @@ Mammoth.DIMENSION_Y = 50;
 Mammoth.SPEED = Math.sqrt(2);
 Mammoth.HIT_RADIUS = 20;
 Mammoth.HEALTH = 15;
+Mammoth.DAMAGE = 10;
 
 module.exports = Mammoth;

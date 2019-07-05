@@ -1,5 +1,6 @@
 const MovingObject = require("../moving_object");
 const Path = require("../../pathing/path");
+const Util = require("../../util/util");
 
 class NPC extends MovingObject {
   constructor(options) {
@@ -11,6 +12,7 @@ class NPC extends MovingObject {
     this.path = new Path(options.path);
     this.pos = this.path.dequeue();
     this.dest = this.path.dequeue();
+    this.throttledDealDamage = Util.throttle(this.dealDamage.bind(this), 1000);
     this.followPath();
   }
   
@@ -57,7 +59,11 @@ class NPC extends MovingObject {
   }
 
   move(dt) {
-    if (this.isAtDest()) this.updateDest();
+    if (this.dest) {
+      if (this.isAtDest()) this.updateDest();
+    } else {
+      this.throttledDealDamage(this.damage);
+    }
     super.move(dt)
   }
   
@@ -84,12 +90,17 @@ class NPC extends MovingObject {
       this.dest = this.path.dequeue();
       this.followPath();
     } else {
+      this.dest = null;
       this.vel = [0, 0];
     }
   }
   
   takeDamage(artilleryDamage) {
     this.health -= artilleryDamage;
+  }
+
+  dealDamage() {
+    this.game.damageMonolith(this.damage);
   }
   
   hasHealth() {

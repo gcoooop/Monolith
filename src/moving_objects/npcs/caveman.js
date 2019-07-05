@@ -6,6 +6,7 @@ class Caveman extends NPC {
     options.speed = Caveman.SPEED;
     options.hitRadius = Caveman.HIT_RADIUS;
     options.health = Caveman.HEALTH;
+    options.damage = Caveman.DAMAGE;
     options.sprite = "caveman";
     super(options);
   }
@@ -16,5 +17,6 @@ Caveman.DIMENSION_Y = 25;
 Caveman.SPEED = Math.sqrt(2);
 Caveman.HIT_RADIUS = 10;
 Caveman.HEALTH = 5;
+Caveman.DAMAGE = 3;
 
 module.exports = Caveman;
