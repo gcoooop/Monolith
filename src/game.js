@@ -69,18 +69,6 @@ class Game {
     });
   }
 
-  checkArtilleryCollision(artillery) {
-    this.npcs.forEach(npc => {
-      if (npc.isInAOE(artillery.pos, artillery.hitRadius)) {
-        npc.takeDamage(artillery.damage);
-        if (!npc.hasHealth()) {
-          npc.sendToHospital();
-          artillery.tower.removeTarget(npc);
-        }
-      }
-    });
-  }
-
   step(dt) {
     this.moveObjects(dt);
     this.runTargeting();

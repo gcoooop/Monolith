@@ -10,6 +10,21 @@ class FireTower extends Tower {
     options.artillery = Flame;
     super(options);
   }
+
+  fire() {
+    // do animation
+    this.strikeReport();
+  }
+
+  strikeReport() {
+    this.allTargets().forEach(target => {
+      target.takeDamage(this.damage);
+      if (!target.hasHealth()) {
+        target.sendToHospital();
+        this.removeTarget(target);
+      }
+    });
+  }
 }
 
 FireTower.TYPE = "fire";

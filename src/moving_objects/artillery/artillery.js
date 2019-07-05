@@ -8,7 +8,6 @@ class Artillery extends MovingObject {
     this.tower = options.tower;
     this.pos = options.tower.pos;
     this.speed = options.speed;
-    this.damage = options.tower.damage;
     this.target = options.target
     this.calcTargetLocation();
     this.calculateVelocity();
@@ -21,7 +20,7 @@ class Artillery extends MovingObject {
   }
 
   explode() {
-    this.game.checkArtilleryCollision(this);
+    this.tower.strikeReport(this.target, this);
     this.remove();
   }
 

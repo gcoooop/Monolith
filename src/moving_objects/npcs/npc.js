@@ -42,15 +42,7 @@ class NPC extends MovingObject {
       this.vel = [0, 0];
     }
   }
-
-  isInAOE(artilleryPos, artilleryRadius) {
-    const minDist = this.hitRadius + artilleryRadius;
-    const dx = this.pos[0] - artilleryPos[0];
-    const dy = this.pos[1] - artilleryPos[1];
-    const actualDist = Math.sqrt(dx**2 + dy**2);
-    return actualDist < minDist;
-  }
-
+  
   takeDamage(artilleryDamage) {
     this.health -= artilleryDamage;
   }
