@@ -2,8 +2,9 @@ const MovingObject = require("../moving_object");
 
 class Artillery extends MovingObject {
   constructor(options) {
-    this.damage = options.damage;
     super(options);
+    this.tower = options.tower;
+    this.damage = options.tower.damage;
   }
 }
 
