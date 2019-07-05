@@ -42,6 +42,18 @@ class NPC extends MovingObject {
       this.vel = [0, 0];
     }
   }
+  
+  takeDamage(artilleryDamage) {
+    this.health -= artilleryDamage;
+  }
+  
+  hasHealth() {
+    return this.health > 0;
+  }
+  
+  sendToHospital() {
+    this.remove();
+  }
 }
 
 module.exports = NPC;

@@ -26,6 +26,10 @@ class TargetingQueue {
     return this.targets[0] || null;
   }
 
+  allTargets() {
+    return this.targets;
+  }
+
   reorder(order) {
 
   }

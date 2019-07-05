@@ -15,7 +15,7 @@ class Game {
   }
 
   test() {
-    const sample = new Caveman({ path: 2 });
+    const sample = new Caveman({ path: 2, game: this });
     // const sample = new Spider({ pos: [100, 100] });
     // const sample = new Eagle({ pos: [100, 100] });
     // const sample = new Mammoth({ pos: [100, 100] });
@@ -57,10 +57,6 @@ class Game {
     });
   }
 
-  checkCollisions() {
-    
-  }
-
   runTargeting() {
     this.towers.forEach(tower => {
       tower.calcTargets(this.npcs);
@@ -75,7 +71,6 @@ class Game {
 
   step(dt) {
     this.moveObjects(dt);
-    this.checkCollisions();
     this.runTargeting();
     this.launchArtillery();
   }

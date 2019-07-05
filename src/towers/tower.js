@@ -17,6 +17,10 @@ class Tower {
     // do nothing!
   }
 
+  allTargets() {
+    return this.targets.allTargets();
+  }
+
   calcTargets(npcs) {
     npcs.forEach(npc => {
       const inRange = this.inRange(npc);
@@ -55,10 +59,13 @@ class Tower {
   fire() {
     const target = this.primaryTarget();
     if (target) {
-      const targetLocation = target.pos;
       const artillery = new this.artillery({ target, tower: this, game: this.game });
       this.game.add(artillery);
     }
+  }
+
+  strikeReport() {
+    // do nothing
   }
 }
 

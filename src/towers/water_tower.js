@@ -10,6 +10,14 @@ class WaterTower extends Tower {
     options.artillery = Droplet;
     super(options);
   }
+
+  strikeReport(target, artillery) {
+    target.takeDamage(this.damage);
+    if (!target.hasHealth()) {
+      target.sendToHospital();
+      this.removeTarget(target);
+    }
+  }
 }
 
 WaterTower.TYPE = "water";

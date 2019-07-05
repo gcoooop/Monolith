@@ -10,6 +10,26 @@ class EarthTower extends Tower {
     options.artillery = Boulder;
     super(options);
   }
+
+  strikeReport(target, artillery) {
+    this.allTargets().forEach(target => {
+      if (this.inAOE(target, artillery)) {
+        target.takeDamage(this.damage);
+        if (!target.hasHealth()) {
+          target.sendToHospital();
+          this.removeTarget(target);
+        }
+      }
+    });
+  }
+
+  inAOE(target, artillery) {
+    const minDist = target.hitRadius + artillery.hitRadius;
+    const dx = target.pos[0] - artillery.pos[0];
+    const dy = target.pos[1] - artillery.pos[1];
+    const actualDist = Math.sqrt(dx**2 + dy**2);
+    return actualDist < minDist;
+  }
 }
 
 EarthTower.TYPE = "earth";

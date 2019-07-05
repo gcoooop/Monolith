@@ -10,6 +10,33 @@ class FireTower extends Tower {
     options.artillery = Flame;
     super(options);
   }
+
+  fire() {
+    this.createFlames();
+    setTimeout(() => {
+      this.strikeReport();
+    }, 100);
+  }
+
+  createFlames() {
+    const amtFlames = 40;
+    for (let n = 0; n < amtFlames; n++) {
+      const theta = 2 * Math.PI * (n / amtFlames);
+      const vel = [Flame.SPEED * Math.cos(theta), Flame.SPEED * Math.sin(theta)];
+      const artillery = new this.artillery({ vel, tower: this, game: this.game });
+      this.game.add(artillery);
+    }
+  }
+
+  strikeReport() {
+    this.allTargets().forEach(target => {
+      target.takeDamage(this.damage);
+      if (!target.hasHealth()) {
+        target.sendToHospital();
+        this.removeTarget(target);
+      }
+    });
+  }
 }
 
 FireTower.TYPE = "fire";
