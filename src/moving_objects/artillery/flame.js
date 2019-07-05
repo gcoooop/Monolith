@@ -15,6 +15,11 @@ class Flame extends Artillery {
     super.move(dt)
   }
 
+  explode() {
+    this.tower.throttledStrikeReport();
+    this.remove();
+  }
+
   calculateVelocity(theta) {
     // 
   }

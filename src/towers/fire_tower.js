@@ -1,5 +1,6 @@
 const Tower = require("./tower");
 const Flame = require("../moving_objects/artillery/flame");
+const Util = require("../util/util");
 
 class FireTower extends Tower {
   constructor(options) {
@@ -9,13 +10,11 @@ class FireTower extends Tower {
     options.reload = FireTower.RELOAD;
     options.artillery = Flame;
     super(options);
+    this.throttledStrikeReport = Util.throttle(this.strikeReport.bind(this), 100);
   }
 
   fire() {
     this.createFlames();
-    setTimeout(() => {
-      this.strikeReport();
-    }, 100);
   }
 
   createFlames() {
