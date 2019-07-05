@@ -21,6 +21,26 @@ class NPC extends MovingObject {
     const x100Health = this.pos[0] + this.dimensions[0] * 0.5;
     const xNHealth = (x100Health - x0Health) * (this.health / this.fullHealth) + x0Health;
 
+    const healthPercentage = this.health / this.fullHealth * 100;
+    let healthColor;
+    switch (true) {
+      case healthPercentage >= 80:
+        healthColor = "#00FF00";
+        break;
+      case healthPercentage < 80 && healthPercentage >= 60:
+        healthColor = "#96FF02";
+        break;
+      case healthPercentage < 60 && healthPercentage >= 40:
+        healthColor = "#FFFF00";
+        break;
+      case healthPercentage < 40 && healthPercentage >= 20:
+        healthColor = "#FF7F00";
+        break;
+      case healthPercentage < 20:
+        healthColor = "#FF0000";
+        break;
+    }
+
     ctx.beginPath();
     ctx.moveTo(x0Health, y);
     ctx.lineTo(x100Health, y);
@@ -32,7 +52,7 @@ class NPC extends MovingObject {
     ctx.moveTo(x0Health, y);
     ctx.lineTo(xNHealth, y);
     ctx.lineWidth = 3;
-    ctx.strokeStyle = "red";
+    ctx.strokeStyle = healthColor;
     ctx.stroke();
   }
 
