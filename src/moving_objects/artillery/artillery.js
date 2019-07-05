@@ -14,7 +14,7 @@ class Artillery extends MovingObject {
   }
 
   move(dt) {
-    if (this.isAtTargetLocation() || this.isOutOfBounds()) this.explode();
+    if (this.isAtTargetLocation() || this.isOutOfBounds() || this.beyondTowerRange()) this.explode();
     this.calculateVelocity();
     super.move(dt)
   }
@@ -45,6 +45,13 @@ class Artillery extends MovingObject {
     const dx = Math.floor(this.pos[0] - this.targetLocation[0]);
     const dy = Math.floor(this.pos[1] - this.targetLocation[1]);
     return dx >= -4 && dx <= 4 && dy >= -4 && dy <= 4;
+  }
+
+  beyondTowerRange() {
+    const dx = this.tower.pos[0] - this.pos[0];
+    const dy = this.tower.pos[1] - this.pos[1];
+    const d = Math.sqrt(dx**2 + dy**2);
+    return d > this.tower.range;
   }
 }
 
