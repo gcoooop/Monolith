@@ -55,7 +55,6 @@ class Tower {
   fire() {
     const target = this.primaryTarget();
     if (target) {
-      const targetLocation = target.pos;
       const artillery = new this.artillery({ target, tower: this, game: this.game });
       this.game.add(artillery);
     }

@@ -3,7 +3,7 @@ class MovingObject {
     this.dimensions = options.dimensions;
     this.pos = options.pos;
     this.vel = options.vel;
-    // this.hitRadius = options.hitRadius;
+    this.hitRadius = options.hitRadius;
     this.game = options.game;
     this.sprite = document.getElementById(options.sprite);
   }

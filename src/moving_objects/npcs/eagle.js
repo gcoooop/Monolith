@@ -2,8 +2,10 @@ const NPC = require("./npc");
 
 class Eagle extends NPC {
   constructor(options) {
-    options.dimensions = [ Caveman.DIMENSION_X, Caveman.DIMENSION_Y ];
+    options.dimensions = [ Eagle.DIMENSION_X, Eagle.DIMENSION_Y ];
     options.speed = Eagle.SPEED;
+    options.hitRadius = Eagle.HIT_RADIUS;
+    options.health = Eagle.HEALTH;
     options.sprite = "eagle";
     super(options);
   }
@@ -13,5 +15,7 @@ class Eagle extends NPC {
 Eagle.DIMENSION_X = 50;
 Eagle.DIMENSION_Y = 19;
 Eagle.SPEED = Math.sqrt(2);
+Eagle.HIT_RADIUS = 8;
+Eagle.HEALTH = 3;
 
 module.exports = Eagle;
