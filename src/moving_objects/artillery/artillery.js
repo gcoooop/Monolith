@@ -15,7 +15,7 @@ class Artillery extends MovingObject {
 
   move(dt) {
     if (this.isAtTargetLocation() || this.isOutOfBounds()) this.explode();
-    this.calcTargetLocation();
+    this.calculateVelocity();
     super.move(dt)
   }
 
@@ -28,6 +28,7 @@ class Artillery extends MovingObject {
   }
 
   calculateVelocity() {
+    this.calcTargetLocation();
     const dx = this.pos[0] - this.targetLocation[0];
     const dy = this.pos[1] - this.targetLocation[1];
     let theta = Math.atan(dy / dx);
@@ -42,7 +43,7 @@ class Artillery extends MovingObject {
   isAtTargetLocation() {
     const dx = Math.floor(this.pos[0] - this.targetLocation[0]);
     const dy = Math.floor(this.pos[1] - this.targetLocation[1]);
-    return dx === 0 || dy === 0;
+    return dx >= -4 && dx <= 4 && dy >= -4 && dy <= 4;
   }
 }
 
