@@ -20,7 +20,6 @@ class NPC extends MovingObject {
     const y = this.pos[1] - this.dimensions[1] * 0.5;
     const x100Health = this.pos[0] + this.dimensions[0] * 0.5;
     const xNHealth = (x100Health - x0Health) * (this.health / this.fullHealth) + x0Health;
-    console.log(Math.floor(xNHealth))
 
     ctx.beginPath();
     ctx.moveTo(x0Health, y);
