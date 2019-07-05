@@ -4,6 +4,7 @@ const Path = require("../../pathing/path");
 class NPC extends MovingObject {
   constructor(options) {
     super(options);
+    this.fullHealth = options.health;
     this.health = options.health;
     this.damage = options.damage;
     this.speed = options.speed;
@@ -13,6 +14,29 @@ class NPC extends MovingObject {
     this.followPath();
   }
   
+  draw(ctx) {
+    super.draw(ctx);
+    const x0Health = this.pos[0] - this.dimensions[0] * 0.5;
+    const y = this.pos[1] - this.dimensions[1] * 0.5;
+    const x100Health = this.pos[0] + this.dimensions[0] * 0.5;
+    const xNHealth = (x100Health - x0Health) * (this.health / this.fullHealth) + x0Health;
+    console.log(Math.floor(xNHealth))
+
+    ctx.beginPath();
+    ctx.moveTo(x0Health, y);
+    ctx.lineTo(x100Health, y);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(x0Health, y);
+    ctx.lineTo(xNHealth, y);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "red";
+    ctx.stroke();
+  }
+
   move(dt) {
     if (this.isAtDest()) this.updateDest();
     super.move(dt)
