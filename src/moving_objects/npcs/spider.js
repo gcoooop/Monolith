@@ -2,7 +2,8 @@ const NPC = require("./npc");
 
 class Spider extends NPC {
   constructor(options) {
-    options.vel = [0.5, 0.5];
+    options.dimensions = [ Caveman.DIMENSION_X, Caveman.DIMENSION_Y ];
+    options.speed = Spider.SPEED;
     options.sprite = "spider";
     super(options);
   }
@@ -14,5 +15,6 @@ class Spider extends NPC {
 
 Spider.DIMENSION_X = 37;
 Spider.DIMENSION_Y = 50;
+Spider.SPEED = Math.sqrt(2);
 
 module.exports = Spider;

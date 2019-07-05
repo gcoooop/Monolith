@@ -1,27 +1,20 @@
 const TargetingQueue = require("./targeting_queue");
-
-const earthTowerImg = document.getElementById("earth-tower");
-const waterTowerImg = document.getElementById("water-tower");
-const fireTowerImg = document.getElementById("fire-tower");
-
-const AllTowerImgs = {
-  earth: earthTowerImg,
-  water: waterTowerImg,
-  fire: fireTowerImg
-};
+const Util = require("../util/util");
 
 class Tower {
   constructor(options) {
+    this.game = options.game;
     this.pos = options.pos;
     this.range = options.range;
     this.damage = options.damage;
     this.reload = options.reload;
-    this.sprite = AllTowerImgs[options.type];
+    this.artillery = options.artillery;
     this.targets = new TargetingQueue();
+    this.throttledFire = Util.throttle(this.fire.bind(this), this.reload);
   } 
 
   draw(ctx) {
-    // ctx.drawImage(this.sprite, this.pos[0] - Tower.DIMENSION  * 0.5, this.pos[1] - Tower.DIMENSION  * 0.5);
+    // do nothing!
   }
 
   calcTargets(npcs) {
@@ -49,6 +42,23 @@ class Tower {
 
   removeTarget(target) {
     this.targets.removeTarget(target);
+  }
+
+  noTargets() {
+    return this.targets.empty();
+  }
+
+  primaryTarget() {
+    return this.targets.primaryTarget();
+  }
+
+  fire() {
+    const target = this.primaryTarget();
+    if (target) {
+      const targetLocation = target.pos;
+      const artillery = new this.artillery({ target, tower: this, game: this.game });
+      this.game.add(artillery);
+    }
   }
 }
 

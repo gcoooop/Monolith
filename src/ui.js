@@ -87,7 +87,7 @@ class UI {
 
   placeTower(event) {
     const pos = this.getCursorPosition(event);
-    const options = { pos };
+    const options = { pos, game: this.game };
     this.game.add( new AllTowers[this.selectedTowerType](options) );
 
     const domTowerImg = document.createElement("IMG");

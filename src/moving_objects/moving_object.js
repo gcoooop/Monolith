@@ -1,14 +1,15 @@
 class MovingObject {
   constructor(options = {}) {
+    this.dimensions = options.dimensions;
     this.pos = options.pos;
     this.vel = options.vel;
-    this.hitRadius = options.hitRadius;
+    // this.hitRadius = options.hitRadius;
     this.game = options.game;
     this.sprite = document.getElementById(options.sprite);
   }
 
   draw(ctx) {
-    ctx.drawImage(this.sprite, this.pos[0], this.pos[1]);
+    ctx.drawImage(this.sprite, this.pos[0] - this.dimensions[0] * 0.5, this.pos[1] - this.dimensions[1] * 0.5);
   }
 
   move(dt) {
@@ -19,6 +20,10 @@ class MovingObject {
 
   remove() {
     this.game.remove(this);
+  }
+
+  isOutOfBounds() {
+    return this.pos[0] < 0 || this.pos[0] > 1500 || this.pos[1] < 0 || this.pos[1] > 1000;
   }
 }
 

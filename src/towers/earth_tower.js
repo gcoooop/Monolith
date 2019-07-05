@@ -1,4 +1,5 @@
 const Tower = require("./tower");
+const Boulder = require("../moving_objects/artillery/boulder");
 
 class EarthTower extends Tower {
   constructor(options) {
@@ -6,6 +7,7 @@ class EarthTower extends Tower {
     options.range = EarthTower.RANGE;
     options.damage = EarthTower.DAMAGE;
     options.reload = EarthTower.RELOAD;
+    options.artillery = Boulder;
     super(options);
   }
 }
