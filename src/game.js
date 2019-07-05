@@ -1,5 +1,6 @@
 const NPC = require("./moving_objects/npcs/npc");
 const Tower = require("./towers/tower");
+const Artillery = require("./moving_objects/artillery/artillery");
 const Caveman = require("./moving_objects/npcs/caveman");
 const Spider = require("./moving_objects/npcs/spider");
 const Eagle = require("./moving_objects/npcs/eagle");
@@ -9,7 +10,7 @@ class Game {
   constructor() {
     this.towers = [];
     this.npcs = [];
-    this.projectiles = [];
+    this.artillery = [];
     this.test();
   }
 
@@ -26,17 +27,19 @@ class Game {
       this.npcs.push(object); 
     } else if (object instanceof Tower)  {    
       this.towers.push(object);
+    } else if (object instanceof Artillery) {
+      this.artillery.push(object);
     } else {
       throw new Error("unknown object!!!")
     }
   }
 
   allObjects() {
-    return [].concat(this.npcs, this.projectiles, this.towers);
+    return [].concat(this.npcs, this.artillery, this.towers);
   }
 
   allMoveableObjects() {
-    return [].concat(this.npcs, this.projectiles);
+    return [].concat(this.npcs, this.artillery);
   }
 
   draw(ctx) {
@@ -54,15 +57,39 @@ class Game {
     });
   }
 
+  checkCollisions() {
+    
+  }
+
   runTargeting() {
     this.towers.forEach(tower => {
       tower.calcTargets(this.npcs);
     });
   }
 
+  launchArtillery() {
+    this.towers.forEach(tower => {
+      tower.fire();
+    });
+  }
+
   step(dt) {
     this.moveObjects(dt);
+    this.checkCollisions();
     this.runTargeting();
+    this.launchArtillery();
+  }
+
+  remove(object) {
+    if (object instanceof NPC) {
+      this.npcs.splice(this.npcs.indexOf(object), 1);
+    } else if (object instanceof Tower) {
+      this.towers.splice(this.towers.indexOf(object), 1);
+    } else if (object instanceof Artillery) {
+      this.artillery.splice(this.artillery.indexOf(object), 1);
+    } else {
+      throw new Error("unknown object!!!")
+    }
   }
 }
 

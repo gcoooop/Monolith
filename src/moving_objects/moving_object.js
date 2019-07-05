@@ -3,7 +3,7 @@ class MovingObject {
     this.dimensions = options.dimensions;
     this.pos = options.pos;
     this.vel = options.vel;
-    this.hitRadius = options.hitRadius;
+    // this.hitRadius = options.hitRadius;
     this.game = options.game;
     this.sprite = document.getElementById(options.sprite);
   }
@@ -20,6 +20,10 @@ class MovingObject {
 
   remove() {
     this.game.remove(this);
+  }
+
+  isOutOfBounds() {
+    return this.pos[0] < 0 || this.pos[0] > 1500 || this.pos[1] < 0 || this.pos[1] > 1000;
   }
 }
 

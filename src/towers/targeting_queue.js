@@ -18,6 +18,10 @@ class TargetingQueue {
     return target;
   }
 
+  primaryTarget() {
+    return this.targets[0] || null;
+  }
+
   reorder(order) {
 
   }
