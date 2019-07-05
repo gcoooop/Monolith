@@ -67,14 +67,16 @@ class NPC extends MovingObject {
     let theta = Math.atan( dy / dx );
     if (dx > 0 && dy > 0) {
       theta += Math.PI;
+    } else if (dx > 0 && dy < 0) {
+      theta -= Math.PI;
     }
     this.vel = [ this.speed * Math.cos(theta), this.speed * Math.sin(theta)];
   }
   
   isAtDest() {
-    const dx = Math.floor(this.pos[0] - this.dest[0]);
-    const dy = Math.floor(this.pos[1] - this.dest[1]);
-    return dx === 0 || dy === 0;
+    const dx = this.pos[0] - this.dest[0];
+    const dy = this.pos[1] - this.dest[1];
+    return (dx > -1 && dx < 1) && (dy > -1 && dy < 1);
   }
 
   updateDest() {

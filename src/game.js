@@ -1,6 +1,7 @@
 const NPC = require("./moving_objects/npcs/npc");
 const Tower = require("./towers/tower");
 const Artillery = require("./moving_objects/artillery/artillery");
+const Monolith = require("./monolith/monolith");
 const Caveman = require("./moving_objects/npcs/caveman");
 const Spider = require("./moving_objects/npcs/spider");
 const Eagle = require("./moving_objects/npcs/eagle");
@@ -11,6 +12,7 @@ class Game {
     this.towers = [];
     this.npcs = [];
     this.artillery = [];
+    this.monolith = new Monolith();
     this.test();
   }
 
@@ -35,7 +37,7 @@ class Game {
   }
 
   allObjects() {
-    return [].concat(this.npcs, this.artillery, this.towers);
+    return [].concat(this.npcs, this.artillery, this.towers, this.monolith);
   }
 
   allMoveableObjects() {
