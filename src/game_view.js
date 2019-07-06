@@ -16,11 +16,8 @@ class GameView {
     this.game.draw(this.ctx);
     this.lastTime = time;
 
-    console.log(this.game.running)
     if (this.game.running) {
       requestAnimationFrame(this.animate.bind(this));
-    } else {
-
     }
   }
 };
