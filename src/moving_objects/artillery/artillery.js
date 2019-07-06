@@ -9,16 +9,27 @@ class Artillery extends MovingObject {
     this.pos = options.tower.pos;
     this.speed = options.speed;
     this.target = options.target
-    this.calcTargetLocation();
     this.calculateVelocity();
   }
 
   move(dt) {
-    super.move(dt);
+    if (this.isAtTargetLocation() || this.isOutOfBounds() || this.beyondTowerRange()) {
+      this.explode();
+    } else {
+      this.calculateVelocity();
+      super.move(dt)
+    }
   }
 
   explode() {
-    this.tower.strikeReport(this.target, this);
+    // not checking if the target has health before issuing a strike report leads to an interesting bug
+    // in the instance where a strike report was issued causing an NPC to be sent to the hospital,
+    // the game will remove the NPC as soon as the fatal damage is dealt.
+    // however, the water tower, since its fire rate is very quick, still has artillery in motion
+    // targeting the already removed target. in this case, if a strike report is issued on an already removed NPC,
+    // the game will remove the next NPC on the towers target list regardless of their health 
+    // this.tower.strikeReport(this.target, this);
+    if (this.target.hasHealth()) this.tower.strikeReport(this.target, this);
     this.remove();
   }
 
@@ -40,6 +51,7 @@ class Artillery extends MovingObject {
   }
 
   isAtTargetLocation() {
+    if (!this.targetLocation) return null;
     const dx = Math.floor(this.pos[0] - this.targetLocation[0]);
     const dy = Math.floor(this.pos[1] - this.targetLocation[1]);
     return dx >= -4 && dx <= 4 && dy >= -4 && dy <= 4;

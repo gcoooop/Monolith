@@ -1,7 +1,6 @@
 class TargetingQueue {
   constructor() {
     this.targets = [];
-    this.order = "first";
   }
 
   empty() {

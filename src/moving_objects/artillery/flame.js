@@ -9,12 +9,6 @@ class Flame extends Artillery {
     this.vel = options.vel;
   }
 
-  move(dt) {
-    if (this.isOutOfBounds() || this.beyondTowerRange()) this.explode();
-    this.calculateVelocity();
-    super.move(dt)
-  }
-
   explode() {
     this.tower.throttledStrikeReport();
     this.remove();

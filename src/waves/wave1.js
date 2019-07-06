@@ -1,7 +1,9 @@
 const WaveUtil = require("./wave_util");
 
 const Wave1 = (game) => {
-  game.add( new WaveUtil.Caveman({ path: WaveUtil.generateInteger(4,1), game }) );
+  const defWave = WaveUtil.defWave(game);
+  defWave(4, "Caveman", 10);
+  defWave(2, "Eagle", 10);
 };
 
 module.exports = Wave1;

@@ -12,7 +12,7 @@ class Game {
     this.npcs = [];
     this.artillery = [];
     this.monolith = new Monolith();
-    this.test();
+    this.test()
   }
 
   test() {

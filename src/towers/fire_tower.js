@@ -30,10 +30,6 @@ class FireTower extends Tower {
   strikeReport() {
     this.allTargets().forEach(target => {
       target.takeDamage(this.damage);
-      if (!target.hasHealth()) {
-        target.sendToHospital();
-        this.removeTarget(target);
-      }
     });
   }
 }

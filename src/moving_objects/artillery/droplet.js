@@ -7,12 +7,6 @@ class Droplet extends Artillery {
     options.sprite = "droplet";
     super(options);
   }
-
-  move(dt) {
-    if (this.isAtTargetLocation() || this.isOutOfBounds() || this.beyondTowerRange()) this.explode();
-    this.calculateVelocity();
-    super.move(dt)
-  }
 }
 
 Droplet.DIMENSION_X = 34;

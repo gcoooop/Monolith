@@ -5,6 +5,7 @@ const Util = require("../../util/util");
 class NPC extends MovingObject {
   constructor(options) {
     super(options);
+    this.id = options.id;
     this.fullHealth = options.health;
     this.health = options.health;
     this.damage = options.damage;
@@ -97,6 +98,7 @@ class NPC extends MovingObject {
   
   takeDamage(artilleryDamage) {
     this.health -= artilleryDamage;
+    if (!this.hasHealth()) this.sendToHospital();
   }
 
   dealDamage() {
@@ -108,6 +110,7 @@ class NPC extends MovingObject {
   }
   
   sendToHospital() {
+    console.log(this);
     this.remove();
   }
 }
