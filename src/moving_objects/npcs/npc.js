@@ -1,5 +1,6 @@
 const MovingObject = require("../moving_object");
 const Path = require("../../pathing/path");
+const Util = require("../../util/util");
 
 class NPC extends MovingObject {
   constructor(options) {
@@ -11,6 +12,7 @@ class NPC extends MovingObject {
     this.path = new Path(options.path);
     this.pos = this.path.dequeue();
     this.dest = this.path.dequeue();
+    this.throttledDealDamage = Util.throttle(this.dealDamage.bind(this), 1000);
     this.followPath();
   }
   
@@ -57,7 +59,11 @@ class NPC extends MovingObject {
   }
 
   move(dt) {
-    if (this.isAtDest()) this.updateDest();
+    if (this.dest) {
+      if (this.isAtDest()) this.updateDest();
+    } else {
+      this.throttledDealDamage(this.damage);
+    }
     super.move(dt)
   }
   
@@ -67,14 +73,16 @@ class NPC extends MovingObject {
     let theta = Math.atan( dy / dx );
     if (dx > 0 && dy > 0) {
       theta += Math.PI;
+    } else if (dx > 0 && dy < 0) {
+      theta -= Math.PI;
     }
     this.vel = [ this.speed * Math.cos(theta), this.speed * Math.sin(theta)];
   }
   
   isAtDest() {
-    const dx = Math.floor(this.pos[0] - this.dest[0]);
-    const dy = Math.floor(this.pos[1] - this.dest[1]);
-    return dx === 0 || dy === 0;
+    const dx = this.pos[0] - this.dest[0];
+    const dy = this.pos[1] - this.dest[1];
+    return (dx > -1 && dx < 1) && (dy > -1 && dy < 1);
   }
 
   updateDest() {
@@ -82,12 +90,17 @@ class NPC extends MovingObject {
       this.dest = this.path.dequeue();
       this.followPath();
     } else {
+      this.dest = null;
       this.vel = [0, 0];
     }
   }
   
   takeDamage(artilleryDamage) {
     this.health -= artilleryDamage;
+  }
+
+  dealDamage() {
+    this.game.damageMonolith(this.damage);
   }
   
   hasHealth() {
