@@ -9,6 +9,7 @@ const Mammoth = require("./moving_objects/npcs/mammoth");
 
 class Game {
   constructor() {
+    this.running = true;
     this.towers = [];
     this.npcs = [];
     this.artillery = [];
@@ -79,6 +80,7 @@ class Game {
     this.moveObjects(dt);
     this.runTargeting();
     this.launchArtillery();
+    this.checkForLost();
   }
 
   remove(object) {
@@ -91,6 +93,10 @@ class Game {
     } else {
       throw new Error("unknown object!!!")
     }
+  }
+
+  checkForLost() {
+    if (this.monolith.health <= 0) this.running = false;
   }
 }
 
