@@ -24,12 +24,17 @@ class Tower {
   calcTargets(npcs) {
     npcs.forEach(npc => {
       const inRange = this.inRange(npc);
-      const targeted = this.targets.includes(npc);
-      if (inRange && !targeted) {
+      const inQueue = this.targets.includes(npc);
+      if (inRange && !inQueue) {
         this.addTarget(npc);
-      } else if (!inRange && targeted) {
+      } else if (!inRange && inQueue) {
         this.removeTarget(npc);
       }
+    });
+
+    this.targets.targets.forEach(target => {
+      const inGame = npcs.includes(target);
+      if (!inGame) this.removeTarget(target);
     });
   }
 

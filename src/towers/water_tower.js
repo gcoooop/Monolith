@@ -13,10 +13,6 @@ class WaterTower extends Tower {
 
   strikeReport(target, artillery) {
     target.takeDamage(this.damage);
-    if (!target.hasHealth()) {
-      target.sendToHospital();
-      this.removeTarget(target);
-    }
   }
 }
 

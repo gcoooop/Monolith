@@ -2,10 +2,8 @@ const NPC = require("./moving_objects/npcs/npc");
 const Tower = require("./towers/tower");
 const Artillery = require("./moving_objects/artillery/artillery");
 const Monolith = require("./monolith/monolith");
-const Caveman = require("./moving_objects/npcs/caveman");
-const Spider = require("./moving_objects/npcs/spider");
-const Eagle = require("./moving_objects/npcs/eagle");
-const Mammoth = require("./moving_objects/npcs/mammoth");
+
+const Wave1 = require("./waves/wave1");
 
 class Game {
   constructor() {
@@ -14,15 +12,11 @@ class Game {
     this.npcs = [];
     this.artillery = [];
     this.monolith = new Monolith();
-    this.test();
+    this.test()
   }
 
   test() {
-    const sample = new Caveman({ path: 2, game: this });
-    // const sample = new Spider({ pos: [100, 100] });
-    // const sample = new Eagle({ pos: [100, 100] });
-    // const sample = new Mammoth({ pos: [100, 100] });
-    this.add(sample);
+    Wave1(this);
   }
 
   add(object) {

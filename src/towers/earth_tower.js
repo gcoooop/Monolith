@@ -15,10 +15,6 @@ class EarthTower extends Tower {
     this.allTargets().forEach(target => {
       if (this.inAOE(target, artillery)) {
         target.takeDamage(this.damage);
-        if (!target.hasHealth()) {
-          target.sendToHospital();
-          this.removeTarget(target);
-        }
       }
     });
   }

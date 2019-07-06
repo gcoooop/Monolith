@@ -7,12 +7,6 @@ class Boulder extends Artillery {
     options.sprite = "boulder"
     super(options);
   }
-
-  move(dt) {
-    if (this.isAtTargetLocation() || this.isOutOfBounds() || this.beyondTowerRange()) this.explode();
-    this.calculateVelocity();
-    super.move(dt)
-  }
 }
 
 Boulder.DIMENSION_X = 34;
