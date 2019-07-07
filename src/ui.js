@@ -16,8 +16,10 @@ const earthTowerImg = document.getElementById("earth-tower");
 const waterTowerImg = document.getElementById("water-tower");
 const fireTowerImg = document.getElementById("fire-tower");
 
+const waveCounterEle = document.getElementById("wave-counter");
 const towerButtons = [...document.getElementById("towers-pane").children];
 const flintBankEle = document.getElementById("flint-bank");
+const waveButton = document.getElementById("wave-button");
 const messagesEle = document.getElementById("messages");
 
 const AllTowerImgs = {
@@ -34,6 +36,7 @@ class UI {
     this.message = "";
 
     this.initializeControlPanel = this.initializeControlPanel.bind(this);
+    this.sendWave = this.sendWave.bind(this);
     this.selectTower = this.selectTower.bind(this);
     this.followMouse = this.followMouse.bind(this);
     this.placeTower = this.placeTower.bind(this);
@@ -46,11 +49,22 @@ class UI {
 
   initializeControlPanel() {
     flintBankEle.innerText = `Flint: ${this.game.flint}`;
+    waveButton.addEventListener("click", this.sendWave);
     towerButtons.forEach( towerButton => towerButton.addEventListener("click", this.selectTower) );
   }
 
   updateControlPanel() {
+    waveCounterEle.innerText = `Wave ${this.game.wave}`;
+    
     flintBankEle.innerText = `Flint: ${this.game.flint}`;
+
+    if (this.game.waveProgress === "complete") {
+      waveButton.style.opacity = 1;
+      waveButton.style.pointerEvents = "all";
+    } else {
+      waveButton.style.opacity = 0.5;
+      waveButton.style.pointerEvents = "none";
+    }
 
     messagesEle.innerText = this.message;
 
@@ -62,6 +76,10 @@ class UI {
         towerButton.style.opacity = 1;
       }
     });
+  }
+
+  sendWave() {
+    this.game.sendWave();
   }
 
   selectTower(event) {

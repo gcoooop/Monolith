@@ -3,7 +3,7 @@ const Tower = require("./towers/tower");
 const Artillery = require("./moving_objects/artillery/artillery");
 const Monolith = require("./monolith/monolith");
 
-const Wave1 = require("./waves/wave1");
+const Waves = require("./waves/waves");
 
 class Game {
   constructor() {
@@ -13,11 +13,13 @@ class Game {
     this.artillery = [];
     this.flint = 200;
     this.monolith = new Monolith();
-    this.test()
+    this.wave = 1;
+    this.waveProgress = "complete";
   }
 
-  test() {
-    Wave1(this);
+  sendWave() {
+    Waves[this.wave](this);
+    this.waveProgress = "incomplete";
   }
 
   add(object) {
@@ -91,6 +93,10 @@ class Game {
     if (object instanceof NPC) {
       this.earnFlint(object.flint);
       this.npcs.splice(this.npcs.indexOf(object), 1);
+      if (this.waveComplete()) {
+        this.wave++;
+        this.waveProgress = "complete";
+      }
     } else if (object instanceof Tower) {
       this.towers.splice(this.towers.indexOf(object), 1);
     } else if (object instanceof Artillery) {
@@ -102,6 +108,10 @@ class Game {
 
   checkForLost() {
     if (this.monolith.health <= 0) this.running = false;
+  }
+
+  waveComplete() {
+    return !this.npcs.length;
   }
 }
 

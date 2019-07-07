@@ -1,3 +1,11 @@
+#wave-button {
+  cursor: pointer;
+}
+
+.towers-pane img {
+  cursor: pointer;
+}
+
 #selected-tower-container {
   pointer-events: none;
   position: absolute;
