@@ -1,6 +1,7 @@
 class GameView {
-  constructor(game, ctx) {
+  constructor(game, ui, ctx) {
     this.game = game;
+    this.ui = ui;
     this.ctx = ctx;
   }
 
@@ -14,6 +15,7 @@ class GameView {
 
     this.game.step(dt);
     this.game.draw(this.ctx);
+    this.ui.updateControlPanel();
     this.lastTime = time;
 
     if (this.game.running) {

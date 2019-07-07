@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const ctx = canvasEl.getContext("2d");
   const game = new Game();
-  const gameView = new GameView(game, ctx);
-  new UI(canvasEl, game);
+  const ui = new UI(canvasEl, game);
+  const gameView = new GameView(game, ui, ctx);
   gameView.start();
 });

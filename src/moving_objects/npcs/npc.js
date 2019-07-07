@@ -9,6 +9,7 @@ class NPC extends MovingObject {
     this.fullHealth = options.health;
     this.health = options.health;
     this.damage = options.damage;
+    this.flint = options.flint;
     this.speed = options.speed;
     this.path = new Path(options.path);
     this.pos = this.path.dequeue();
@@ -110,7 +111,6 @@ class NPC extends MovingObject {
   }
   
   sendToHospital() {
-    this.game.payFlint(this.flint);
     this.remove();
   }
 }

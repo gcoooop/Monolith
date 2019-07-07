@@ -8,6 +8,7 @@ class Tower {
     this.range = options.range;
     this.damage = options.damage;
     this.reload = options.reload;
+    this.flint = options.flint;
     this.artillery = options.artillery;
     this.targets = new TargetingQueue();
     this.throttledFire = Util.throttle(this.fire.bind(this), this.reload);
