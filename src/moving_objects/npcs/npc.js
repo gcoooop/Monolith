@@ -110,7 +110,7 @@ class NPC extends MovingObject {
   }
   
   sendToHospital() {
-    console.log(this);
+    this.game.payFlint(this.flint);
     this.remove();
   }
 }

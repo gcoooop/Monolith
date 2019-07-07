@@ -11,6 +11,7 @@ class Game {
     this.towers = [];
     this.npcs = [];
     this.artillery = [];
+    this.flint = 200;
     this.monolith = new Monolith();
     this.test()
   }
@@ -68,6 +69,14 @@ class Game {
 
   damageMonolith(damage) {
     this.monolith.takeDamage(damage);
+  }
+
+  payFlint(amount) {
+    this.flint += amount;
+  }
+
+  spendFlint(amount) {
+    this.flint -= amount;
   }
 
   step(dt) {

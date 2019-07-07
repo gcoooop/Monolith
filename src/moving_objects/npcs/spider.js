@@ -7,6 +7,7 @@ class Spider extends NPC {
     options.hitRadius = Spider.HIT_RADIUS;
     options.health = Spider.HEALTH;
     options.damage = Spider.DAMAGE;
+    options.flint = Spider.FLINT;
     options.sprite = "spider";
     super(options);
   }
@@ -22,6 +23,6 @@ Spider.SPEED = Math.sqrt(2);
 Spider.HIT_RADIUS = 7;
 Spider.HEALTH = 1;
 Spider.DAMAGE = 1;
-
+Spider.FLINT = 5;
 
 module.exports = Spider;

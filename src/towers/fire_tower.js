@@ -8,6 +8,7 @@ class FireTower extends Tower {
     options.range = FireTower.RANGE;
     options.damage = FireTower.DAMAGE;
     options.reload = FireTower.RELOAD;
+    options.flint = FireTower.FLINT;
     options.artillery = Flame;
     super(options);
     this.throttledStrikeReport = Util.throttle(this.strikeReport.bind(this), 100);
@@ -38,5 +39,6 @@ FireTower.TYPE = "fire";
 FireTower.RANGE = 125;
 FireTower.DAMAGE = 5;
 FireTower.RELOAD = 4000;
+FireTower.FLINT = 100;
 
 module.exports = FireTower;

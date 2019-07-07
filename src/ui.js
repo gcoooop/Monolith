@@ -9,7 +9,6 @@ const AllTowers = {
   fire: FireTower
 };
 
-const styleSheetEle = document.getElementById("css");
 const selectedTowerContainerEle = document.getElementById("selected-tower-container");
 const selectedTowerImgEle = document.getElementById("selected-tower-img");
 
