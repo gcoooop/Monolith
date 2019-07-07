@@ -7,6 +7,7 @@ class EarthTower extends Tower {
     options.range = EarthTower.RANGE;
     options.damage = EarthTower.DAMAGE;
     options.reload = EarthTower.RELOAD;
+    options.flint = EarthTower.FLINT;
     options.artillery = Boulder;
     super(options);
   }
@@ -32,5 +33,6 @@ EarthTower.TYPE = "earth";
 EarthTower.RANGE = 200;
 EarthTower.DAMAGE = 1;
 EarthTower.RELOAD = 1000;
+EarthTower.FLINT = 100;
 
 module.exports = EarthTower;

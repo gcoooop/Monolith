@@ -9,13 +9,16 @@ const AllTowers = {
   fire: FireTower
 };
 
-const styleSheetEle = document.getElementById("css");
 const selectedTowerContainerEle = document.getElementById("selected-tower-container");
 const selectedTowerImgEle = document.getElementById("selected-tower-img");
 
 const earthTowerImg = document.getElementById("earth-tower");
 const waterTowerImg = document.getElementById("water-tower");
 const fireTowerImg = document.getElementById("fire-tower");
+
+const towerButtons = [...document.getElementById("towers-pane").children];
+const flintBankEle = document.getElementById("flint-bank");
+const messagesEle = document.getElementById("messages");
 
 const AllTowerImgs = {
   earth: earthTowerImg.src,
@@ -28,6 +31,7 @@ class UI {
     this.canvasEl = canvasEl;
     this.game = game;
     this.selectedTowerType = null;
+    this.message = "";
 
     this.initializeControlPanel = this.initializeControlPanel.bind(this);
     this.selectTower = this.selectTower.bind(this);
@@ -41,19 +45,43 @@ class UI {
   }
 
   initializeControlPanel() {
-    const towerButtons = [...document.getElementById("towers-pane").children];
+    flintBankEle.innerText = `Flint: ${this.game.flint}`;
     towerButtons.forEach( towerButton => towerButton.addEventListener("click", this.selectTower) );
+  }
+
+  updateControlPanel() {
+    flintBankEle.innerText = `Flint: ${this.game.flint}`;
+
+    messagesEle.innerText = this.message;
+
+    towerButtons.forEach( towerButton => {
+      const towerClass = AllTowers[towerButton.id];
+      if (this.game.flint < towerClass.FLINT) {
+        towerButton.style.opacity = 0.75;
+      } else {
+        towerButton.style.opacity = 1;
+      }
+    });
   }
 
   selectTower(event) {
     if (!this.selectedTowerType) {
       this.selectedTowerType = event.currentTarget.id;
-      selectedTowerImgEle.src = AllTowerImgs[this.selectedTowerType];
-      this.followMouse(event)
-  
-      setTimeout(() => {
-        document.addEventListener("click", this.handleClick);
-      }, 50);
+      const towerClass = AllTowers[this.selectedTowerType];
+      if (this.game.flint < towerClass.FLINT) {
+        this.selectedTowerType = null;
+        this.message = "You do not have enough flint!";
+        setTimeout(() => {
+          this.message = "";
+        }, 4000);
+      } else {
+        selectedTowerImgEle.src = AllTowerImgs[this.selectedTowerType];
+        this.followMouse(event)
+    
+        setTimeout(() => {
+          document.addEventListener("click", this.handleClick);
+        }, 50);
+      }
     }
   }
 
@@ -88,7 +116,9 @@ class UI {
   placeTower(event) {
     const pos = this.getCursorPosition(event);
     const options = { pos, game: this.game };
-    this.game.add( new AllTowers[this.selectedTowerType](options) );
+    const TowerClass = AllTowers[this.selectedTowerType];
+
+    this.game.add( new TowerClass(options) );
 
     const domTowerImg = document.createElement("IMG");
     domTowerImg.src = selectedTowerImgEle.src;

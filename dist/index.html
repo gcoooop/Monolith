@@ -25,15 +25,21 @@
 
   <div id="monolith-game" style="background: no-repeat url(../assets/map/MonolithMap_wide.png)">
     <canvas id="monolith-canvas" width="1500" height="1050"></canvas>
-    <div id="towers-pane">
-      <div id="earth">
-        <img id="earth-tower" src="../assets/towers/earth_tower.png">
+    <div class="control-panel">
+      <div class="towers-pane" id="towers-pane">
+        <div id="earth">
+          <img id="earth-tower" src="../assets/towers/earth_tower.png">
+        </div>
+        <div id="water">
+          <img id="water-tower" src="../assets/towers/water_tower.png">
+        </div>
+        <div id="fire">
+          <img id="fire-tower" src="../assets/towers/fire_tower.png">
+        </div>
       </div>
-      <div id="water">
-        <img id="water-tower" src="../assets/towers/water_tower.png">
-      </div>
-      <div id="fire">
-        <img id="fire-tower" src="../assets/towers/fire_tower.png">
+      <div class="controls-pane">
+        <div class="flint-bank" id="flint-bank"></div>
+        <div class="messages" id="messages"></div>
       </div>
     </div>
   </div>
