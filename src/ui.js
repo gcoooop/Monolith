@@ -27,9 +27,10 @@ const AllTowerImgs = {
 };
 
 class UI {
-  constructor(canvasEl, game) {
+  constructor(canvasEl, game, mapCtx) {
     this.canvasEl = canvasEl;
     this.game = game;
+    this.mapCtx = mapCtx;
     this.selectedTowerType = null;
     this.message = "";
 
@@ -96,6 +97,7 @@ class UI {
   }
 
   handleClick(event) {
+    this.isValidTowerPosition(event)
     if (event.target.nodeName === "CANVAS") {
       this.placeTower(event);
     } 
@@ -104,6 +106,11 @@ class UI {
     this.selectedTowerType = null;
     selectedTowerContainerEle.style.height = `0px`;
     selectedTowerContainerEle.style.width = `0px`;
+  }
+
+  isValidTowerPosition(event) {
+    // const pos = this.getCursorPosition(event);
+    // console.log(this.mapCtx.getImageData(pos[0], pos[1], 1, 1));
   }
 
   getCursorPosition(event) {
