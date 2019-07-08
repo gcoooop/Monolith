@@ -16,7 +16,7 @@ class Spider extends NPC {
 Spider.SPEED = 2.5;
 Spider.HIT_RADIUS = 7;
 Spider.HEALTH = 1;
-Spider.DAMAGE = 1;
+Spider.DAMAGE = 3;
 Spider.FLINT = 5;
 Spider.SCALE = 1;
 
