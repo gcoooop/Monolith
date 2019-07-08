@@ -85,7 +85,7 @@ class NPC extends MovingObject {
   isAtDest() {
     const dx = this.pos[0] - this.dest[0];
     const dy = this.pos[1] - this.dest[1];
-    return (dx > -1 && dx < 1) && (dy > -1 && dy < 1);
+    return (dx > -2 && dx < 2) && (dy > -2 && dy < 2);
   }
 
   updateDest() {

@@ -54,7 +54,7 @@ class Artillery extends MovingObject {
     if (!this.targetLocation) return null;
     const dx = Math.floor(this.pos[0] - this.targetLocation[0]);
     const dy = Math.floor(this.pos[1] - this.targetLocation[1]);
-    return dx >= -4 && dx <= 4 && dy >= -4 && dy <= 4;
+    return dx >= -5 && dx <= 5 && dy >= -5 && dy <= 5;
   }
 
   beyondTowerRange() {

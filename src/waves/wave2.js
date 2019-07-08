@@ -1,11 +1,10 @@
 const WaveUtil = require("./wave_util");
 
-const Wave1 = (game) => {
+const Wave2 = (game) => {
   const defWave = WaveUtil.defWave(game);
-  defWave(1, "Caveman", 10);
-  defWave(1, "Eagle", 10);
-  defWave(1, "Spider", 10);
-  defWave(1, "Mammoth", 10);
+  defWave(2, "Caveman", 250, 2);
+  defWave(2, "Caveman", 250, 3);
+  defWave(2, "Caveman", 250, 4);
 };
 
-module.exports = Wave1;
+module.exports = Wave2;

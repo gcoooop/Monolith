@@ -15,11 +15,16 @@ const generateInteger = (max, min = 1) => {
 };
 
 const defWave = game => {
-  return (num, type, delay) => {
+  return (num, type, delay, path = null) => {
     for (let i = 1; i <= num; i++) {
       setTimeout(() => {
-        game.add( new NPC[type]({ path: generateInteger(4), game, id: i }) );
-      }, delay);
+        if (path) {
+          game.add( new NPC[type]({ path , game }) );
+        } else {
+          game.add( new NPC[type]({ path: generateInteger(4), game }) );
+        }
+      }, delay * i);
+      console.log(delay * i);
     };
   };
 }
