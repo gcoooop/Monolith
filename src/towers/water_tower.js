@@ -10,6 +10,7 @@ class WaterTower extends Tower {
     options.flint = WaterTower.FLINT;
     options.artillery = Droplet;
     super(options);
+    WaterTower.FLINT += 20;
   }
 
   strikeReport(target, artillery) {

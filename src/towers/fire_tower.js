@@ -12,6 +12,7 @@ class FireTower extends Tower {
     options.artillery = Flame;
     super(options);
     this.throttledStrikeReport = Util.throttle(this.strikeReport.bind(this), 100);
+    FireTower.FLINT += 20;
   }
 
   fire() {

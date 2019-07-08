@@ -23,19 +23,25 @@
     <img id="selected-tower-img">
   </div>
 
-  <div id="monolith-game" style="background: no-repeat url(../assets/map/MonolithMap_wide.png)">
-    <canvas id="monolith-canvas" width="1500" height="1050"></canvas>
+  <div class="title-container">
+    <h1>Monolith</h1>
+  </div>  
+  <div id="monolith-game">
+    <canvas class="monolith-canvas" id="monolith-canvas" width="1500" height="1050"  style="background: no-repeat url(../assets/map/MonolithMap_wide.png)"></canvas>
     <div class="control-panel">
       <div class="wave-counter" id="wave-counter"></div>
       <div class="towers-pane" id="towers-pane">
-        <div id="earth">
+        <div class="tower-container" id="earth">
           <img id="earth-tower" src="../assets/towers/earth_tower.png">
+          <span class="tower-price earth-tower-price" id="earth-tower-price"></span>
         </div>
-        <div id="water">
+        <div class="tower-container" id="water">
           <img id="water-tower" src="../assets/towers/water_tower.png">
+          <span class="tower-price water-tower-price" id="water-tower-price"></span>
         </div>
-        <div id="fire">
+        <div class="tower-container" id="fire">
           <img id="fire-tower" src="../assets/towers/fire_tower.png">
+          <span class="tower-price fire-tower-price" id="fire-tower-price"></span>
         </div>
       </div>
       <div class="controls-pane">
