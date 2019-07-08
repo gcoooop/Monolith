@@ -20,9 +20,9 @@ class NPC extends MovingObject {
   
   draw(ctx) {
     super.draw(ctx);
-    const x0Health = this.pos[0] - this.dimensions[0] * 0.5;
-    const y = this.pos[1] - this.dimensions[1] * 0.5;
-    const x100Health = this.pos[0] + this.dimensions[0] * 0.5;
+    const x0Health = this.pos[0] - this.sprite.width * 0.5;
+    const y = this.pos[1] - this.sprite.height * 0.5;
+    const x100Health = this.pos[0] + this.sprite.width * 0.5;
     const xNHealth = (x100Health - x0Health) * (this.health / this.fullHealth) + x0Health;
 
     const healthPercentage = this.health / this.fullHealth * 100;
@@ -78,6 +78,7 @@ class NPC extends MovingObject {
     } else if (dx > 0 && dy < 0) {
       theta -= Math.PI;
     }
+    this.theta = theta;
     this.vel = [ this.speed * Math.cos(theta), this.speed * Math.sin(theta)];
   }
   

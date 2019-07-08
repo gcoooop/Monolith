@@ -47,6 +47,7 @@ class Artillery extends MovingObject {
     } else if (dx > 0 && dy < 0) {
       theta -= Math.PI;
     }
+    this.theta = theta;
     this.vel = [this.speed * Math.cos(theta), this.speed * Math.sin(theta)];
   }
 

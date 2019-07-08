@@ -2,15 +2,14 @@ const Artillery = require("./artillery");
 
 class Boulder extends Artillery {
   constructor(options) {
-    options.dimensions = [ Boulder.DIMENSION_X, Boulder.DIMENSION_Y ];
     options.speed = Boulder.SPEED;
+    options.scale = Boulder.SCALE;
     options.sprite = "boulder"
     super(options);
   }
 }
 
-Boulder.DIMENSION_X = 34;
-Boulder.DIMENSION_Y = 22;
 Boulder.SPEED = 7;
+Boulder.SCALE = 1.25;
 
 module.exports = Boulder;
