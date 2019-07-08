@@ -14,7 +14,7 @@ class Mammoth extends NPC {
 }
 
 Mammoth.SPEED = 0.8;
-Mammoth.HIT_RADIUS = 30;
+Mammoth.HIT_RADIUS = 50;
 Mammoth.HEALTH = 15;
 Mammoth.DAMAGE = 10;
 Mammoth.FLINT = 30;
