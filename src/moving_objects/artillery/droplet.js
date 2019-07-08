@@ -2,15 +2,16 @@ const Artillery = require("./artillery");
 
 class Droplet extends Artillery {
   constructor(options) {
-    options.dimensions = [ Droplet.DIMENSION_X, Droplet.DIMENSION_Y ];
     options.speed = Droplet.SPEED;
+    options.scale = Droplet.SCALE;
+    options.hitRadius = Droplet.HIT_RADIUS;
     options.sprite = "droplet";
     super(options);
   }
 }
 
-Droplet.DIMENSION_X = 34;
-Droplet.DIMENSION_Y = 22;
 Droplet.SPEED = 10;
+Droplet.HIT_RADIUS = 4;
+Droplet.SCALE = 0.75;
 
 module.exports = Droplet;

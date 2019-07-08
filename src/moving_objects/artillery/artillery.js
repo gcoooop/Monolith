@@ -2,7 +2,6 @@ const MovingObject = require("../moving_object");
 
 class Artillery extends MovingObject {
   constructor(options) {
-    options.hitRadius = 4;
     super(options);
     this.game = options.game;
     this.tower = options.tower;
@@ -47,6 +46,7 @@ class Artillery extends MovingObject {
     } else if (dx > 0 && dy < 0) {
       theta -= Math.PI;
     }
+    this.theta = theta;
     this.vel = [this.speed * Math.cos(theta), this.speed * Math.sin(theta)];
   }
 
@@ -54,7 +54,7 @@ class Artillery extends MovingObject {
     if (!this.targetLocation) return null;
     const dx = Math.floor(this.pos[0] - this.targetLocation[0]);
     const dy = Math.floor(this.pos[1] - this.targetLocation[1]);
-    return dx >= -4 && dx <= 4 && dy >= -4 && dy <= 4;
+    return dx >= -5 && dx <= 5 && dy >= -5 && dy <= 5;
   }
 
   beyondTowerRange() {

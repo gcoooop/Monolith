@@ -2,27 +2,22 @@ const NPC = require("./npc");
 
 class Spider extends NPC {
   constructor(options) {
-    options.dimensions = [ Spider.DIMENSION_X, Spider.DIMENSION_Y ];
     options.speed = Spider.SPEED;
     options.hitRadius = Spider.HIT_RADIUS;
     options.health = Spider.HEALTH;
     options.damage = Spider.DAMAGE;
     options.flint = Spider.FLINT;
+    options.scale = Spider.SCALE;
     options.sprite = "spider";
     super(options);
   }
-
-  draw(ctx) {
-    ctx.drawImage(this.sprite, this.pos[0] - Spider.DIMENSION_X  * 0.5, this.pos[1] - Spider.DIMENSION_Y  * 0.5);
-  }
 }
 
-Spider.DIMENSION_X = 37;
-Spider.DIMENSION_Y = 50;
-Spider.SPEED = Math.sqrt(2);
-Spider.HIT_RADIUS = 7;
-Spider.HEALTH = 1;
-Spider.DAMAGE = 1;
+Spider.SPEED = 4;
+Spider.HIT_RADIUS = 20;
+Spider.HEALTH = 2;
+Spider.DAMAGE = 5;
 Spider.FLINT = 5;
+Spider.SCALE = 1;
 
 module.exports = Spider;

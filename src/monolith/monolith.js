@@ -66,6 +66,6 @@ class Monolith {
 }
 
 Monolith.POS = [1200, 215];
-Monolith.HEALTH = 1000;
+Monolith.HEALTH = 200;
 
 module.exports = Monolith;

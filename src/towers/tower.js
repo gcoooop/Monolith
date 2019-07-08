@@ -75,6 +75,4 @@ class Tower {
   }
 }
 
-Tower.DIMENSION = 100;
-
 module.exports = Tower;

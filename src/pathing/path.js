@@ -62,19 +62,19 @@ class Path {
     let endpoint;
     switch (endpointNumber) {
       case 0:
-        endpoint = [ [1175, this.generateInteger(265, 165)] ];
+        endpoint = [ [1160, this.generateInteger(265, 165)] ];
         break;
       case 1:
-        endpoint = [ [1155, 135], [1265, 135], [1225, this.generateInteger(265, 165)] ];
+        endpoint = [ [1155, 135], [1265, 135], [1240, this.generateInteger(265, 165)] ];
         break;
       case 2:
-        endpoint = [ [1155, 135], [this.generateInteger(1225, 1175), 165] ];
+        endpoint = [ [1155, 135], [this.generateInteger(1225, 1175), 150] ];
         break;
       case 3:
-        endpoint = [ [1155, 305], [1255, 305], [1225, this.generateInteger(265, 165)] ];
+        endpoint = [ [1155, 305], [1255, 305], [1240, this.generateInteger(265, 165)] ];
         break;
       case 4:
-        endpoint = [ [1155, 305], [this.generateInteger(1225, 1175), 265] ];
+        endpoint = [ [1155, 305], [this.generateInteger(1225, 1175), 250] ];
         break;
     }
     endpoint.forEach(ep => this.enqueue(ep));
