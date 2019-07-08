@@ -13,7 +13,7 @@ class Eagle extends NPC {
   }
 }
 
-Eagle.SPEED = Math.sqrt(2);
+Eagle.SPEED = 2;
 Eagle.HIT_RADIUS = 8;
 Eagle.HEALTH = 3;
 Eagle.DAMAGE = 5;

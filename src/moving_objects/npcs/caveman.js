@@ -13,7 +13,7 @@ class Caveman extends NPC {
   }
 }
 
-Caveman.SPEED = Math.sqrt(2);
+Caveman.SPEED = 1;
 Caveman.HIT_RADIUS = 10;
 Caveman.HEALTH = 5;
 Caveman.DAMAGE = 3;

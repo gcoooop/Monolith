@@ -13,7 +13,7 @@ class Spider extends NPC {
   }
 }
 
-Spider.SPEED = Math.sqrt(2);
+Spider.SPEED = 2.5;
 Spider.HIT_RADIUS = 7;
 Spider.HEALTH = 1;
 Spider.DAMAGE = 1;
