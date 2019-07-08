@@ -2,7 +2,6 @@ const MovingObject = require("../moving_object");
 
 class Artillery extends MovingObject {
   constructor(options) {
-    options.hitRadius = 4;
     super(options);
     this.game = options.game;
     this.tower = options.tower;
