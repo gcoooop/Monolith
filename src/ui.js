@@ -15,6 +15,9 @@ const selectedTowerImgEle = document.getElementById("selected-tower-img");
 const earthTowerImg = document.getElementById("earth-tower");
 const waterTowerImg = document.getElementById("water-tower");
 const fireTowerImg = document.getElementById("fire-tower");
+const earthTowerPrice = document.getElementById("earth-tower-price");
+const waterTowerPrice = document.getElementById("water-tower-price");
+const fireTowerPrice = document.getElementById("fire-tower-price");
 
 const waveCounterEle = document.getElementById("wave-counter");
 const towerButtons = [...document.getElementById("towers-pane").children];
@@ -76,6 +79,10 @@ class UI {
         towerButton.style.opacity = 1;
       }
     });
+
+    earthTowerPrice.innerText = EarthTower.FLINT;
+    waterTowerPrice.innerText = WaterTower.FLINT;
+    fireTowerPrice.innerText = FireTower.FLINT;
   }
 
   sendWave() {

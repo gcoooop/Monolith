@@ -29,6 +29,44 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
+.title-container {
+  display: flex;
+  justify-content: center;
+}
+
+.title-container h1 {
+  font-size: 64px;
+}
+
 #monolith-game {
   display: flex; 
+  justify-content: center;
+}
+
+.monolith-canvas {
+  border: 15px solid black;
+  border-right: none;
+  border-bottom: none;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 175px;
+  box-sizing: border-box;
+  border: 15px solid black;
+  padding: 15px;
+  font-size: 24px;
+}
+
+.control-panel div {
+  padding-bottom: 10px;
+}
+
+.tower-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

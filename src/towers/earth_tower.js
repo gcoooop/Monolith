@@ -10,6 +10,7 @@ class EarthTower extends Tower {
     options.flint = EarthTower.FLINT;
     options.artillery = Boulder;
     super(options);
+    EarthTower.FLINT += 20;
   }
 
   strikeReport(target, artillery) {

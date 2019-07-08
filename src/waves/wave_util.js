@@ -24,7 +24,6 @@ const defWave = game => {
           game.add( new NPC[type]({ path: generateInteger(4), game }) );
         }
       }, delay * i);
-      console.log(delay * i);
     };
   };
 }
