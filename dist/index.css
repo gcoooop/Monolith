@@ -54,7 +54,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 175px;
+  width: 350px;
   box-sizing: border-box;
   border: 15px solid black;
   padding: 15px;
@@ -64,6 +64,14 @@
 
 .control-panel div {
   padding-bottom: 10px;
+}
+
+.controls-pane, 
+.controls-pane div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .tower-container {
