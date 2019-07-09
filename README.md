@@ -26,22 +26,34 @@ For Monolith to work, it must include the following: sprites for towers and enem
 ## Work Breakdown
 
 ### Day 1
-  - Sprites
+  - Sprites and Map
+  - Game and Game View
+  - Moving Objects
 
 ### Day 2 
-  - Sprites
+  - Canvas Rendering
+  - Moving Objects
+    - NPCs
 
 ### Day 3
-  - Map
+  - NPC pathing
+  - Towers
+  - UI
 
 ### Day 4
-  - Currency
+  - Tower Targeting AI
+  - Artillery
 
 ### Day 5
-  - Health/damage
+  - "Collision" Detection
+  - NPC/Monolith Interaction
 
 ### Day 6 
-  - Overflow
+  - Waves
+  - Currency
+  - Valid Tower Placement
 
 ### Day 7
-  - Overflow
+  - Waves
+  - UI
+  - Styling
