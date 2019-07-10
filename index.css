@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 #wave-button {
   cursor: pointer;
 }
@@ -78,4 +82,51 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+[class*="instructions-window"] {
+  position: absolute;
+}
+
+[class*="window-hide"] {
+  display: none;
+}
+
+.x-button:hover {
+  cursor: pointer;
+  background: rgb(83, 83, 83);
+}
+
+.x-button {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: 64px;
+  line-height: 58px;
+  text-align: center;
+  font-weight: 500;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.instructions-window-show {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.background-window-show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  height: 40%;
+  padding: 0 36px;
+  background: white;
+  font-size: 36px;
 }
