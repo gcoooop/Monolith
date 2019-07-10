@@ -88,7 +88,7 @@ body {
   position: absolute;
 }
 
-[class*="window-hide"] {
+[class*="-hide"] {
   display: none;
 }
 
