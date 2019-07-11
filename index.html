@@ -21,7 +21,7 @@
   </div>
 
   <div class="instructions-window-hide" id="instructions-window">
-    <div class="x-button" id="x-button">&times;</div>
+    <div class="x-button-hide" id="x-button">&times;</div>
     <div class="background-window-hide" id="background-window">
       <p>
         The year is 9,000 BC. Your people have recently uncovered a mysterious ancient monolith. Perhaps it was fate, or maybe just luck. Within hours of handling the monolith, your people have experienced intense visions, sudden bouts of insight, and waves of unfathomable knowledge. 
@@ -54,10 +54,10 @@
       </p>
     </div>
     <div class="htp-4-arrows-hide" id="htp-4-arrows">
-      <div class="arrow-1">&rarr;</div>
-      <div class="arrow-2">&nearr;</div>
-      <div class="arrow-3">&nearr;</div>
-      <div class="arrow-4">&nwarr;</div>
+      <div class="arrow-1" id="arrow-1">&rarr;</div>
+      <div class="arrow-2" id="arrow-2">&nearr;</div>
+      <div class="arrow-3" id="arrow-3">&nearr;</div>
+      <div class="arrow-4" id="arrow-4">&nwarr;</div>
     </div>
     <div class="htp-5-window-hide" id="htp-5-window">
       <p>
@@ -70,12 +70,13 @@
     <div class="htp-6-window-hide" id="htp-6-window">
       <p>
         To place towers you must have enough flint. Click to select a tower, then click on the map to place and purchase the
-        tower, or outside the map to cancel.
+        tower, or click outside the map to cancel.
       </p>
       <p>
         Protect the monolith by placing towers strategically around the map! If the monolith runs out of health, you lose!
       </p>
     </div>
+    <div class="next-button-hide" id="next-button"></div>
   </div>
 
   <div id="selected-tower-container">
@@ -116,6 +117,6 @@
   </div>
 
   <script type="application/javascript" src="./dist/main.js"></script>
-  <script type="application/javascript" src="./src/instructions/story.js"></script>
+  <script type="application/javascript" src="./src/instructions/instructions.js"></script>
 </body>
 </html>

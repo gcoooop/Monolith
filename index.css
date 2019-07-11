@@ -92,12 +92,12 @@ body {
   display: none;
 }
 
-.x-button:hover {
+.x-button-show:hover {
   cursor: pointer;
   background: rgb(83, 83, 83);
 }
 
-.x-button {
+.x-button-show {
   position: absolute;
   top: 24px;
   left: 24px;
@@ -124,8 +124,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
-  height: 40%;
+  width: 75%;
+  height: 50%;
   padding: 0 36px;
   background: white;
   font-size: 36px;
