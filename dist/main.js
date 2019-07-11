@@ -104,7 +104,7 @@ eval("const NPC = __webpack_require__(/*! ./moving_objects/npcs/npc */ \"./src/m
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class GameView {\n  constructor(game, ui, ctx) {\n    this.game = game;\n    this.ui = ui;\n    this.ctx = ctx;\n  }\n\n  start() {\n    this.lastTime = 0;\n    requestAnimationFrame(this.animate.bind(this));\n  }\n\n  animate(time) {\n    const dt = time - this.lastTime;\n\n    this.game.step(dt);\n    this.game.draw(this.ctx);\n    this.ui.updateControlPanel();\n    this.lastTime = time;\n\n    if (this.game.running) {\n      requestAnimationFrame(this.animate.bind(this));\n    }\n  }\n};\n\nmodule.exports = GameView;\n\n//# sourceURL=webpack:///./src/game_view.js?");
+eval("class GameView {\n  constructor(game, ui, htp, ctx) {\n    this.game = game;\n    this.ui = ui;\n    this.htp = htp;\n    this.ctx = ctx;\n  }\n\n  start() {\n    this.lastTime = 0;\n    requestAnimationFrame(this.animate.bind(this));\n  }\n\n  animate(time) {\n    const dt = time - this.lastTime;\n\n    this.game.step(dt);\n    this.game.draw(this.ctx);\n    this.ui.updateControlPanel();\n    this.htp.draw()\n    this.lastTime = time;\n\n    if (this.game.running) {\n      requestAnimationFrame(this.animate.bind(this));\n    }\n  }\n};\n\nmodule.exports = GameView;\n\n//# sourceURL=webpack:///./src/game_view.js?");
 
 /***/ }),
 
@@ -115,7 +115,18 @@ eval("class GameView {\n  constructor(game, ui, ctx) {\n    this.game = game;\n 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst GameView = __webpack_require__(/*! ./game_view */ \"./src/game_view.js\");\nconst UI = __webpack_require__(/*! ./ui */ \"./src/ui.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const canvasEl = document.getElementById(\"monolith-canvas\");\n\n  const ctx = canvasEl.getContext(\"2d\");\n  const game = new Game();\n  const ui = new UI(canvasEl, game);\n  const gameView = new GameView(game, ui, ctx);\n  gameView.start();\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const Game = __webpack_require__(/*! ./game */ \"./src/game.js\");\nconst GameView = __webpack_require__(/*! ./game_view */ \"./src/game_view.js\");\nconst UI = __webpack_require__(/*! ./ui */ \"./src/ui.js\");\nconst HowToPlayAnimation = __webpack_require__(/*! ./instructions/instructions_animation */ \"./src/instructions/instructions_animation.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const canvasEl = document.getElementById(\"monolith-canvas\");\n\n  const ctx = canvasEl.getContext(\"2d\");\n  const game = new Game();\n  const ui = new UI(canvasEl, game);\n  const htp = new HowToPlayAnimation(canvasEl, ctx);\n  const gameView = new GameView(game, ui, htp, ctx);\n  gameView.start();\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/instructions/instructions_animation.js":
+/*!****************************************************!*\
+  !*** ./src/instructions/instructions_animation.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const instructionsEle = document.getElementById(\"instructions-window\");\nconst htpButton = document.getElementById(\"htp-button\");\n\nclass HowToPlayAnimation {\n  constructor(canvasEl, ctx) {\n    this.canvasEl = canvasEl;\n    this.ctx = ctx;\n    this.page = 0;\n    \n    this.startHTP = this.startHTP.bind(this);\n    htpButton.addEventListener(\"click\", this.startHTP);\n  }\n\n  startHTP() {\n    htpButton.removeEventListener(\"click\", this.startHTP);\n    this.page++;\n    if (this.page <= 2) {\n      setTimeout(this.startHTP, 2000);\n    } else {\n      htpButton.addEventListener(\"click\", this.startHTP);\n    }\n  }\n\n  draw() {\n    switch (this.page) {\n      case 0:\n        break;\n      case 1:\n        this.monolithIntro();\n        break;\n      case 2:\n        this.objectiveIntro();\n        break;\n      default: \n        this.page = 0;\n        break;\n    }\n  }\n\n  monolithIntro() {\n    this.ctx.font = \"64px Arial\";\n    this.ctx.fillStyle = \"black\";\n    this.ctx.textAlign = \"center\";\n    this.ctx.fillText(\"This is the monolith.\", 750, 500);\n    this.pulsingArrow(1100, 215, 0);\n  }\n\n  objectiveIntro() {\n    this.ctx.font = \"64px Arial\";\n    this.ctx.fillStyle = \"black\";\n    this.ctx.textAlign = \"center\";\n    this.ctx.fillText(\"It is your job is to protect it!\", 750, 500);\n  }\n\n  pulsingArrow(x = 0, y = 0, theta = 0) {\n    this.ctx.save();\n\n    this.ctx.translate(x, y);\n    this.ctx.rotate(theta);\n\n    this.ctx.beginPath();\n    this.ctx.lineWidth = 10;\n    this.ctx.strokeStyle = \"black\";\n    this.ctx.moveTo(0, 0);\n    this.ctx.lineTo(0, -10);\n    this.ctx.lineTo(100, -10);\n    this.ctx.lineTo(100, -30);\n    this.ctx.lineTo(150, 0);\n    this.ctx.lineTo(100, 30);\n    this.ctx.lineTo(100, 10);\n    this.ctx.lineTo(0, 10);\n    this.ctx.lineTo(0, 0);\n    this.ctx.stroke();\n\n    this.ctx.restore();\n  };\n}\n\nmodule.exports = HowToPlayAnimation;\n\n//# sourceURL=webpack:///./src/instructions/instructions_animation.js?");
 
 /***/ }),
 

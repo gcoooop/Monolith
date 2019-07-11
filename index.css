@@ -130,3 +130,11 @@ body {
   background: white;
   font-size: 36px;
 }
+
+.htp-1-window-show {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background: white;
+  font-size: 36px;
+}

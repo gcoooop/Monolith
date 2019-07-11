@@ -72,13 +72,6 @@ const showHTP4 = event => {
 };
  
 const showHTP5 = event => {
-  nextButton.removeEventListener("click", showHTP5);
-  hideDOMEle(htp4Ele);
-  showDOMEle(htp5Ele);
-  nextButton.addEventListener("click", showHTP6);
-};
- 
-const showHTP6 = event => {
   nextButton.removeEventListener("click", showHTP6);
   hideDOMEle(htp5Ele);
   showDOMEle(htp6Ele);
