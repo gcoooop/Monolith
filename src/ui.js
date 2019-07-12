@@ -15,6 +15,8 @@ const selectedTowerImgEle = document.getElementById("selected-tower-img");
 const earthTowerImg = document.getElementById("earth-tower");
 const waterTowerImg = document.getElementById("water-tower");
 const fireTowerImg = document.getElementById("fire-tower");
+
+const allTowerPrices = document.getElementsByClassName("tower-price");
 const earthTowerPrice = document.getElementById("earth-tower-price");
 const waterTowerPrice = document.getElementById("water-tower-price");
 const fireTowerPrice = document.getElementById("fire-tower-price");
@@ -81,8 +83,11 @@ class UI {
     });
 
     earthTowerPrice.innerText = EarthTower.FLINT;
+    earthTowerPrice.style.color = this.game.flint < EarthTower.FLINT ? "red" : "white";
     waterTowerPrice.innerText = WaterTower.FLINT;
+    waterTowerPrice.style.color = this.game.flint < WaterTower.FLINT ? "red" : "white";
     fireTowerPrice.innerText = FireTower.FLINT;
+    fireTowerPrice.style.color = this.game.flint < FireTower.FLINT ? "red" : "white";
   }
 
   sendWave() {
