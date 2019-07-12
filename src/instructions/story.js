@@ -12,9 +12,5 @@ const hideInstructionsWindow = () => {
   instructionsEle.className = instructionsEle.className.replace("-show", "-hide");
 };
 
-const showstory = event => {
-  showInstructionsWindow();
-};
-
-storyButton.addEventListener("click", showstory);
+storyButton.addEventListener("click", showInstructionsWindow);
 xButton.addEventListener("click", hideInstructionsWindow);
