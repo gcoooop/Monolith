@@ -92,12 +92,12 @@ body {
   display: none;
 }
 
-.x-button-show:hover {
+.x-button:hover {
   cursor: pointer;
   background: rgb(83, 83, 83);
 }
 
-.x-button-show {
+.x-button {
   position: absolute;
   top: 24px;
   left: 24px;
@@ -120,21 +120,13 @@ body {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.background-window-show {
+.background-window {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 75%;
   height: 50%;
   padding: 0 36px;
-  background: white;
-  font-size: 36px;
-}
-
-.htp-1-window-show {
-  position: absolute;
-  top: 1px;
-  left: 1px;
   background: white;
   font-size: 36px;
 }
