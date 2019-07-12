@@ -147,6 +147,7 @@ class UI {
 
     const domTowerImg = document.createElement("IMG");
     domTowerImg.src = selectedTowerImgEle.src;
+    domTowerImg.className = "dom-tower-img";
     const domTower = document.createElement("DIV");
     domTower.className = "dom-tower";
     domTower.id = `${this.selectedTowerType}-dom-tower`;

@@ -10,7 +10,16 @@ body {
   cursor: pointer;
 }
 
-#selected-tower-container {
+[src=""] {
+  display: none;
+}
+
+.selected-tower-img {
+  width: 75px;
+  height: 75px;
+}
+
+.selected-tower-container {
   pointer-events: none;
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
@@ -27,6 +36,11 @@ body {
   justify-content: center;
   align-items: center;
   background: transparent;
+}
+
+.dom-tower-img {
+  width: 75px;
+  height: 75px;
 }
 
 .dom-tower-selected {
