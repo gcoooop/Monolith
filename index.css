@@ -121,7 +121,7 @@ body {
   background: rgba(0, 0, 0, 0.8);
 }
 
-.background-window {
+.story-window {
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,7 +1,7 @@
 const instructionsEle = document.getElementById("instructions-window");
 const instructionsButton = document.getElementById("story-button");
-const backgroundEle = document.getElementById("background-window");
-const backgroundButton = document.getElementById("background-button");
+const storyEle = document.getElementById("story-window");
+const storyButton = document.getElementById("story-button");
 const xButton = document.getElementById("x-button");
 
 const showInstructionsWindow = () => {
@@ -12,9 +12,9 @@ const hideInstructionsWindow = () => {
   instructionsEle.className = instructionsEle.className.replace("-show", "-hide");
 };
 
-const showBackground = event => {
+const showstory = event => {
   showInstructionsWindow();
 };
 
-backgroundButton.addEventListener("click", showBackground);
+storyButton.addEventListener("click", showstory);
 xButton.addEventListener("click", hideInstructionsWindow);
