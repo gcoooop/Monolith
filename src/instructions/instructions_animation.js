@@ -6,7 +6,6 @@ class HowToPlayAnimation {
     this.canvasEl = canvasEl;
     this.ctx = ctx;
     this.page = 0;
-    this.jokesIdx = Math.floor(Math.random() * 3);
 
     this.startHTP = this.startHTP.bind(this);
     htpButton.addEventListener("click", this.startHTP);
@@ -15,7 +14,7 @@ class HowToPlayAnimation {
   startHTP() {
     htpButton.removeEventListener("click", this.startHTP);
     this.page++;
-    if (this.page <= 19) {
+    if (this.page <= 20) {
       setTimeout(this.startHTP, 4000);
     } else {
       htpButton.addEventListener("click", this.startHTP);
@@ -83,6 +82,9 @@ class HowToPlayAnimation {
       case 19:
         this.conclusion2();
         break;
+      case 20:
+        this.goodLuck();
+        break;
       default: 
         this.page = 0;
         break;
@@ -90,7 +92,6 @@ class HowToPlayAnimation {
   }
 
   monolithIntro() {
-    this.jokesIdx = Math.floor(Math.random() * 3);
     this.ctx.font = "64px Arial";
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
@@ -107,7 +108,6 @@ class HowToPlayAnimation {
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
     this.ctx.fillText("This is the monolith's health bar", 750, 500);
-    this.ctx.fillText("Don't let it deplete!", 750, 600)
     this.arrow(250, 950, Math.PI * 0.5);
     this.arrow(1250, 950, Math.PI * 0.5);
     this.arrow(750, 950, Math.PI * 0.5);
@@ -115,12 +115,7 @@ class HowToPlayAnimation {
 
   healthBarJoke() {
     this.healthBarIntro();
-    const jokes = [
-      "It's kind of important...",
-      "No big deal",
-      "Or else...",
-    ];
-    this.ctx.fillText(jokes[this.jokesIdx], 750, 700)
+    this.ctx.fillText("Don't let it deplete!", 750, 600);
   }
 
   enemiesIntro() {
@@ -210,6 +205,12 @@ class HowToPlayAnimation {
   conclusion2() {
     this.conclusion1();
     this.ctx.fillText("If the monolith runs out of health, you lose!", 750, 600);
+  }
+
+  goodLuck() {
+    this.ctx.fillStyle = "black";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("GOOD LUCK!", 750, 500);
   }
 
   arrow(x = 0, y = 0, theta = 0) {
