@@ -1,6 +1,4 @@
 const instructionsEle = document.getElementById("instructions-window");
-const instructionsButton = document.getElementById("story-button");
-const storyEle = document.getElementById("story-window");
 const storyButton = document.getElementById("story-button");
 const xButton = document.getElementById("x-button");
 

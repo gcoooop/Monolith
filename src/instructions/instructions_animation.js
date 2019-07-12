@@ -1,4 +1,3 @@
-const instructionsEle = document.getElementById("instructions-window");
 const htpButton = document.getElementById("htp-button");
 
 class HowToPlayAnimation {
