@@ -1,5 +1,5 @@
 const instructionsEle = document.getElementById("instructions-window");
-const instructionsButton = document.getElementById("instructions-button");
+const instructionsButton = document.getElementById("story-button");
 const backgroundEle = document.getElementById("background-window");
 const backgroundButton = document.getElementById("background-button");
 const xButton = document.getElementById("x-button");
