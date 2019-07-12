@@ -45,26 +45,28 @@
   <div id="monolith-game">
     <canvas class="monolith-canvas" id="monolith-canvas" width="1500" height="1050"  style="background: no-repeat url(./assets/map/MonolithMap_wide.png)"></canvas>
     <div class="control-panel">
-      <div class="wave-counter" id="wave-counter"></div>
-      <div class="towers-pane" id="towers-pane">
-        <div class="tower-container" id="earth">
-          <img id="earth-tower" src="./assets/towers/earth_tower.png">
-          <span class="tower-price earth-tower-price" id="earth-tower-price"></span>
+      <div>
+        <h3 class="wave-counter" id="wave-counter"></h3>
+        <div class="towers-pane" id="towers-pane">
+          <div class="tower-container" id="earth">
+            <img id="earth-tower" src="./assets/towers/earth_tower.png">
+            <span class="tower-price earth-tower-price" id="earth-tower-price"></span>
+          </div>
+          <div class="tower-container" id="water">
+            <img id="water-tower" src="./assets/towers/water_tower.png">
+            <span class="tower-price water-tower-price" id="water-tower-price"></span>
+          </div>
+          <div class="tower-container" id="fire">
+            <img id="fire-tower" src="./assets/towers/fire_tower.png">
+            <span class="tower-price fire-tower-price" id="fire-tower-price"></span>
+          </div>
         </div>
-        <div class="tower-container" id="water">
-          <img id="water-tower" src="./assets/towers/water_tower.png">
-          <span class="tower-price water-tower-price" id="water-tower-price"></span>
-        </div>
-        <div class="tower-container" id="fire">
-          <img id="fire-tower" src="./assets/towers/fire_tower.png">
-          <span class="tower-price fire-tower-price" id="fire-tower-price"></span>
-        </div>
-      </div>
-      <div class="controls-pane">
         <div class="flint-bank" id="flint-bank"></div>
-        <div class="wave-button" id="wave-button">Attack!</div>
-        <div class="messages" id="messages"></div>
       </div>
+        <div class="controls-pane">
+          <div class="wave-button" id="wave-button">Attack!</div>
+          <div class="messages" id="messages"></div>
+        </div>
       <div class="instructions-controls" id="instructions-controls">
         <div class="story-button" id="story-button">Story</div>
         <div class="htp-button" id="htp-button">How To Play</div>

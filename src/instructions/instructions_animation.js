@@ -4,7 +4,7 @@ class HowToPlayAnimation {
   constructor(canvasEl, ctx) {
     this.canvasEl = canvasEl;
     this.ctx = ctx;
-    this.page = 0;
+    this.page = 6;
 
     this.startHTP = this.startHTP.bind(this);
     htpButton.addEventListener("click", this.startHTP);
@@ -131,9 +131,9 @@ class HowToPlayAnimation {
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
     this.ctx.fillText("These are your towers!", 750, 500);
-    this.arrow(1475, 100, 0);
-    this.arrow(1475, 238, 0);
-    this.arrow(1475, 375, 0);
+    this.arrow(1475, 185, 0);
+    this.arrow(1475, 410, 0);
+    this.arrow(1475, 635, 0);
   }
 
   towersUtility() {
