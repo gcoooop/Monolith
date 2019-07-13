@@ -4,7 +4,7 @@ class HowToPlayAnimation {
   constructor(canvasEl, ctx) {
     this.canvasEl = canvasEl;
     this.ctx = ctx;
-    this.page = 6;
+    this.page = 0;
 
     this.startHTP = this.startHTP.bind(this);
     htpButton.addEventListener("click", this.startHTP);

@@ -117,8 +117,19 @@ body {
   border-top: 5px solid black;
 }
 
+.tower-flint-img {
+  width: 20px;
+}
+
+.bank-flint-img {
+  width: 30px;
+  padding-right: 10px;
+}
+
 .flint-bank {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .controls-pane {
