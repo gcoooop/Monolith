@@ -15,6 +15,9 @@ const selectedTowerImgEle = document.getElementById("selected-tower-img");
 const earthTowerImg = document.getElementById("earth-tower");
 const waterTowerImg = document.getElementById("water-tower");
 const fireTowerImg = document.getElementById("fire-tower");
+
+const flintImg = document.getElementById("flint");
+const allTowerPrices = document.getElementsByClassName("tower-price");
 const earthTowerPrice = document.getElementById("earth-tower-price");
 const waterTowerPrice = document.getElementById("water-tower-price");
 const fireTowerPrice = document.getElementById("fire-tower-price");
@@ -51,7 +54,7 @@ class UI {
   }
 
   initializeControlPanel() {
-    flintBankEle.innerText = `Flint: ${this.game.flint}`;
+    flintBankEle.innerHTML = `<img class="bank-flint-img" src="./assets/flint/Flint.png"/> ${this.game.flint}`;
     waveButton.addEventListener("click", this.sendWave);
     towerButtons.forEach( towerButton => towerButton.addEventListener("click", this.selectTower) );
   }
@@ -59,7 +62,7 @@ class UI {
   updateControlPanel() {
     waveCounterEle.innerText = `Wave ${this.game.wave}`;
     
-    flintBankEle.innerText = `Flint: ${this.game.flint}`;
+    flintBankEle.innerHTML = `<img class="bank-flint-img" src="./assets/flint/Flint.png"/> ${this.game.flint}`;
 
     if (this.game.waveProgress === "complete") {
       waveButton.style.opacity = 1;
@@ -80,9 +83,12 @@ class UI {
       }
     });
 
-    earthTowerPrice.innerText = EarthTower.FLINT;
-    waterTowerPrice.innerText = WaterTower.FLINT;
-    fireTowerPrice.innerText = FireTower.FLINT;
+    earthTowerPrice.innerHTML = `<img class="tower-flint-img" src="./assets/flint/Flint.png"/> ${EarthTower.FLINT}`;
+    earthTowerPrice.style.color = this.game.flint < EarthTower.FLINT ? "red" : "white";
+    waterTowerPrice.innerHTML = `<img class="tower-flint-img" src="./assets/flint/Flint.png"/> ${WaterTower.FLINT}`;
+    waterTowerPrice.style.color = this.game.flint < WaterTower.FLINT ? "red" : "white";
+    fireTowerPrice.innerHTML = `<img class="tower-flint-img" src="./assets/flint/Flint.png"/> ${FireTower.FLINT}`;
+    fireTowerPrice.style.color = this.game.flint < FireTower.FLINT ? "red" : "white";
   }
 
   sendWave() {
@@ -132,9 +138,10 @@ class UI {
   }
 
   getCursorPosition(event) {
-    const rect = this.canvasEl.getBoundingClientRect()
-    const x = event.clientX - rect.left
-    const y = event.clientY - rect.top
+    const rect = this.canvasEl.getBoundingClientRect();
+    // subtract 15 because the border thickness is 15
+    const x = event.clientX - rect.left - 15;
+    const y = event.clientY - rect.top - 15;
     return [x, y];
   }
 
@@ -147,6 +154,7 @@ class UI {
 
     const domTowerImg = document.createElement("IMG");
     domTowerImg.src = selectedTowerImgEle.src;
+    domTowerImg.className = "dom-tower-img";
     const domTower = document.createElement("DIV");
     domTower.className = "dom-tower";
     domTower.id = `${this.selectedTowerType}-dom-tower`;
