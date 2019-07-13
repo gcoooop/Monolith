@@ -138,9 +138,10 @@ class UI {
   }
 
   getCursorPosition(event) {
-    const rect = this.canvasEl.getBoundingClientRect()
-    const x = event.clientX - rect.left
-    const y = event.clientY - rect.top
+    const rect = this.canvasEl.getBoundingClientRect();
+    // subtract 15 because the border thickness is 15
+    const x = event.clientX - rect.left - 15;
+    const y = event.clientY - rect.top - 15;
     return [x, y];
   }
 
