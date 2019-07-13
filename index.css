@@ -2,10 +2,6 @@ body {
   margin: 0;
 }
 
-#wave-button {
-  cursor: pointer;
-}
-
 [src=""] {
   display: none;
 }
@@ -92,14 +88,27 @@ body {
   padding: 30px 40px 66px 40px;
   border: 5px solid black;
   cursor: pointer;
+  border-radius: 20px;
+}
+
+#earth:hover {
+  background: rgb(86, 154, 37);
 }
 
 #earth {
-  background: rgb(63, 152, 0);
+  background: rgb(53, 128, 0);
+}
+
+#water:hover {
+  background: rgb(38, 103, 183);
 }
 
 #water {
   background: rgb(0, 65, 145);
+}
+
+#fire:hover {
+  background: rgb(201, 41, 41);
 }
 
 #fire {
@@ -127,6 +136,7 @@ body {
 }
 
 .flint-bank {
+  padding-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,15 +149,39 @@ body {
   text-align: center;
 }
 
+.wave-button:hover {
+  cursor: pointer;
+  background: rgb(255, 35, 35);
+  border: 2px inset;
+}
+
+.wave-button {
+  padding: 10px 30px;
+  background: red;
+  border-radius: 15px;
+  border: 2px outset;
+}
+
+
 .instructions-controls {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.story-button:hover, .htp-button:hover {
+  cursor: pointer;
+  background: rgb(35, 35, 35);
+  border: 2px inset;
 }
 
 .story-button, .htp-button {
-  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: black;
+  border: 2px outset;
 }
 
 [class*="instructions-window"] {
