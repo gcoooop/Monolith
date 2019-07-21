@@ -1,10 +1,14 @@
+const canvasUI = document.getElementById("monolith-canvas-ui");
+const canvasGame = document.getElementById("monolith-canvas-game");
+
 class GameView {
-  constructor(game, ui, cui, htp, ctx) {
+  constructor(game, ui, cui, htp) {
     this.game = game;
     this.ui = ui;
     this.cui = cui;
     this.htp = htp;
-    this.ctx = ctx;
+    this.UICtx = canvasUI.getContext("2d");
+    this.gameCtx = canvasGame.getContext("2d");
   }
 
   start() {
@@ -16,13 +20,10 @@ class GameView {
     const dt = time - this.lastTime;
 
     this.game.step(dt);
-    this.ctx.translate(0, 150)
-    this.game.draw(this.ctx);
-    this.ctx.translate(1500, 0);
-    this.cui.draw(this.ctx);
-    this.ctx.translate(-1500, -150)
+    this.game.draw(this.gameCtx);
+    this.cui.draw(this.UICtx);
     this.ui.updateControlPanel();
-    this.htp.draw()
+    this.htp.draw(this.UICtx);
     this.lastTime = time;
 
     if (this.game.running) {

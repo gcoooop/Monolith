@@ -3,8 +3,6 @@ const Tower = require("./towers/tower");
 const Artillery = require("./moving_objects/artillery/artillery");
 const Monolith = require("./monolith/monolith");
 
-const map = document.getElementById("map");
-
 const Waves = require("./waves/waves");
 
 class Game {
@@ -48,10 +46,11 @@ class Game {
   draw(ctx) {
     // clears the canvas area
     ctx.clearRect(0, 0, 1500, 1000);
-    ctx.drawImage(map, 0, 0);
+    ctx.translate(0, 150);
     this.allObjects().forEach(object => {
       object.draw(ctx);
     });
+    ctx.translate(0, -150);
   }
 
   moveObjects(dt) {

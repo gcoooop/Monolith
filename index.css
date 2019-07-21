@@ -6,6 +6,19 @@ body {
   display: none;
 }
 
+canvas {
+  position: absolute;
+}
+
+.monolith-background {
+  position: absolute;
+  width: 1850px; 
+  height: 1200px;
+  z-index: 1; 
+  background: no-repeat url("./assets/map/MonolithMap_wide.png");
+  background-position-y: 150px;
+}
+
 .selected-tower-img {
   width: 75px;
   height: 75px;
@@ -54,10 +67,10 @@ body {
   justify-content: center;
 }
 
-.monolith-canvas {
-  border: 15px solid black;
+.monolith-canvas-game {
+  /* border: 15px solid black;
   border-right: none;
-  border-bottom: none;
+  border-bottom: none; */
 }
 
 .control-panel {

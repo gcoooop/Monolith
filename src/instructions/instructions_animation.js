@@ -1,9 +1,7 @@
 const htpButton = document.getElementById("htp-button");
 
 class HowToPlayAnimation {
-  constructor(canvasEl, ctx) {
-    this.canvasEl = canvasEl;
-    this.ctx = ctx;
+  constructor() {
     this.page = 0;
 
     this.startHTP = this.startHTP.bind(this);
@@ -20,69 +18,69 @@ class HowToPlayAnimation {
     }
   }
 
-  draw() {
+  draw(ctx) {
     switch (this.page) {
       case 0:
         break;
       case 1:
-        this.monolithIntro();
+        this.monolithIntro(ctx);
         break;
       case 2:
-        this.objectiveIntro();
+        this.objectiveIntro(ctx);
         break;
       case 3:
-        this.healthBarIntro();
+        this.healthBarIntro(ctx);
         break;
       case 4:
-        this.healthBarJoke();
+        this.healthBarJoke(ctx);
         break;
       case 5:
-        this.enemiesIntro();
+        this.enemiesIntro(ctx);
         break;
       case 6:
-        this.towersIntro();
+        this.towersIntro(ctx);
         break;
       case 7:
-        this.towersUtility();
+        this.towersUtility(ctx);
         break;
       case 8:
-        this.towersHint();
+        this.towersHint(ctx);
         break;
       case 9:
-        this.experimentHint();
+        this.experimentHint(ctx);
         break;
       case 10:
-        this.towerSelection();
+        this.towerSelection(ctx);
         break;
       case 11:
-        this.towerPlacement();
+        this.towerPlacement(ctx);
         break;
       case 12:
-        this.towerCancel();
+        this.towerCancel(ctx);
         break;
       case 13:
-        this.towerPurchasing();
+        this.towerPurchasing(ctx);
         break;
       case 14:
-        this.earningFlint();
+        this.earningFlint(ctx);
         break;
       case 15:
-        this.purchaseMechanics1();
+        this.purchaseMechanics1(ctx);
         break;
       case 16:
-        this.purchaseMechanics2();
+        this.purchaseMechanics2(ctx);
         break;
       case 17:
-        this.purchaseHint();
+        this.purchaseHint(ctx);
         break;
       case 18:
-        this.conclusion1();
+        this.conclusion1(ctx);
         break;
       case 19:
-        this.conclusion2();
+        this.conclusion2(ctx);
         break;
       case 20:
-        this.goodLuck();
+        this.goodLuck(ctx);
         break;
       default: 
         this.page = 0;
@@ -90,150 +88,150 @@ class HowToPlayAnimation {
     }
   }
 
-  monolithIntro() {
-    this.ctx.font = "64px Arial";
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("This is the monolith", 750, 500);
-    this.arrow(1150, 215, 0);
+  monolithIntro(ctx) {
+    ctx.font = "64px Arial";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("This is the monolith", 750, 500);
+    this.arrow(ctx, 1150, 215, 0);
   }
 
-  objectiveIntro() {
-    this.monolithIntro();
-    this.ctx.fillText("It is up to you to protect it!", 750, 600);
+  objectiveIntro(ctx) {
+    this.monolithIntro(ctx);
+    ctx.fillText("It is up to you to protect it!", 750, 600);
   }
 
-  healthBarIntro() {
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("This is the monolith's health bar", 750, 500);
-    this.arrow(250, 950, Math.PI * 0.5);
-    this.arrow(1250, 950, Math.PI * 0.5);
-    this.arrow(750, 950, Math.PI * 0.5);
+  healthBarIntro(ctx) {
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("This is the monolith's health bar", 750, 500);
+    this.arrow(ctx, 250, 950, Math.PI * 0.5);
+    this.arrow(ctx, 1250, 950, Math.PI * 0.5);
+    this.arrow(ctx, 750, 950, Math.PI * 0.5);
   }
 
-  healthBarJoke() {
-    this.healthBarIntro();
-    this.ctx.fillText("Don't let it deplete!", 750, 600);
+  healthBarJoke(ctx) {
+    this.healthBarIntro(ctx);
+    ctx.fillText("Don't let it deplete!", 750, 600);
   }
 
-  enemiesIntro() {
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("Enemies will attack from these four paths", 750, 500);
-    this.arrow(250, 100, Math.PI * 0.1);
-    this.arrow(175, 750, -Math.PI * 0.15);
-    this.arrow(650, 825, -Math.PI * 0.35);
-    this.arrow(1150, 825, -Math.PI * 0.65);
+  enemiesIntro(ctx) {
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("Enemies will attack from these four paths", 750, 500);
+    this.arrow(ctx, 250, 100, Math.PI * 0.1);
+    this.arrow(ctx, 175, 750, -Math.PI * 0.15);
+    this.arrow(ctx, 650, 825, -Math.PI * 0.35);
+    this.arrow(ctx, 1150, 825, -Math.PI * 0.65);
   }
 
-  towersIntro() {
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("These are your towers!", 750, 500);
-    this.arrow(1475, 185, 0);
-    this.arrow(1475, 410, 0);
-    this.arrow(1475, 635, 0);
+  towersIntro(ctx) {
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("These are your towers!", 750, 500);
+    this.arrow(ctx, 1475, 185, 0);
+    this.arrow(ctx, 1475, 410, 0);
+    this.arrow(ctx, 1475, 635, 0);
   }
 
-  towersUtility() {
-    this.towersIntro();
-    this.ctx.fillText("Towers will target and damage enemies in range", 750, 600);
+  towersUtility(ctx) {
+    this.towersIntro(ctx);
+    ctx.fillText("Towers will target and damage enemies in range", 750, 600);
   }
   
-  towersHint() { 
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("Each tower has its own srengths and weaknesses", 750, 500);
+  towersHint(ctx) { 
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("Each tower has its own srengths and weaknesses", 750, 500);
   }
 
-  experimentHint() { 
-    this.towersHint();
-    this.ctx.fillText("Experiment!", 750, 600);
+  experimentHint(ctx) { 
+    this.towersHint(ctx);
+    ctx.fillText("Experiment!", 750, 600);
   }
 
-  towerSelection() {
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("Click to select a tower", 750, 400);
+  towerSelection(ctx) {
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("Click to select a tower", 750, 400);
   }
 
-  towerPlacement() {
-    this.towerSelection();
-    this.ctx.fillText("Then, click on the map to place the tower", 750, 500);
+  towerPlacement(ctx) {
+    this.towerSelection(ctx);
+    ctx.fillText("Then, click on the map to place the tower", 750, 500);
   }
 
-  towerCancel() {
-    this.towerPlacement();
-    this.ctx.fillText("Or, click outside the map to cancel", 750, 600);
+  towerCancel(ctx) {
+    this.towerPlacement(ctx);
+    ctx.fillText("Or, click outside the map to cancel", 750, 600);
   }
 
-  towerPurchasing() {
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("Towers are not free! You must have enough flint", 750, 500);
+  towerPurchasing(ctx) {
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("Towers are not free! You must have enough flint", 750, 500);
   }
 
-  earningFlint() {
-    this.towerPurchasing();
-    this.ctx.fillText("Stopping enemies rewards you with more flint", 750, 600);
+  earningFlint(ctx) {
+    this.towerPurchasing(ctx);
+    ctx.fillText("Stopping enemies rewards you with more flint", 750, 600);
   }
 
-  purchaseMechanics1() {
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("The more towers you buy,", 750, 400);
+  purchaseMechanics1(ctx) {
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("The more towers you buy,", 750, 400);
   }
 
-  purchaseMechanics2() {
-    this.purchaseMechanics1()
-    this.ctx.fillText("the more expensive they get", 750, 500);
+  purchaseMechanics2(ctx) {
+    this.purchaseMechanics1(ctx)
+    ctx.fillText("the more expensive they get", 750, 500);
   }
 
-  purchaseHint() {
-    this.purchaseMechanics2();
-    this.ctx.fillText("Spend wisely and diversify your arsenal!", 750, 600);
+  purchaseHint(ctx) {
+    this.purchaseMechanics2(ctx);
+    ctx.fillText("Spend wisely and diversify your arsenal!", 750, 600);
   }
 
-  conclusion1() {
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("Place towers strategically around the map!", 750, 500);
+  conclusion1(ctx) {
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("Place towers strategically around the map!", 750, 500);
   }
 
-  conclusion2() {
-    this.conclusion1();
-    this.ctx.fillText("If the monolith runs out of health, you lose!", 750, 600);
+  conclusion2(ctx) {
+    this.conclusion1(ctx);
+    ctx.fillText("If the monolith runs out of health, you lose!", 750, 600);
   }
 
-  goodLuck() {
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("GOOD LUCK!", 750, 500);
+  goodLuck(ctx) {
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("GOOD LUCK!", 750, 500);
   }
 
-  arrow(x = 0, y = 0, theta = 0) {
-    this.ctx.save();
+  arrow(ctx, x = 0, y = 0, theta = 0) {
+    ctx.save();
 
-    this.ctx.translate(x, y);
-    this.ctx.rotate(theta);
+    ctx.translate(x, y);
+    ctx.rotate(theta);
 
-    this.ctx.beginPath();
-    this.ctx.lineWidth = 10;
-    this.ctx.strokeStyle = "black";
-    this.ctx.moveTo(0, 0);
-    this.ctx.lineTo(-50, 30);
-    this.ctx.lineTo(-50, 10);
-    this.ctx.lineTo(-150, 10);
-    this.ctx.lineTo(-150, -10);
-    this.ctx.lineTo(-50, -10);
-    this.ctx.lineTo(-50, -30);
-    this.ctx.closePath();
-    this.ctx.stroke();
-    this.ctx.fillStyle = "yellow";
-    this.ctx.fill();
+    ctx.beginPath();
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = "black";
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-50, 30);
+    ctx.lineTo(-50, 10);
+    ctx.lineTo(-150, 10);
+    ctx.lineTo(-150, -10);
+    ctx.lineTo(-50, -10);
+    ctx.lineTo(-50, -30);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fillStyle = "yellow";
+    ctx.fill();
 
-    this.ctx.restore();
+    ctx.restore();
   };
 }
 

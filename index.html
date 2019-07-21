@@ -45,7 +45,9 @@
   </div>   -->
   <div id="monolith-game">
     <!-- <canvas class="monolith-canvas" id="monolith-canvas" width="1500" height="1050" style="background: no-repeat url(./assets/map/MonolithMap_wide.png)"></canvas> -->
-    <canvas class="monolith-canvas" id="monolith-canvas" width="1850" height="1200"></canvas>
+    <canvas class="monolith-canvas-ui" id="monolith-canvas-ui" width="1850" height="1200" style="z-index: 3"></canvas>
+    <canvas class="monolith-canvas-game" id="monolith-canvas-game" width="1850" height="1200" style="z-index: 2"></canvas>
+    <div class="monolith-background" id="monolith-canvas-background"></div>
     <div class="control-panel">
       <div>
         <h3 class="wave-counter" id="wave-counter"></h3>
