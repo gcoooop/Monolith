@@ -57,6 +57,7 @@ class UI {
     ctx.clearRect(0, 0, 350, 1065);
     this.background(ctx);
     this.towerButtons(ctx);
+    this.towerPrices(ctx);
 
   }
 
@@ -86,14 +87,39 @@ class UI {
     this.roundRect(ctx, 80, 740, 190, 40, {tlr: 0, trr: 0, brr: 20, blr: 20}, true);
 
     ctx.translate(175, 207.5);
-    ctx.drawImage(earthTowerImg, -earthTowerImg.width * 0.5, -earthTowerImg.height * 0.5,);
+    ctx.drawImage(earthTowerImg, -earthTowerImg.width * 0.5, -earthTowerImg.height * 0.5);
     ctx.translate(0, 225);
-    ctx.drawImage(waterTowerImg, -waterTowerImg.width * 0.5, -waterTowerImg.height * 0.5,);
+    ctx.drawImage(waterTowerImg, -waterTowerImg.width * 0.5, -waterTowerImg.height * 0.5);
     ctx.translate(0, 225);
-    ctx.drawImage(fireTowerImg, -fireTowerImg.width * 0.5, -fireTowerImg.height * 0.5,);
+    ctx.drawImage(fireTowerImg, -fireTowerImg.width * 0.5, -fireTowerImg.height * 0.5);
     ctx.translate(-175, -657.5);
   }
 
+  towerPrices(ctx) {
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = "24px Arial";
+    ctx.fillStyle = this.game.flint < EarthTower.FLINT ? "red" : "white";
+    ctx.fillText(EarthTower.FLINT, 175, 310);
+    ctx.fillStyle = this.game.flint < WaterTower.FLINT ? "red" : "white";
+    ctx.fillText(WaterTower.FLINT, 175, 535);
+    ctx.fillStyle = this.game.flint < FireTower.FLINT ? "red" : "white";
+    ctx.fillText(FireTower.FLINT, 175, 760);
+    
+    ctx.translate(140, 310);
+    ctx.scale(1.5, 1.5);
+    ctx.drawImage(flintImg, -flintImg.width * 0.5, -flintImg.height * 0.5);
+    ctx.scale(1 / 1.5, 1 / 1.5);
+    ctx.translate(0, 225);
+    ctx.scale(1.5, 1.5);
+    ctx.drawImage(flintImg, -flintImg.width * 0.5, -flintImg.height * 0.5);
+    ctx.scale(1 / 1.5, 1 / 1.5);
+    ctx.translate(0, 225);
+    ctx.scale(1.5, 1.5);
+    ctx.drawImage(flintImg, -flintImg.width * 0.5, -flintImg.height * 0.5);
+    ctx.scale(1 / 1.5, 1 / 1.5);
+    ctx.translate(-140, -760);
+  }
 
   roundRect(ctx, x, y, w, h, radiusOptions, fill = false, stroke = true) {
     let { tlr = 5, trr = tlr, brr = tlr, blr = tlr } = radiusOptions;
