@@ -76,8 +76,22 @@ class UI {
     ctx.lineWidth = 5;
     ctx.fillStyle = "#358000";
     this.roundRect(ctx, 80, 125, 190, 205, {tlr: 20}, true);
-    // this.roundRect(ctx, 80, 350, 190, 205, 20);
-    // this.roundRect(ctx, 80, 575, 190, 205, 20);
+    ctx.fillStyle = "#004191";
+    this.roundRect(ctx, 80, 350, 190, 205, {tlr: 20}, true);
+    ctx.fillStyle = "#7d0000";
+    this.roundRect(ctx, 80, 575, 190, 205, {tlr: 20}, true);
+    ctx.fillStyle = "rgba(0,0,0,0.3)";
+    this.roundRect(ctx, 80, 290, 190, 40, {tlr: 0, trr: 0, brr: 20, blr: 20}, true);
+    this.roundRect(ctx, 80, 515, 190, 40, {tlr: 0, trr: 0, brr: 20, blr: 20}, true);
+    this.roundRect(ctx, 80, 740, 190, 40, {tlr: 0, trr: 0, brr: 20, blr: 20}, true);
+
+    ctx.translate(175, 207.5);
+    ctx.drawImage(earthTowerImg, -earthTowerImg.width * 0.5, -earthTowerImg.height * 0.5,);
+    ctx.translate(0, 225);
+    ctx.drawImage(waterTowerImg, -waterTowerImg.width * 0.5, -waterTowerImg.height * 0.5,);
+    ctx.translate(0, 225);
+    ctx.drawImage(fireTowerImg, -fireTowerImg.width * 0.5, -fireTowerImg.height * 0.5,);
+    ctx.translate(-175, -657.5);
   }
 
 
