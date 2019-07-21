@@ -9,6 +9,7 @@ const AllTowers = {
   fire: FireTower
 };
 
+const gameContainerEle = document.getElementById("game-container");
 const selectedTowerContainerEle = document.getElementById("selected-tower-container");
 const selectedTowerImgEle = document.getElementById("selected-tower-img");
 
@@ -38,6 +39,7 @@ class UI {
   constructor(canvasEl, game) {
     this.canvasEl = canvasEl;
     this.game = game;
+    this.scale = 1;
     this.selectedTowerType = null;
     this.message = "";
 
@@ -47,10 +49,40 @@ class UI {
     this.followMouse = this.followMouse.bind(this);
     this.placeTower = this.placeTower.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.showRangeIndicator = this.showRangeIndicator.bind(this);
+    // this.showRangeIndicator = this.showRangeIndicator.bind(this);
 
     this.initializeControlPanel();
-    document.addEventListener("mousemove", this.followMouse);
+    gameContainerEle.addEventListener("mousemove", this.followMouse);
+    console.log(gameContainerEle.getBoundingClientRect())
+  }
+
+  fit() {
+    // const windowW = window.innerWidth;
+    // const windowH = window.innerHeight;
+
+    // if (windowH >= 1225 && windowW >= 1190) {
+    //   // window is large enough to display the whole game
+    //   console.log("GOOD!")
+    // } else if (windowH < 1225 && windowW >= 1190) {
+    //   // limiting window dimension is the height
+    //   console.log("HEIGHT!")
+      
+    // } else if (windowH >= 1225 && windowW < 1190) {
+    //   // limiting window dimension is the width
+    //   console.log("WIDTH!")
+      
+    // } else {
+    //   // tricky! :O
+    //   console.log("WTF!")
+
+    // }
+  }
+
+  setScale(scale) {
+    this.scale = scale;
+    gameContainerEle.style.transform = `scale(${scale})`;
+    gameContainerEle.style.width = `${100 / scale}vw`;
+    gameContainerEle.style.height = `${100 / scale}vh`;
   }
 
   initializeControlPanel() {
@@ -117,12 +149,16 @@ class UI {
   }
 
   followMouse(event) {
+    window.gameContainerEle = gameContainerEle;
+    window.canvas = this.canvasEl;
     if (this.selectedTowerType) {
       const towerRange = AllTowers[this.selectedTowerType].RANGE;
-      selectedTowerContainerEle.style.left = `${event.pageX - towerRange}px`;
-      selectedTowerContainerEle.style.top = `${event.pageY - towerRange}px`;
-      selectedTowerContainerEle.style.height = `${towerRange * 2}px`;
-      selectedTowerContainerEle.style.width = `${towerRange * 2}px`;
+      // selectedTowerContainerEle.style.left = `${event.pageX - towerRange }px`;
+      // selectedTowerContainerEle.style.top = `${event.pageY - towerRange}px`;
+      selectedTowerContainerEle.style.left = `${(event.pageX - towerRange - gameContainerEle.offsetLeft) / this.scale}px`;
+      selectedTowerContainerEle.style.top = `${(event.pageY - towerRange - gameContainerEle.offsetTop) / this.scale}px`;
+      selectedTowerContainerEle.style.height = `${towerRange * 2 * this.scale}px`;
+      selectedTowerContainerEle.style.width = `${towerRange * 2 * this.scale}px`;
     }
   }
 
@@ -151,48 +187,33 @@ class UI {
     const TowerClass = AllTowers[this.selectedTowerType];
 
     this.game.add( new TowerClass(options) );
-
-    const domTowerImg = document.createElement("IMG");
-    domTowerImg.src = selectedTowerImgEle.src;
-    domTowerImg.className = "dom-tower-img";
-    const domTower = document.createElement("DIV");
-    domTower.className = "dom-tower";
-    domTower.id = `${this.selectedTowerType}-dom-tower`;
-    domTower.appendChild(domTowerImg);
-    domTower.style.left = `${event.pageX}px`;
-    domTower.style.top = `${event.pageY}px`;
-    domTower.style.width = "0px";
-    domTower.style.height = "0px";
-
-    document.body.appendChild(domTower);
-    domTowerImg.addEventListener("click", this.showRangeIndicator);
   }
 
-  showRangeIndicator(event) {
-    const domTower = event.currentTarget.parentNode;
-    const domTowerType = domTower.id.replace("-dom-tower", "");
-    const towerRange = AllTowers[domTowerType].RANGE;
-    if (!domTower.className.includes("dom-tower-selected")) {
-      domTower.className += " dom-tower-selected";
-      domTower.style.width = `${2 * towerRange}px`;
-      domTower.style.height = `${2 * towerRange}px`;
-      domTower.style.left = `calc(${domTower.style.left} - ${towerRange}px)`;
-      domTower.style.top = `calc(${domTower.style.top} - ${towerRange}px)`;
+  // showRangeIndicator(event) {
+  //   const domTower = event.currentTarget.parentNode;
+  //   const domTowerType = domTower.id.replace("-dom-tower", "");
+  //   const towerRange = AllTowers[domTowerType].RANGE;
+  //   if (!domTower.className.includes("dom-tower-selected")) {
+  //     domTower.className += " dom-tower-selected";
+  //     domTower.style.width = `${2 * towerRange}px`;
+  //     domTower.style.height = `${2 * towerRange}px`;
+  //     domTower.style.left = `calc(${domTower.style.left} - ${towerRange}px)`;
+  //     domTower.style.top = `calc(${domTower.style.top} - ${towerRange}px)`;
 
-      const hideRangeIndicator = function(event) {
-        domTower.className = domTower.className.replace(" dom-tower-selected", "");
-        domTower.style.width = "0px";
-        domTower.style.height = "0px";
-        domTower.style.left = `calc(${domTower.style.left} + ${towerRange}px)`;
-        domTower.style.top = `calc(${domTower.style.top} + ${towerRange}px)`;
-        document.removeEventListener("click", hideRangeIndicator);
-      };
+  //     const hideRangeIndicator = function(event) {
+  //       domTower.className = domTower.className.replace(" dom-tower-selected", "");
+  //       domTower.style.width = "0px";
+  //       domTower.style.height = "0px";
+  //       domTower.style.left = `calc(${domTower.style.left} + ${towerRange}px)`;
+  //       domTower.style.top = `calc(${domTower.style.top} + ${towerRange}px)`;
+  //       document.removeEventListener("click", hideRangeIndicator);
+  //     };
 
-      setTimeout(() => {
-        document.addEventListener("click", hideRangeIndicator);
-      }, 50);
-    }
-  }
+  //     setTimeout(() => {
+  //       document.addEventListener("click", hideRangeIndicator);
+  //     }, 50);
+  //   }
+  // }
 }
 
 module.exports = UI;

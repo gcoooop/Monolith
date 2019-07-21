@@ -1,5 +1,6 @@
 const Tower = require("./tower");
 const Boulder = require("../moving_objects/artillery/boulder");
+const earthTowerImg = document.getElementById("earth-tower");
 
 class EarthTower extends Tower {
   constructor(options) {
@@ -10,10 +11,11 @@ class EarthTower extends Tower {
     options.flint = EarthTower.FLINT;
     options.artillery = Boulder;
     super(options);
+    this.sprite = earthTowerImg;
     EarthTower.FLINT += 20;
   }
 
-  strikeReport(target, artillery) {
+  strikeReport(_, artillery) {
     this.allTargets().forEach(target => {
       if (this.inAOE(target, artillery)) {
         target.takeDamage(this.damage);

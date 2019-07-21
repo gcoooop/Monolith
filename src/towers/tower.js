@@ -4,6 +4,7 @@ const Util = require("../util/util");
 class Tower {
   constructor(options) {
     this.game = options.game;
+    this.scale = 0.75;
     this.pos = options.pos;
     this.range = options.range;
     this.damage = options.damage;
@@ -15,7 +16,13 @@ class Tower {
   } 
 
   draw(ctx) {
-    // do nothing!
+    const x = this.pos[0];
+    const y = this.pos[1];
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(this.scale, this.scale);
+    ctx.drawImage(this.sprite, - this.sprite.width * 0.5, - this.sprite.height * 0.5 );
+    ctx.restore();
   }
 
   allTargets() {

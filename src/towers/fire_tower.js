@@ -1,6 +1,7 @@
 const Tower = require("./tower");
 const Flame = require("../moving_objects/artillery/flame");
 const Util = require("../util/util");
+const fireTowerImg = document.getElementById("fire-tower");
 
 class FireTower extends Tower {
   constructor(options) {
@@ -11,6 +12,7 @@ class FireTower extends Tower {
     options.flint = FireTower.FLINT;
     options.artillery = Flame;
     super(options);
+    this.sprite = fireTowerImg;
     this.throttledStrikeReport = Util.throttle(this.strikeReport.bind(this), 100);
     FireTower.FLINT += 20;
   }

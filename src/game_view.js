@@ -13,9 +13,12 @@ class GameView {
 
   animate(time) {
     const dt = time - this.lastTime;
+    const scale = 0.5;
 
     this.game.step(dt);
     this.game.draw(this.ctx);
+    // this.ui.fit();
+    this.ui.setScale(scale);
     this.ui.updateControlPanel();
     this.htp.draw()
     this.lastTime = time;

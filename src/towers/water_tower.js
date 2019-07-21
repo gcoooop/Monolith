@@ -1,5 +1,6 @@
 const Tower = require("./tower");
 const Droplet = require("../moving_objects/artillery/droplet");
+const waterTowerImg = document.getElementById("water-tower");
 
 class WaterTower extends Tower {
   constructor(options) {
@@ -10,10 +11,11 @@ class WaterTower extends Tower {
     options.flint = WaterTower.FLINT;
     options.artillery = Droplet;
     super(options);
+    this.sprite = waterTowerImg;
     WaterTower.FLINT += 20;
   }
 
-  strikeReport(target, artillery) {
+  strikeReport(target, _) {
     target.takeDamage(this.damage);
   }
 }
