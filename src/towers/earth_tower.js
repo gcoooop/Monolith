@@ -8,6 +8,7 @@ class EarthTower extends Tower {
     options.damage = EarthTower.DAMAGE;
     options.reload = EarthTower.RELOAD;
     options.flint = EarthTower.FLINT;
+    options.sprite = "earth-tower";
     options.artillery = Boulder;
     super(options);
     EarthTower.FLINT += 20;

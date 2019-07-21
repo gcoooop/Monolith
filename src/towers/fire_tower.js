@@ -9,6 +9,7 @@ class FireTower extends Tower {
     options.damage = FireTower.DAMAGE;
     options.reload = FireTower.RELOAD;
     options.flint = FireTower.FLINT;
+    options.sprite = "fire-tower";
     options.artillery = Flame;
     super(options);
     this.throttledStrikeReport = Util.throttle(this.strikeReport.bind(this), 100);

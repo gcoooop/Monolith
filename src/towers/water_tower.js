@@ -9,6 +9,7 @@ class WaterTower extends Tower {
     options.reload = WaterTower.RELOAD;
     options.flint = WaterTower.FLINT;
     options.artillery = Droplet;
+    options.sprite = "water-tower";
     super(options);
     WaterTower.FLINT += 20;
   }
