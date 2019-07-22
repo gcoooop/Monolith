@@ -99,7 +99,15 @@ class UI {
   }
 
   selectTower() {
-    this.selectedTowerType = this.hoveredEle.tower;
+    const { tower } = this.hoveredEle;
+    if (this.game.flint >= tower.FLINT) {
+      this.selectedTowerType = tower;
+    } else {
+      this.message = "You do not have enough flint!";
+      setTimeout(() => {
+        this.message = "";
+      }, 4000);
+    }
   }
 
   cancelTower() {
@@ -128,14 +136,7 @@ class UI {
   placeTower() {
     const pos = [this.cursorPos[0], this.cursorPos[1] - 150];
     const options = { pos, game: this.game };
-    if (this.game.flint >= this.selectedTowerType.FLINT) {
-      this.game.add(new this.selectedTowerType(options))
-    } else {
-      this.message = "You do not have enough flint!";
-      setTimeout(() => {
-        this.message = "";
-      }, 4000);
-    }
+    this.game.add(new this.selectedTowerType(options));
     this.cancelTower();
   }
 

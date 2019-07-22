@@ -224,7 +224,7 @@ const uiElements = {
     tag: "button",
     a: "sendWave",
     x: 1607.5,
-    y: 1000,
+    y: 1025,
     w: 135,
     h: 50,
     r: 10,
@@ -239,7 +239,7 @@ const uiElements = {
         font: "24px Arial",
         f: "white",
         x: 1675,
-        y: 1025
+        y: 1050
       }
     }
   },
@@ -257,7 +257,7 @@ const uiElements = {
     f: "rgb(0, 0, 0)",
     hF: "rgb(35, 35, 35)",
     innerObjs: {
-      attackText: {
+      storyText: {
         type: "text",
         text: "Story",
         font: "24px Arial",
@@ -281,7 +281,7 @@ const uiElements = {
     f: "rgb(0, 0, 0)",
     hF: "rgb(35, 35, 35)",
     innerObjs: {
-      attackText: {
+      htpText: {
         type: "text",
         text: "How To Play",
         font: "24px Arial",
