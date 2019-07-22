@@ -5,16 +5,16 @@ class HowToPlayAnimation {
     this.page = 0;
 
     this.startHTP = this.startHTP.bind(this);
-    htpButton.addEventListener("click", this.startHTP);
+    // htpButton.addEventListener("click", this.startHTP);
   }
 
   startHTP() {
-    htpButton.removeEventListener("click", this.startHTP);
+    // htpButton.removeEventListener("click", this.startHTP);
     this.page++;
     if (this.page <= 20) {
       setTimeout(this.startHTP, 4000);
     } else {
-      htpButton.addEventListener("click", this.startHTP);
+      // htpButton.addEventListener("click", this.startHTP);
     }
   }
 

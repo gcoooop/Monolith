@@ -6,17 +6,28 @@ body {
   display: none;
 }
 
+#monolith-game {
+  position: absolute;
+  /* dimensions must be calculated and set with js */
+  /* top: 50%;
+  left: 50%; */
+  /* width: 1850px;
+  height: 1200px; */
+}
+
 canvas {
   position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .monolith-background {
+  /* these values need to be percentages */
   position: absolute;
-  width: 1850px; 
-  height: 1200px;
+  width: 100%; 
+  height: 100%;
   z-index: 1; 
   background: no-repeat url("./assets/map/MonolithMap_wide.png");
-  background-position-y: 150px;
 }
 
 .selected-tower-img {
@@ -60,11 +71,6 @@ canvas {
 
 .title-container h1 {
   font-size: 64px;
-}
-
-#monolith-game {
-  display: flex; 
-  justify-content: center;
 }
 
 .monolith-canvas-game {
