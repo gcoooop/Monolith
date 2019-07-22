@@ -18,8 +18,10 @@ class Game {
   }
 
   sendWave() {
-    Waves[this.wave](this);
-    this.waveProgress = "incomplete";
+    if (this.waveProgress === "complete") {
+      Waves[this.wave](this);
+      this.waveProgress = "incomplete";
+    }
   }
 
   add(object) {
@@ -44,7 +46,7 @@ class Game {
   }
 
   draw(ctx) {
-    ctx.clearRect(0, 0, 1500, 1000);
+    ctx.clearRect(0, 0, 1850, 1200);
     ctx.translate(0, 150);
     this.allObjects().forEach(object => {
       object.draw(ctx);

@@ -63,6 +63,9 @@ class UI {
         case "placeTower":
           this.selectTower();
           break;
+        case "sendWave":
+          this.sendWave();
+          break;
         default:
           break;
       }
@@ -133,6 +136,10 @@ class UI {
     && this.cursorPos[0] <= 1500
     && this.cursorPos[1] >= 150
     && this.cursorPos[1] <= 1150
+  }
+
+  sendWave() {
+    this.game.sendWave();
   }
 
   background(ctx) {
@@ -216,7 +223,7 @@ class UI {
 
     ctx.font = ele.font;
     if (typeof ele.text === "function") {
-      ctx.fillText(ele.text(), ele.x, ele.y)
+      ctx.fillText(ele.text(this.game), ele.x, ele.y)
     } else {
       ctx.fillText(ele.text, ele.x, ele.y)
     }

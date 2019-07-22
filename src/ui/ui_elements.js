@@ -183,6 +183,57 @@ const uiElements = {
       }
     }
   },
+  waveCounter: {
+    type: "text",
+    text: game => `Wave ${game.wave}`,
+    font: "24px Arial",
+    f: "white",
+    x: 1675,
+    y: 225
+  },
+  flintBank: {
+    type: "text",
+    text: game => `${game.flint}`,
+    font: "24px Arial",
+    f: "white",
+    x: 1680,
+    y: 975,
+    innerObjs: {
+      flintImg: {
+        type: "image",
+        image: flintImgEle,
+        x: 1640,
+        y: 975,
+        dx: -flintImgEle.width * 0.5,
+        dy: -flintImgEle.height * 0.5,
+        s: 2
+      }
+    }
+  },
+  attackButton: {
+    type: "roundRect",
+    tag: "button",
+    a: "sendWave",
+    x: 1607.5,
+    y: 1000,
+    w: 135,
+    h: 50,
+    r: 10,
+    lw: 2,
+    s: "black",
+    f: "rgb(255, 0, 0)",
+    hF: "rgb(255, 50, 50)",
+    innerObjs: {
+      attackText: {
+        type: "text",
+        text: "Attack!",
+        font: "24px Arial",
+        f: "white",
+        x: 1675,
+        y: 1025
+      }
+    }
+  }
 };
 
 module.exports = uiElements;
