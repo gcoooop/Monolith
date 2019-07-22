@@ -14,8 +14,9 @@ const flintFontColor = tower => game => {
 const uiElements = {
   earthTowerButton: {
     type: "roundRect",
-    x: 80,
-    y: 125,
+    tag: "button",
+    x: 1580,
+    y: 275,
     w: 190,
     h: 205,
     r: 20,
@@ -26,8 +27,9 @@ const uiElements = {
   },
   waterTowerButton: {
     type: "roundRect",
-    x: 80,
-    y: 350,
+    tag: "button",
+    x: 1580,
+    y: 500,
     w: 190,
     h: 205,
     r: 20,
@@ -38,8 +40,9 @@ const uiElements = {
   },
   fireTowerButton: {
     type: "roundRect",
-    x: 80,
-    y: 575,
+    tag: "button",
+    x: 1580,
+    y: 725,
     w: 190,
     h: 205,
     r: 20,
@@ -51,31 +54,31 @@ const uiElements = {
   earthTowerImg: {
     type: "image",
     image: earthTowerImgEle,
-    x: 175,
-    y: 207.5,
+    x: 1675,
+    y: 357.5,
     dx: -earthTowerImgEle.width * 0.5,
     dy: -earthTowerImgEle.height * 0.5,
   },
   waterTowerImg: {
     type: "image",
     image: waterTowerImgEle,
-    x: 175,
-    y: 432.5,
+    x: 1675,
+    y: 582.5,
     dx: -waterTowerImgEle.width * 0.5,
     dy: -waterTowerImgEle.height * 0.5,
   },
   fireTowerImg: {
     type: "image",
     image: fireTowerImgEle,
-    x: 175,
-    y: 657.5,
+    x: 1675,
+    y: 807.5,
     dx: -fireTowerImgEle.width * 0.5,
     dy: -fireTowerImgEle.height * 0.5,
   },
   earthTowerFlintContainer: {
     type: "roundRect",
-    x: 80,
-    y: 290,
+    x: 1580,
+    y: 440,
     w: 190,
     h: 40,
     r: {
@@ -91,8 +94,8 @@ const uiElements = {
       flintImg: {
         type: "image",
         image: flintImgEle,
-        x: 140,
-        y: 310,
+        x: 1640,
+        y: 460,
         dx: -flintImgEle.width * 0.5,
         dy: -flintImgEle.height * 0.5,
         s: 1.5
@@ -102,15 +105,15 @@ const uiElements = {
         text: `${EarthTower.FLINT}`,
         font: "24px Arial",
         f: flintFontColor(EarthTower),
-        x: 175,
-        y: 310
+        x: 1675,
+        y: 460
       }
     }
   },
   waterTowerFlint: {
     type: "roundRect",
-    x: 80,
-    y: 515,
+    x: 1580,
+    y: 665,
     w: 190,
     h: 40,
     r: {
@@ -126,8 +129,8 @@ const uiElements = {
       flintImg: {
         type: "image",
         image: flintImgEle,
-        x: 140,
-        y: 535,
+        x: 1640,
+        y: 685,
         dx: -flintImgEle.width * 0.5,
         dy: -flintImgEle.height * 0.5,
         s: 1.5
@@ -137,15 +140,15 @@ const uiElements = {
         text: `${WaterTower.FLINT}`,
         font: "24px Arial",
         f: flintFontColor(WaterTower),
-        x: 175,
-        y: 535
+        x: 1675,
+        y: 685
       }
     }
   },
   fireTowerFlintContainer: {
     type: "roundRect",
-    x: 80,
-    y: 740,
+    x: 1580,
+    y: 890 ,
     w: 190,
     h: 40,
     r: {
@@ -161,8 +164,8 @@ const uiElements = {
       flintImg: {
         type: "image",
         image: flintImgEle,
-        x: 140,
-        y: 760,
+        x: 1640,
+        y: 910,
         dx: -flintImgEle.width * 0.5,
         dy: -flintImgEle.height * 0.5,
         s: 1.5
@@ -172,8 +175,8 @@ const uiElements = {
         text: `${FireTower.FLINT}`,
         font: "24px Arial",
         f: flintFontColor(FireTower),
-        x: 175,
-        y: 760
+        x: 1675,
+        y: 910
       }
     }
   },

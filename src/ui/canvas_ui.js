@@ -20,15 +20,22 @@ const fireTowerImg = document.getElementById("fire-tower");
 const flintImg = document.getElementById("flint");
 
 class UI {
-  constructor(game) {
+  constructor(ctx, game) {
+    this.ctx = ctx;
     this.game = game;
     this.scale = 1;
     this.selectedTowerType = null;
     this.message = "";
+    this.cursorPos = [0, 0];
+    this.isHovering = false;
+
     this.setScale = this.setScale.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.getCursorPosition = this.getCursorPosition.bind(this);
+    this.checkHover = this.checkHover.bind(this);
     gameContainer.addEventListener("click", this.handleClick);
+    gameContainer.addEventListener("mousemove", this.getCursorPosition);
+    this.draw()
   }
 
   // draw(ctx) {
@@ -41,13 +48,10 @@ class UI {
   //   ctx.translate(-1500, -150);
   // }
 
-  draw(ctx) {
+  draw(ctx = this.ctx) {
     ctx.clearRect(0, 0, 350, 1065);
-    ctx.translate(1500, 150);
     this.background(ctx);
     this.drawUIElements(ctx);
-
-    ctx.translate(-1500, -150);
   }
 
   drawUIElements(ctx, eles = UIElements) {
@@ -57,7 +61,7 @@ class UI {
           this.drawImage(ctx, ele);
           break;
         case "roundRect":
-          this.drawRoundRect(ctx, ele.x, ele.y, ele.w, ele.h, ele.r, ele.f, ele.s, ele.lw);
+          this.drawRoundRect(ctx, ele);
           break;
         case "text":
           this.drawText(ctx, ele);
@@ -76,25 +80,31 @@ class UI {
   }
 
   handleClick(event) {
-    const pos = this.getCursorPosition(event);
-    
+    // const pos = this.getCursorPosition(event);
+    this.draw();
   }
 
   getCursorPosition(event) {
+    this.isHovering = false;
     const rect = gameContainer.getBoundingClientRect();
     const x = (event.clientX - rect.left) / this.scale;
     const y = (event.clientY - rect.top) / this.scale;
 
-    return [x, y];
+    this.cursorPos = [x, y];
+    this.draw();
+    if (this.isHovering) {
+      gameContainer.style.cursor = "pointer";
+    } else {
+      gameContainer.style.cursor = "default";
+    }
   }
-
 
   background(ctx) {
     ctx.fillStyle = "gray";
-    ctx.fillRect(0, 0, 350, 1065);
+    ctx.fillRect(1500, 150, 350, 1065);
     ctx.beginPath();
     // 7.5 because the line width is 15
-    ctx.rect(7.5, 7.5, 335, 1035);
+    ctx.rect(1507.5, 157.5, 335, 1035);
     ctx.lineWidth = 15;
     ctx.strokeStyle = "black";
     ctx.stroke();
@@ -112,7 +122,10 @@ class UI {
     ctx.translate(-ele.x, -ele.y);
   }
 
-  drawRoundRect(ctx, x, y, w, h, radiusOptions, fill = null, stroke = "black", lineW = 1) {
+  // drawRoundRect(ctx, x, y, w, h, radiusOptions, fill = null, stroke = "black", lineW = 1) {
+  drawRoundRect(ctx, ele) {
+    const {x, y, w, h, f, hF, s, lw} = ele;
+    const radiusOptions = ele.r;
     let tlr, trr, brr, blr;
     if (typeof radiusOptions === "number") {
       tlr = trr = brr = blr = radiusOptions;
@@ -136,13 +149,21 @@ class UI {
     ctx.lineTo(x, y + tlr);
     ctx.quadraticCurveTo(x, y, x + tlr, y);
     ctx.closePath();
-    if (fill) {
-      ctx.fillStyle = fill;
+
+    if (f) {
+      if (this.checkHover(ele) && ele.tag === "button") {
+        this.isHovering = true;
+        ctx.fillStyle = hF;
+      } else {
+        // gameContainer.style.cursor = "default";
+        ctx.fillStyle = f;
+      }
       ctx.fill();
     }
-    if (stroke) {
-      ctx.lineWidth = lineW;
-      ctx.strokeStyle = stroke;
+
+    if (s) {
+      ctx.lineWidth = lw;
+      ctx.strokeStyle = s;
       ctx.stroke();
     }
   }
@@ -159,60 +180,16 @@ class UI {
     ctx.fillText(ele.text, ele.x, ele.y)
   }
 
-
-  towerButtons(ctx) {
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 5;
-    ctx.fillStyle = "#358000";
-    this.roundRect(ctx, 80, 125, 190, 205, {tlr: 20}, true);
-    ctx.fillStyle = "#004191";
-    this.roundRect(ctx, 80, 350, 190, 205, {tlr: 20}, true);
-    ctx.fillStyle = "#7d0000";
-    this.roundRect(ctx, 80, 575, 190, 205, {tlr: 20}, true);
-    ctx.fillStyle = "rgba(0,0,0,0.3)";
-    this.roundRect(ctx, 80, 290, 190, 40, {tlr: 0, trr: 0, brr: 20, blr: 20}, true);
-    this.roundRect(ctx, 80, 515, 190, 40, {tlr: 0, trr: 0, brr: 20, blr: 20}, true);
-    this.roundRect(ctx, 80, 740, 190, 40, {tlr: 0, trr: 0, brr: 20, blr: 20}, true);
-
-    ctx.translate(175, 207.5);
-    ctx.drawImage(earthTowerImg, -earthTowerImg.width * 0.5, -earthTowerImg.height * 0.5);
-    ctx.translate(0, 225);
-    ctx.drawImage(waterTowerImg, -waterTowerImg.width * 0.5, -waterTowerImg.height * 0.5);
-    ctx.translate(0, 225);
-    ctx.drawImage(fireTowerImg, -fireTowerImg.width * 0.5, -fireTowerImg.height * 0.5);
-    ctx.translate(-175, -657.5);
-  }
-
-  towerPrices(ctx) {
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.font = "24px Arial";
-    ctx.fillStyle = this.game.flint < EarthTower.FLINT ? "red" : "white";
-    ctx.fillText(EarthTower.FLINT, 175, 310);
-    ctx.fillStyle = this.game.flint < WaterTower.FLINT ? "red" : "white";
-    ctx.fillText(WaterTower.FLINT, 175, 535);
-    ctx.fillStyle = this.game.flint < FireTower.FLINT ? "red" : "white";
-    ctx.fillText(FireTower.FLINT, 175, 760);
-    
-    ctx.translate(140, 310);
-    ctx.scale(1.5, 1.5);
-    ctx.drawImage(flintImg, -flintImg.width * 0.5, -flintImg.height * 0.5);
-    ctx.scale(1 / 1.5, 1 / 1.5);
-    ctx.translate(0, 225);
-    ctx.scale(1.5, 1.5);
-    ctx.drawImage(flintImg, -flintImg.width * 0.5, -flintImg.height * 0.5);
-    ctx.scale(1 / 1.5, 1 / 1.5);
-    ctx.translate(0, 225);
-    ctx.scale(1.5, 1.5);
-    ctx.drawImage(flintImg, -flintImg.width * 0.5, -flintImg.height * 0.5);
-    ctx.scale(1 / 1.5, 1 / 1.5);
-    ctx.translate(-140, -760);
+  checkHover(ele) {
+    return this.cursorPos[0] >= ele.x 
+    && this.cursorPos[0] <= ele.x + ele.w 
+    && this.cursorPos[1] >= ele.y 
+    && this.cursorPos[1] <= ele.y + ele.h;
   }
 
   attackButton(ctx) {
     this.fillStyle = "red";
     this.roundRect(ctx, x, y, 135, 50, {tlr: 15}, true);
-    
   }
 }
 

@@ -49,7 +49,7 @@ class GameView {
 
     this.game.step(dt);
     this.game.draw(this.gameCtx);
-    this.cui.draw(this.UICtx);
+    // this.cui.draw(this.UICtx);
     this.cui.setScale(scale);
     // this.ui.updateControlPanel();
     this.htp.draw(this.UICtx);
