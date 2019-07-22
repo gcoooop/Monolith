@@ -8,6 +8,7 @@ class WaterTower extends Tower {
     options.damage = WaterTower.DAMAGE;
     options.reload = WaterTower.RELOAD;
     options.flint = WaterTower.FLINT;
+    options.sprite = WaterTower.SPRITE;
     options.artillery = Droplet;
     options.sprite = "water-tower";
     super(options);
@@ -24,5 +25,6 @@ WaterTower.RANGE = 350;
 WaterTower.DAMAGE = 0.2;
 WaterTower.RELOAD = 200;
 WaterTower.FLINT = 100;
+WaterTower.SPRITE = document.getElementById("water-tower");
 
 module.exports = WaterTower;

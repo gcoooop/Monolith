@@ -4,7 +4,7 @@ const Util = require("../util/util");
 class Tower {
   constructor(options) {
     this.game = options.game;
-    this.sprite = document.getElementById(options.sprite);
+    this.sprite = options.sprite;
     this.scale = 0.75;
     this.pos = options.pos;
     this.range = options.range;

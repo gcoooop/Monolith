@@ -2,9 +2,6 @@ const EarthTower = require("../towers/earth_tower");
 const WaterTower = require("../towers/water_tower");
 const FireTower = require("../towers/fire_tower");
 
-const earthTowerImgEle = document.getElementById("earth-tower");
-const waterTowerImgEle = document.getElementById("water-tower");
-const fireTowerImgEle = document.getElementById("fire-tower");
 const flintImgEle = document.getElementById("flint");
 
 const flintFontColor = tower => game => {
@@ -15,6 +12,8 @@ const uiElements = {
   earthTowerButton: {
     type: "roundRect",
     tag: "button",
+    a: "placeTower",
+    tower: EarthTower,
     x: 1580,
     y: 275,
     w: 190,
@@ -28,6 +27,8 @@ const uiElements = {
   waterTowerButton: {
     type: "roundRect",
     tag: "button",
+    a: "placeTower",
+    tower: WaterTower,
     x: 1580,
     y: 500,
     w: 190,
@@ -41,6 +42,8 @@ const uiElements = {
   fireTowerButton: {
     type: "roundRect",
     tag: "button",
+    a: "placeTower",
+    tower: FireTower,
     x: 1580,
     y: 725,
     w: 190,
@@ -53,27 +56,27 @@ const uiElements = {
   },
   earthTowerImg: {
     type: "image",
-    image: earthTowerImgEle,
+    image: EarthTower.SPRITE,
     x: 1675,
     y: 357.5,
-    dx: -earthTowerImgEle.width * 0.5,
-    dy: -earthTowerImgEle.height * 0.5,
+    dx: -EarthTower.SPRITE.width * 0.5,
+    dy: -EarthTower.SPRITE.height * 0.5,
   },
   waterTowerImg: {
     type: "image",
-    image: waterTowerImgEle,
+    image: WaterTower.SPRITE,
     x: 1675,
     y: 582.5,
-    dx: -waterTowerImgEle.width * 0.5,
-    dy: -waterTowerImgEle.height * 0.5,
+    dx: -WaterTower.SPRITE.width * 0.5,
+    dy: -WaterTower.SPRITE.height * 0.5,
   },
   fireTowerImg: {
     type: "image",
-    image: fireTowerImgEle,
+    image: FireTower.SPRITE,
     x: 1675,
     y: 807.5,
-    dx: -fireTowerImgEle.width * 0.5,
-    dy: -fireTowerImgEle.height * 0.5,
+    dx: -FireTower.SPRITE.width * 0.5,
+    dy: -FireTower.SPRITE.height * 0.5,
   },
   earthTowerFlintContainer: {
     type: "roundRect",
@@ -102,7 +105,7 @@ const uiElements = {
       },
       towerPrice: {
         type: "text",
-        text: `${EarthTower.FLINT}`,
+        text: () => `${EarthTower.FLINT}`,
         font: "24px Arial",
         f: flintFontColor(EarthTower),
         x: 1675,
@@ -137,7 +140,7 @@ const uiElements = {
       },
       towerPrice: {
         type: "text",
-        text: `${WaterTower.FLINT}`,
+        text: () => `${WaterTower.FLINT}`,
         font: "24px Arial",
         f: flintFontColor(WaterTower),
         x: 1675,
@@ -172,7 +175,7 @@ const uiElements = {
       },
       towerPrice: {
         type: "text",
-        text: `${FireTower.FLINT}`,
+        text: () => `${FireTower.FLINT}`,
         font: "24px Arial",
         f: flintFontColor(FireTower),
         x: 1675,
