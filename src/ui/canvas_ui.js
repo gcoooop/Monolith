@@ -1,3 +1,4 @@
+const Tower = require("../towers/tower");
 const UIElements = require("./ui_elements");
 const gameContainer = document.getElementById("monolith-game");
 
@@ -65,6 +66,8 @@ class UI {
         default:
           break;
       }
+    } else if (this.selectedTowerType) {
+      this.isInBounds() ? this.placeTower() : this.cancelTower()
     }
     this.draw();
   }
@@ -82,6 +85,54 @@ class UI {
     } else {
       gameContainer.style.cursor = "default";
     }
+  }
+
+  selectTower() {
+    this.selectedTowerType = this.hoveredEle.tower;
+  }
+
+  cancelTower() {
+    this.selectedTowerType = null;
+  }
+
+  followCursor(ctx) {
+    const towerRange = {
+      x: this.cursorPos[0],
+      y: this.cursorPos[1],
+      r: this.selectedTowerType.RANGE,
+      f: "rgba(0,0,0,0.2)"
+    };
+    const towerImg = {
+      image: this.selectedTowerType.SPRITE,
+      x: this.cursorPos[0],
+      y: this.cursorPos[1],
+      dx: -this.selectedTowerType.SPRITE.width * 0.5,
+      dy: -this.selectedTowerType.SPRITE.height * 0.5,
+      s: Tower.SCALE
+    }
+    this.drawCircle(ctx, towerRange);
+    this.drawImage(ctx, towerImg);
+  }
+
+  placeTower() {
+    const pos = [this.cursorPos[0], this.cursorPos[1] - 150];
+    const options = { pos, game: this.game };
+    if (this.game.flint >= this.selectedTowerType.FLINT) {
+      this.game.add(new this.selectedTowerType(options))
+    } else {
+      this.message = "You do not have enough flint!";
+      setTimeout(() => {
+        this.message = "";
+      }, 4000);
+    }
+    this.cancelTower();
+  }
+
+  isInBounds() {
+    return this.cursorPos[0] >= 0 
+    && this.cursorPos[0] <= 1500
+    && this.cursorPos[1] >= 150
+    && this.cursorPos[1] <= 1150
   }
 
   background(ctx) {
@@ -191,40 +242,6 @@ class UI {
     && this.cursorPos[0] <= ele.x + ele.w 
     && this.cursorPos[1] >= ele.y 
     && this.cursorPos[1] <= ele.y + ele.h;
-  }
-
-  selectTower() {
-    this.selectedTowerType = this.hoveredEle.tower;
-  }
-
-  followCursor(ctx) {
-    const towerRange = {
-      x: this.cursorPos[0],
-      y: this.cursorPos[1],
-      r: this.selectedTowerType.RANGE,
-      f: "rgba(0,0,0,0.2)"
-    };
-    const towerImg = {
-      image: this.selectedTowerType.SPRITE,
-      x: this.cursorPos[0],
-      y: this.cursorPos[1],
-      dx: -this.selectedTowerType.SPRITE.width * 0.5,
-      dy: -this.selectedTowerType.SPRITE.height * 0.5,
-    }
-    this.drawCircle(ctx, towerRange);
-    this.drawImage(ctx, towerImg);
-  }
-
-  placeTower() {
-    const options = { pos: this.cursorPos, game: this.game };
-    if (this.game.flint >= this.hoveredEle.FLINT) {
-      this.game.add(new this.hoveredEle.tower(options))
-    } else {
-      this.message = "You do not have enough flint!";
-      setTimeout(() => {
-        this.message = "";
-      }, 4000);
-    }
   }
 
   attackButton(ctx) {

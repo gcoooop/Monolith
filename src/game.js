@@ -44,7 +44,6 @@ class Game {
   }
 
   draw(ctx) {
-    // clears the canvas area
     ctx.clearRect(0, 0, 1500, 1000);
     ctx.translate(0, 150);
     this.allObjects().forEach(object => {

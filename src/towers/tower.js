@@ -5,7 +5,7 @@ class Tower {
   constructor(options) {
     this.game = options.game;
     this.sprite = options.sprite;
-    this.scale = 0.75;
+    this.scale = Tower.SCALE;
     this.pos = options.pos;
     this.range = options.range;
     this.damage = options.damage;
@@ -82,5 +82,7 @@ class Tower {
     // do nothing
   }
 }
+
+Tower.SCALE = 0.75;
 
 module.exports = Tower;
