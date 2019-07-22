@@ -57,10 +57,10 @@ class UI {
           this.drawImage(ctx, ele);
           break;
         case "roundRect":
-
+          this.drawRoundRect(ctx, ele.x, ele.y, ele.w, ele.h, ele.r, ele.f, ele.s, ele.lw);
           break;
         case "text":
-
+          this.drawText(ctx, ele);
           break;
         default:
           break;
@@ -103,14 +103,62 @@ class UI {
   drawImage(ctx, ele) {
     ctx.translate(ele.x, ele.y);
     if (ele.s) {
-      const dw = ele.image.width * ele.s;
-      const dh = ele.image.height * ele.s;
-      ctx.drawImage(ele.image, ele.dx, ele.dy, dw, dh);
+      ctx.scale(ele.s, ele.s);
+      ctx.drawImage(ele.image, ele.dx, ele.dy);
+      ctx.scale(1 / ele.s, 1 / ele.s);
     } else {
       ctx.drawImage(ele.image, ele.dx, ele.dy);
     }
     ctx.translate(-ele.x, -ele.y);
   }
+
+  drawRoundRect(ctx, x, y, w, h, radiusOptions, fill = null, stroke = "black", lineW = 1) {
+    let tlr, trr, brr, blr;
+    if (typeof radiusOptions === "number") {
+      tlr = trr = brr = blr = radiusOptions;
+    } else {
+      tlr = radiusOptions.tlr;
+      trr = radiusOptions.trr || tlr;
+      brr = radiusOptions.brr || tlr;
+      blr = radiusOptions.blr || tlr;
+    }
+
+    const r = x + w;
+    const b = y + h;
+    ctx.beginPath();
+    ctx.moveTo(x + tlr, y);
+    ctx.lineTo(r - trr, y);
+    ctx.quadraticCurveTo(r, y, r, y + trr);
+    ctx.lineTo(r, y + h - brr);
+    ctx.quadraticCurveTo(r, b, r - brr, b);
+    ctx.lineTo(x + blr, b);
+    ctx.quadraticCurveTo(x, b, x, b - blr);
+    ctx.lineTo(x, y + tlr);
+    ctx.quadraticCurveTo(x, y, x + tlr, y);
+    ctx.closePath();
+    if (fill) {
+      ctx.fillStyle = fill;
+      ctx.fill();
+    }
+    if (stroke) {
+      ctx.lineWidth = lineW;
+      ctx.strokeStyle = stroke;
+      ctx.stroke();
+    }
+  }
+
+  drawText(ctx, ele) {
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    if (typeof ele.f === "function") {
+      ctx.fillStyle = ele.f(this.game);
+    } else {
+      ctx.fillStyle = ele.f;
+    }
+    ctx.font = ele.font;
+    ctx.fillText(ele.text, ele.x, ele.y)
+  }
+
 
   towerButtons(ctx) {
     ctx.strokeStyle = "black";
@@ -165,25 +213,6 @@ class UI {
     this.fillStyle = "red";
     this.roundRect(ctx, x, y, 135, 50, {tlr: 15}, true);
     
-  }
-
-  roundRect(ctx, x, y, w, h, radiusOptions, fill = false, stroke = true) {
-    let { tlr = 5, trr = tlr, brr = tlr, blr = tlr } = radiusOptions;
-    const r = x + w;
-    const b = y + h;
-    ctx.beginPath();
-    ctx.moveTo(x + tlr, y);
-    ctx.lineTo(r - trr, y);
-    ctx.quadraticCurveTo(r, y, r, y + trr);
-    ctx.lineTo(r, y + h - brr);
-    ctx.quadraticCurveTo(r, b, r - brr, b);
-    ctx.lineTo(x + blr, b);
-    ctx.quadraticCurveTo(x, b, x, b - blr);
-    ctx.lineTo(x, y + tlr);
-    ctx.quadraticCurveTo(x, y, x + tlr, y);
-    ctx.closePath();
-    if (fill) ctx.fill();
-    if (stroke) ctx.stroke();
   }
 }
 

@@ -7,6 +7,10 @@ const waterTowerImgEle = document.getElementById("water-tower");
 const fireTowerImgEle = document.getElementById("fire-tower");
 const flintImgEle = document.getElementById("flint");
 
+const flintFontColor = tower => game => {
+  return game.flint < tower.FLINT ? "red" : "white";
+};
+
 const uiElements = {
   earthTowerButton: {
     type: "roundRect",
@@ -15,6 +19,8 @@ const uiElements = {
     w: 190,
     h: 205,
     r: 20,
+    lw: 5,
+    s: "black",
     f: "rgb(53, 128, 0)",
     hF: "rgb(86, 154, 37)"
   },
@@ -25,6 +31,8 @@ const uiElements = {
     w: 190,
     h: 205,
     r: 20,
+    lw: 5,
+    s: "black",
     f: "rgb(0, 65, 145)",
     hF: "rgb(38, 103, 183)"
   },
@@ -35,6 +43,8 @@ const uiElements = {
     w: 190,
     h: 205,
     r: 20,
+    lw: 5,
+    s: "black",
     f: "rgb(125, 0, 0)",
     hF: "rgb(201, 41, 41)"
   },
@@ -67,14 +77,16 @@ const uiElements = {
     x: 80,
     y: 290,
     w: 190,
-    h: 205,
-    radii: {
+    h: 40,
+    r: {
       tlr: 0,
       trr: 0,
       brr: 20,
       blr: 20
     },
     f: "rgb(0,0,0,0.3)",
+    lw: 5,
+    s: "black",
     innerObjs: {
       flintImg: {
         type: "image",
@@ -88,7 +100,10 @@ const uiElements = {
       towerPrice: {
         type: "text",
         text: `${EarthTower.FLINT}`,
-        font: "24px Arial"
+        font: "24px Arial",
+        f: flintFontColor(EarthTower),
+        x: 175,
+        y: 310
       }
     }
   },
@@ -97,14 +112,16 @@ const uiElements = {
     x: 80,
     y: 515,
     w: 190,
-    h: 205,
-    radii: {
+    h: 40,
+    r: {
       tlr: 0,
       trr: 0,
       brr: 20,
       blr: 20
     },
     f: "rgb(0,0,0,0.3)",
+    lw: 5,
+    s: "black",
     innerObjs: {
       flintImg: {
         type: "image",
@@ -118,7 +135,10 @@ const uiElements = {
       towerPrice: {
         type: "text",
         text: `${WaterTower.FLINT}`,
-        font: "24px Arial"
+        font: "24px Arial",
+        f: flintFontColor(WaterTower),
+        x: 175,
+        y: 535
       }
     }
   },
@@ -127,14 +147,16 @@ const uiElements = {
     x: 80,
     y: 740,
     w: 190,
-    h: 205,
-    radii: {
+    h: 40,
+    r: {
       tlr: 0,
       trr: 0,
       brr: 20,
       blr: 20
     },
     f: "rgb(0,0,0,0.3)",
+    lw: 5,
+    s: "black",
     innerObjs: {
       flintImg: {
         type: "image",
@@ -148,7 +170,10 @@ const uiElements = {
       towerPrice: {
         type: "text",
         text: `${FireTower.FLINT}`,
-        font: "24px Arial"
+        font: "24px Arial",
+        f: flintFontColor(FireTower),
+        x: 175,
+        y: 760
       }
     }
   },
