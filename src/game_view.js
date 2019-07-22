@@ -41,15 +41,16 @@ class GameView {
       gameContainer.style.width = `${windowW}px`;
       gameContainer.style.height = `${newHeight}px`;
     }
-
+    gameContainer.style.marginTop = `${-newHeight * 0.5}px`;
+    gameContainer.style.marginLeft = `${-newWidth * 0.5}px`;
     const scale = newWidth / 1850;
     gameBackground.style.backgroundPositionY = `${150 * scale}px`;
     gameBackground.style.backgroundSize = `${1500 * scale}px`;
 
-    gameContainer
     this.game.step(dt);
     this.game.draw(this.gameCtx);
     this.cui.draw(this.UICtx);
+    this.cui.setScale(scale);
     // this.ui.updateControlPanel();
     this.htp.draw(this.UICtx);
     this.lastTime = time;

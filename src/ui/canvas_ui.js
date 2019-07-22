@@ -1,16 +1,17 @@
-const Tower = require("./towers/tower");
-const EarthTower = require("./towers/earth_tower");
-const WaterTower = require("./towers/water_tower");
-const FireTower = require("./towers/fire_tower");
+const UIElements = require("./ui_elements");
+
+const Tower = require("../towers/tower");
+const EarthTower = require("../towers/earth_tower");
+const WaterTower = require("../towers/water_tower");
+const FireTower = require("../towers/fire_tower");
+
+const gameContainer = document.getElementById("monolith-game");
 
 const AllTowers = {
   earth: EarthTower,
   water: WaterTower,
   fire: FireTower
 };
-
-const selectedTowerContainerEle = document.getElementById("selected-tower-container");
-const selectedTowerImgEle = document.getElementById("selected-tower-img");
 
 const earthTowerImg = document.getElementById("earth-tower");
 const waterTowerImg = document.getElementById("water-tower");
@@ -21,19 +22,72 @@ const flintImg = document.getElementById("flint");
 class UI {
   constructor(game) {
     this.game = game;
+    this.scale = 1;
     this.selectedTowerType = null;
     this.message = "";
+    this.setScale = this.setScale.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.getCursorPosition = this.getCursorPosition.bind(this);
+    gameContainer.addEventListener("click", this.handleClick);
   }
+
+  // draw(ctx) {
+  //   ctx.clearRect(0, 0, 350, 1065);
+  //   ctx.translate(1500, 150);
+  //   this.background(ctx);
+  //   this.towerButtons(ctx);
+  //   this.towerPrices(ctx);
+    
+  //   ctx.translate(-1500, -150);
+  // }
 
   draw(ctx) {
     ctx.clearRect(0, 0, 350, 1065);
     ctx.translate(1500, 150);
     this.background(ctx);
-    this.towerButtons(ctx);
-    this.towerPrices(ctx);
-    
+    this.drawUIElements(ctx);
+
     ctx.translate(-1500, -150);
   }
+
+  drawUIElements(ctx, eles = UIElements) {
+    Object.values(eles).forEach(ele => {
+      switch (ele.type) {
+        case "image":
+          this.drawImage(ctx, ele);
+          break;
+        case "roundRect":
+
+          break;
+        case "text":
+
+          break;
+        default:
+          break;
+      }
+      if (ele.innerObjs) {
+        this.drawUIElements(ctx, ele.innerObjs);
+      }
+    });
+  }
+
+  setScale(scale) {
+    this.scale = scale;
+  }
+
+  handleClick(event) {
+    const pos = this.getCursorPosition(event);
+    
+  }
+
+  getCursorPosition(event) {
+    const rect = gameContainer.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / this.scale;
+    const y = (event.clientY - rect.top) / this.scale;
+
+    return [x, y];
+  }
+
 
   background(ctx) {
     ctx.fillStyle = "gray";
@@ -44,6 +98,18 @@ class UI {
     ctx.lineWidth = 15;
     ctx.strokeStyle = "black";
     ctx.stroke();
+  }
+
+  drawImage(ctx, ele) {
+    ctx.translate(ele.x, ele.y);
+    if (ele.s) {
+      const dw = ele.image.width * ele.s;
+      const dh = ele.image.height * ele.s;
+      ctx.drawImage(ele.image, ele.dx, ele.dy, dw, dh);
+    } else {
+      ctx.drawImage(ele.image, ele.dx, ele.dy);
+    }
+    ctx.translate(-ele.x, -ele.y);
   }
 
   towerButtons(ctx) {
