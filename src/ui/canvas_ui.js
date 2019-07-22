@@ -1,5 +1,6 @@
 const Tower = require("../towers/tower");
 const UIElements = require("./ui_elements");
+const Story = require("../instructions/story");
 const gameContainer = document.getElementById("monolith-game");
 
 class UI {
@@ -65,6 +66,9 @@ class UI {
           break;
         case "sendWave":
           this.sendWave();
+          break;
+        case "showStory":
+          Story.showStory();
           break;
         default:
           break;

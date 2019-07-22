@@ -233,6 +233,30 @@ const uiElements = {
         y: 1025
       }
     }
+  },
+  storyButton: {
+    type: "roundRect",
+    tag: "button",
+    a: "showStory",
+    x: 1525,
+    y: 1125,
+    w: 100,
+    h: 50,
+    r: 25,
+    lw: 2,
+    s: null,
+    f: "rgb(0, 0, 0)",
+    hF: "rgb(35, 35, 35)",
+    innerObjs: {
+      attackText: {
+        type: "text",
+        text: "Story",
+        font: "24px Arial",
+        f: "white",
+        x: 1575,
+        y: 1150
+      }
+    }
   }
 };
 
