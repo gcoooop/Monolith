@@ -1,24 +1,21 @@
-const htpButton = document.getElementById("htp-button");
-
 class HowToPlayAnimation {
   constructor() {
     this.page = 0;
-
-    this.startHTP = this.startHTP.bind(this);
-    // htpButton.addEventListener("click", this.startHTP);
+    this.nextPage = this.nextPage.bind(this);
   }
 
-  startHTP() {
-    // htpButton.removeEventListener("click", this.startHTP);
-    this.page++;
-    if (this.page <= 20) {
-      setTimeout(this.startHTP, 4000);
-    } else {
-      // htpButton.addEventListener("click", this.startHTP);
+  nextPage(origin) {
+    if (this.page === 0 && origin === "click") {
+      this.page++;
+      setTimeout(() => this.nextPage("timeout"), 4000);
+    } else if (this.page > 0 && origin === "timeout") {
+      this.page++;
+      setTimeout(() => this.nextPage("timeout"), 4000);
     }
   }
 
   draw(ctx) {
+    ctx.translate(0, 150);
     switch (this.page) {
       case 0:
         break;
@@ -86,6 +83,7 @@ class HowToPlayAnimation {
         this.page = 0;
         break;
     }
+    ctx.translate(0, -150);
   }
 
   monolithIntro(ctx) {

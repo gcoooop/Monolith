@@ -4,9 +4,10 @@ const Story = require("../instructions/story");
 const gameContainer = document.getElementById("monolith-game");
 
 class UI {
-  constructor(ctx, game) {
+  constructor(ctx, game, htp) {
     this.ctx = ctx;
     this.game = game;
+    this.htp = htp;
     this.scale = 1;
     this.selectedTowerType = null;
     this.message = "";
@@ -70,6 +71,9 @@ class UI {
         case "showStory":
           Story.showStory();
           break;
+        case "htp":
+          this.htp.nextPage("click");
+          break;
         default:
           break;
       }
@@ -107,7 +111,7 @@ class UI {
       x: this.cursorPos[0],
       y: this.cursorPos[1],
       r: this.selectedTowerType.RANGE,
-      f: "rgba(0,0,0,0.2)"
+      f: "rgba(0,0,0,0.1)"
     };
     const towerImg = {
       image: this.selectedTowerType.SPRITE,

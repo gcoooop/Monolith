@@ -9,11 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvasUI = document.getElementById("monolith-canvas-ui");
 
   const game = new Game();
-  // const ui = new UI(canvasGame, game);
-  const cui = new CUI(canvasUI.getContext("2d"), game);
   const htp = new HowToPlayAnimation();
-  // const gameView = new GameView(game, ui, cui, htp, ctx);
-  // const gameView = new GameView(game, ui, cui, htp);
+  const cui = new CUI(canvasUI.getContext("2d"), game, htp);
   const gameView = new GameView(game, cui, htp);
   gameView.start();
 });

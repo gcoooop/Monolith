@@ -6,10 +6,8 @@ const canvasGame = document.getElementById("monolith-canvas-game");
 const gameAspectRatio = 1850 / 1200;
 
 class GameView {
-  // constructor(game, ui, cui, htp) {
   constructor(game, cui, htp) {
     this.game = game;
-    // this.ui = ui;
     this.cui = cui;
     this.htp = htp;
     this.UICtx = canvasUI.getContext("2d");
@@ -49,10 +47,9 @@ class GameView {
 
     this.game.step(dt);
     this.game.draw(this.gameCtx);
-    // this.cui.draw(this.UICtx);
     this.cui.setScale(scale);
-    // this.ui.updateControlPanel();
-    this.htp.draw(this.UICtx);
+    // pass in gameCTX instead of uiCTX because game clears the canvas every frame
+    this.htp.draw(this.gameCtx);
     this.lastTime = time;
 
     if (this.game.running) {
