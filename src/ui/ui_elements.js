@@ -14,6 +14,7 @@ const uiElements = {
     tag: "button",
     a: "placeTower",
     tower: EarthTower,
+    disabled: false,
     x: 1580,
     y: 275,
     w: 190,
@@ -22,13 +23,59 @@ const uiElements = {
     lw: 5,
     s: "black",
     f: "rgb(53, 128, 0)",
-    hF: "rgb(86, 154, 37)"
+    hF: "rgb(86, 154, 37)",
+    innerObjs: {
+      earthTowerImg: {
+        type: "image",
+        image: EarthTower.SPRITE,
+        x: 1675,
+        y: 357.5,
+        dx: -EarthTower.SPRITE.width * 0.5,
+        dy: -EarthTower.SPRITE.height * 0.5,
+      },
+      earthTowerFlintContainer: {
+        type: "roundRect",
+        x: 1580,
+        y: 440,
+        w: 190,
+        h: 40,
+        r: {
+          tlr: 0,
+          trr: 0,
+          brr: 20,
+          blr: 20
+        },
+        f: "rgb(0,0,0,0.3)",
+        lw: 5,
+        s: "black",
+        innerObjs: {
+          flintImg: {
+            type: "image",
+            image: flintImgEle,
+            x: 1640,
+            y: 460,
+            dx: -flintImgEle.width * 0.5,
+            dy: -flintImgEle.height * 0.5,
+            s: 1.5
+          },
+          towerPrice: {
+            type: "text",
+            text: () => `${EarthTower.FLINT}`,
+            font: "24px Arial",
+            f: flintFontColor(EarthTower),
+            x: 1675,
+            y: 460
+          }
+        }
+      },
+    }
   },
   waterTowerButton: {
     type: "roundRect",
     tag: "button",
     a: "placeTower",
     tower: WaterTower,
+    disabled: false,
     x: 1580,
     y: 500,
     w: 190,
@@ -37,13 +84,59 @@ const uiElements = {
     lw: 5,
     s: "black",
     f: "rgb(0, 65, 145)",
-    hF: "rgb(38, 103, 183)"
+    hF: "rgb(38, 103, 183)",
+    innerObjs: {
+      waterTowerImg: {
+        type: "image",
+        image: WaterTower.SPRITE,
+        x: 1675,
+        y: 582.5,
+        dx: -WaterTower.SPRITE.width * 0.5,
+        dy: -WaterTower.SPRITE.height * 0.5,
+      },
+      waterTowerFlintContainer: {
+        type: "roundRect",
+        x: 1580,
+        y: 665,
+        w: 190,
+        h: 40,
+        r: {
+          tlr: 0,
+          trr: 0,
+          brr: 20,
+          blr: 20
+        },
+        f: "rgb(0,0,0,0.3)",
+        lw: 5,
+        s: "black",
+        innerObjs: {
+          flintImg: {
+            type: "image",
+            image: flintImgEle,
+            x: 1640,
+            y: 685,
+            dx: -flintImgEle.width * 0.5,
+            dy: -flintImgEle.height * 0.5,
+            s: 1.5
+          },
+          towerPrice: {
+            type: "text",
+            text: () => `${WaterTower.FLINT}`,
+            font: "24px Arial",
+            f: flintFontColor(WaterTower),
+            x: 1675,
+            y: 685
+          }
+        }
+      }
+    }
   },
   fireTowerButton: {
     type: "roundRect",
     tag: "button",
     a: "placeTower",
     tower: FireTower,
+    disabled: false,
     x: 1580,
     y: 725,
     w: 190,
@@ -52,135 +145,51 @@ const uiElements = {
     lw: 5,
     s: "black",
     f: "rgb(125, 0, 0)",
-    hF: "rgb(201, 41, 41)"
-  },
-  earthTowerImg: {
-    type: "image",
-    image: EarthTower.SPRITE,
-    x: 1675,
-    y: 357.5,
-    dx: -EarthTower.SPRITE.width * 0.5,
-    dy: -EarthTower.SPRITE.height * 0.5,
-  },
-  waterTowerImg: {
-    type: "image",
-    image: WaterTower.SPRITE,
-    x: 1675,
-    y: 582.5,
-    dx: -WaterTower.SPRITE.width * 0.5,
-    dy: -WaterTower.SPRITE.height * 0.5,
-  },
-  fireTowerImg: {
-    type: "image",
-    image: FireTower.SPRITE,
-    x: 1675,
-    y: 807.5,
-    dx: -FireTower.SPRITE.width * 0.5,
-    dy: -FireTower.SPRITE.height * 0.5,
-  },
-  earthTowerFlintContainer: {
-    type: "roundRect",
-    x: 1580,
-    y: 440,
-    w: 190,
-    h: 40,
-    r: {
-      tlr: 0,
-      trr: 0,
-      brr: 20,
-      blr: 20
-    },
-    f: "rgb(0,0,0,0.3)",
-    lw: 5,
-    s: "black",
+    hF: "rgb(201, 41, 41)",
     innerObjs: {
-      flintImg: {
+      fireTowerImg: {
         type: "image",
-        image: flintImgEle,
-        x: 1640,
-        y: 460,
-        dx: -flintImgEle.width * 0.5,
-        dy: -flintImgEle.height * 0.5,
-        s: 1.5
-      },
-      towerPrice: {
-        type: "text",
-        text: () => `${EarthTower.FLINT}`,
-        font: "24px Arial",
-        f: flintFontColor(EarthTower),
+        image: FireTower.SPRITE,
         x: 1675,
-        y: 460
-      }
-    }
-  },
-  waterTowerFlint: {
-    type: "roundRect",
-    x: 1580,
-    y: 665,
-    w: 190,
-    h: 40,
-    r: {
-      tlr: 0,
-      trr: 0,
-      brr: 20,
-      blr: 20
-    },
-    f: "rgb(0,0,0,0.3)",
-    lw: 5,
-    s: "black",
-    innerObjs: {
-      flintImg: {
-        type: "image",
-        image: flintImgEle,
-        x: 1640,
-        y: 685,
-        dx: -flintImgEle.width * 0.5,
-        dy: -flintImgEle.height * 0.5,
-        s: 1.5
+        y: 807.5,
+        dx: -FireTower.SPRITE.width * 0.5,
+        dy: -FireTower.SPRITE.height * 0.5,
       },
-      towerPrice: {
-        type: "text",
-        text: () => `${WaterTower.FLINT}`,
-        font: "24px Arial",
-        f: flintFontColor(WaterTower),
-        x: 1675,
-        y: 685
-      }
-    }
-  },
-  fireTowerFlintContainer: {
-    type: "roundRect",
-    x: 1580,
-    y: 890 ,
-    w: 190,
-    h: 40,
-    r: {
-      tlr: 0,
-      trr: 0,
-      brr: 20,
-      blr: 20
-    },
-    f: "rgb(0,0,0,0.3)",
-    lw: 5,
-    s: "black",
-    innerObjs: {
-      flintImg: {
-        type: "image",
-        image: flintImgEle,
-        x: 1640,
-        y: 910,
-        dx: -flintImgEle.width * 0.5,
-        dy: -flintImgEle.height * 0.5,
-        s: 1.5
+      fireTowerFlintContainer: {
+        type: "roundRect",
+        x: 1580,
+        y: 890,
+        w: 190,
+        h: 40,
+        r: {
+          tlr: 0,
+          trr: 0,
+          brr: 20,
+          blr: 20
+        },
+        f: "rgb(0,0,0,0.3)",
+        lw: 5,
+        s: "black",
+        innerObjs: {
+          flintImg: {
+            type: "image",
+            image: flintImgEle,
+            x: 1640,
+            y: 910,
+            dx: -flintImgEle.width * 0.5,
+            dy: -flintImgEle.height * 0.5,
+            s: 1.5
+          },
+          towerPrice: {
+            type: "text",
+            text: () => `${FireTower.FLINT}`,
+            font: "24px Arial",
+            f: flintFontColor(FireTower),
+            x: 1675,
+            y: 910
+          }
+        }
       },
-      towerPrice: {
-        type: "text",
-        text: () => `${FireTower.FLINT}`,
-        font: "24px Arial",
-        f: flintFontColor(FireTower),
-        x: 1675,
-        y: 910
-      }
     }
   },
   waveCounter: {
@@ -242,7 +251,7 @@ const uiElements = {
     y: 1125,
     w: 100,
     h: 50,
-    r: 25,
+    r: 30,
     lw: 2,
     s: null,
     f: "rgb(0, 0, 0)",
@@ -257,7 +266,31 @@ const uiElements = {
         y: 1150
       }
     }
-  }
+  },
+  htpButton: {
+    type: "roundRect",
+    tag: "button",
+    a: "htp",
+    x: 1650,
+    y: 1125,
+    w: 175,
+    h: 50,
+    r: 30,
+    lw: 2,
+    s: null,
+    f: "rgb(0, 0, 0)",
+    hF: "rgb(35, 35, 35)",
+    innerObjs: {
+      attackText: {
+        type: "text",
+        text: "How To Play",
+        font: "24px Arial",
+        f: "white",
+        x: 1737.5,
+        y: 1150
+      }
+    }
+  },
 };
 
 module.exports = uiElements;
