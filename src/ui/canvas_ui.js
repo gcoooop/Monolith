@@ -26,7 +26,6 @@ class UI {
 
   draw(ctx = this.ctx) {
     ctx.clearRect(0, 0, 1850, 1200);
-    this.background(ctx);
     this.drawUIElements(ctx);
   }
 
@@ -35,6 +34,9 @@ class UI {
       switch (ele.type) {
         case "image":
           this.drawImage(ctx, ele);
+          break;
+        case "rect":
+          this.drawRect(ctx, ele);
           break;
         case "roundRect":
           this.drawRoundRect(ctx, ele);
@@ -151,17 +153,6 @@ class UI {
     this.game.sendWave();
   }
 
-  background(ctx) {
-    ctx.fillStyle = "gray";
-    ctx.fillRect(1500, 150, 350, 1065);
-    ctx.beginPath();
-    // 7.5 because the line width is 15
-    ctx.rect(1507.5, 157.5, 335, 1035);
-    ctx.lineWidth = 15;
-    ctx.strokeStyle = "black";
-    ctx.stroke();
-  }
-
   drawImage(ctx, ele) {
     ctx.translate(ele.x, ele.y);
     if (ele.s) {
@@ -174,7 +165,20 @@ class UI {
     ctx.translate(-ele.x, -ele.y);
   }
 
-  // drawRoundRect(ctx, x, y, w, h, radiusOptions, fill = null, stroke = "black", lineW = 1) {
+  drawRect(ctx, ele) {
+    if (ele.f) {
+      ctx.fillStyle = ele.f;
+      ctx.fillRect(ele.x, ele.y, ele.w, ele.h);
+    } else {
+      ctx.beginPath();
+      ctx.lineWidth = ele.lw;
+      ctx.strokeStyle = ele.s;
+      ctx.rect(ele.x, ele.y, ele.w, ele.h);
+      ctx.closePath();
+      ctx.stroke();
+    }
+  }
+  
   drawRoundRect(ctx, ele) {
     const {x, y, w, h, f, hF, s, lw} = ele;
     const radiusOptions = ele.r;
@@ -207,7 +211,6 @@ class UI {
         this.hoveredEle = ele;
         ctx.fillStyle = hF;
       } else {
-        // gameContainer.style.cursor = "default";
         ctx.fillStyle = f;
       }
       ctx.fill();
@@ -258,11 +261,6 @@ class UI {
     && this.cursorPos[0] <= ele.x + ele.w 
     && this.cursorPos[1] >= ele.y 
     && this.cursorPos[1] <= ele.y + ele.h;
-  }
-
-  attackButton(ctx) {
-    this.fillStyle = "red";
-    this.roundRect(ctx, x, y, 135, 50, {tlr: 15}, true);
   }
 }
 

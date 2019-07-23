@@ -9,6 +9,25 @@ const flintFontColor = tower => game => {
 };
 
 const uiElements = {
+  background: {
+    type: "rect",
+    x: 1500,
+    y: 150,
+    w: 350,
+    h: 1065,
+    f: "gray",
+    innerObjs: {
+      backgroundBorder: {
+        type: "rect",
+        x: 1507.5,
+        y: 157.5,
+        w: 335,
+        h: 1035,
+        s: "black",
+        lw: 15
+      },
+    }
+  },
   earthTowerButton: {
     type: "roundRect",
     tag: "button",
@@ -291,6 +310,11 @@ const uiElements = {
       }
     }
   },
+  header: {
+    type: "text",
+    text: "Monolith",
+
+  }
 };
 
 module.exports = uiElements;
