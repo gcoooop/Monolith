@@ -127,9 +127,9 @@ class HowToPlayAnimation {
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
     ctx.fillText("These are your towers!", 750, 500);
-    this.arrow(ctx, 1475, 185, 0);
-    this.arrow(ctx, 1475, 410, 0);
-    this.arrow(ctx, 1475, 635, 0);
+    this.arrow(ctx, 1475, 220, 0);
+    this.arrow(ctx, 1475, 440, 0);
+    this.arrow(ctx, 1475, 660, 0);
   }
 
   towersUtility(ctx) {
