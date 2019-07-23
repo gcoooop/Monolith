@@ -22,7 +22,7 @@ class WaterTower extends Tower {
 WaterTower.TYPE = "water";
 WaterTower.RANGE = 350;
 WaterTower.DAMAGE = 0.2;
-WaterTower.RELOAD = 200;
+WaterTower.RELOAD = 100;
 WaterTower.FLINT = 100;
 WaterTower.SPRITE = document.getElementById("water-tower");
 

@@ -39,7 +39,7 @@ class FireTower extends Tower {
 
 FireTower.TYPE = "fire";
 FireTower.RANGE = 175;
-FireTower.DAMAGE = 5;
+FireTower.DAMAGE = 6;
 FireTower.RELOAD = 4000;
 FireTower.FLINT = 100;
 FireTower.SPRITE = document.getElementById("fire-tower");

@@ -34,7 +34,7 @@ class EarthTower extends Tower {
 EarthTower.TYPE = "earth";
 EarthTower.RANGE = 225;
 EarthTower.DAMAGE = 1;
-EarthTower.RELOAD = 1000;
+EarthTower.RELOAD = 750;
 EarthTower.FLINT = 100;
 EarthTower.SPRITE = document.getElementById("earth-tower");
 
