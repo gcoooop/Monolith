@@ -214,7 +214,7 @@ const uiElements = {
   waveCounter: {
     type: "text",
     text: game => `Wave ${game.wave}`,
-    font: "24px Arial",
+    font: "36px Arial",
     f: "white",
     x: 1675,
     y: 225
