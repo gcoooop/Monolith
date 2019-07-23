@@ -78,6 +78,7 @@ class Game {
 
   earnFlint(amount) {
     this.flint += amount;
+    this.ui.draw()
   }
   
   spendFlint(amount) {

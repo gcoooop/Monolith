@@ -242,6 +242,7 @@ const uiElements = {
     type: "roundRect",
     tag: "button",
     a: "sendWave",
+    disabled: false,
     x: 1607.5,
     y: 1025,
     w: 135,
@@ -311,9 +312,40 @@ const uiElements = {
     }
   },
   header: {
-    type: "text",
-    text: "Monolith",
-
+    type: "rect",
+    x: 0,
+    y: 0,
+    w: 1850,
+    h: 150,
+    f: "gray",
+    innerObjs: {
+      headerText: {
+        type: "text",
+        text: "Monolith",
+        font: "72px Arial",
+        f: "white",
+        x: 1850 * 0.5,
+        y: 90,
+      },
+      backgroundBorder: {
+        type: "rect",
+        x: 7.5,
+        y: 7.5,
+        w: 1835,
+        h: 150,
+        s: "black",
+        lw: 15
+      },
+      gameBorder: {
+        type: "rect",
+        x: 7.5,
+        y: 7.5,
+        w: 1835,
+        h: 1185,
+        s: "black",
+        lw: 15
+      }
+    }
   }
 };
 
