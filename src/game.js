@@ -47,11 +47,9 @@ class Game {
 
   draw(ctx) {
     ctx.clearRect(0, 0, 1850, 1200);
-    ctx.translate(0, 150);
     this.allObjects().forEach(object => {
       object.draw(ctx);
     });
-    ctx.translate(0, -150);
   }
 
   moveObjects(dt) {

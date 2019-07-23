@@ -15,17 +15,17 @@ class Monolith {
     ctx.fillRect(topLeftX, topLeftY, width, height);
 
     ctx.fillStyle = "#3f3f3f";
-    ctx.fillRect(0, 1000, 1500, 50);
+    ctx.fillRect(0, 1150, 1500, 50);
 
     ctx.beginPath();
-    ctx.rect(5, 1000, 1490, 45);
+    ctx.rect(5, 1150, 1490, 45);
     ctx.strokeStyle = "black";
     ctx.lineWidth = 10;
     ctx.stroke();
 
 
     const x0Health = 10;
-    const y = 1022;
+    const y = 1172;
     const x100Health = 1490;
     const xNHealth = (x100Health - x0Health) * (this.health / this.fullHealth) + x0Health;
 
@@ -65,7 +65,7 @@ class Monolith {
   }
 }
 
-Monolith.POS = [1200, 215];
+Monolith.POS = [1200, 365];
 Monolith.HEALTH = 200;
 
 module.exports = Monolith;
