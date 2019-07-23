@@ -13,20 +13,35 @@ class UI {
     this.message = "";
     this.cursorPos = [0, 0];
     this.hoveredEle = null;
+    this.activeEle = null;
+    this.towerId = 0;
 
     this.setScale = this.setScale.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.getCursorPosition = this.getCursorPosition.bind(this);
     this.checkHover = this.checkHover.bind(this);
     this.placeTower = this.placeTower.bind(this);
-    gameContainer.addEventListener("click", this.handleClick);
-    gameContainer.addEventListener("mousemove", this.getCursorPosition);
+    // gameContainer.addEventListener("click", this.handleClick);
+    // gameContainer.addEventListener("mousemove", this.getCursorPosition);
+    document.documentElement.addEventListener("click", this.handleClick);
+    document.documentElement.addEventListener("mousemove", this.getCursorPosition);
     this.draw()
   }
 
   draw(ctx = this.ctx) {
     ctx.clearRect(0, 0, 1850, 1200);
+    this.findHoveredElement();
     this.drawUIElements(ctx);
+  }
+
+  findHoveredElement(eles = UIElements) {
+    Object.values(eles).forEach(ele => {
+      if (ele.tag === "button" && this.checkHover(ele)) {
+        this.hoveredEle = ele;
+      }
+      
+      if (ele.innerObjs) this.findHoveredElement(ele.innerObjs);
+    });
   }
 
   drawUIElements(ctx, eles = UIElements) {
@@ -40,6 +55,9 @@ class UI {
           break;
         case "roundRect":
           this.drawRoundRect(ctx, ele);
+          break;
+        case "circle":
+          this.drawCircle(ctx, ele);
           break;
         case "text":
           this.drawText(ctx, ele);
@@ -62,10 +80,16 @@ class UI {
   }
 
   handleClick(event) {
+    if (this.activeEle) {
+      this.hideTowerOptions();
+    }
     if (this.hoveredEle) {
       switch (this.hoveredEle.a) {
         case "placeTower":
           this.selectTower();
+          break;
+        case "showTowerOptions":
+          this.showTowerOptions();
           break;
         case "sendWave":
           this.sendWave();
@@ -90,7 +114,7 @@ class UI {
     const rect = gameContainer.getBoundingClientRect();
     const x = (event.clientX - rect.left) / this.scale;
     const y = (event.clientY - rect.top) / this.scale;
-
+    
     this.cursorPos = [x, y];
     this.draw();
     if (this.hoveredEle) {
@@ -122,6 +146,7 @@ class UI {
       y: this.cursorPos[1],
       r: this.selectedTowerType.RANGE,
       f: "rgba(0,0,0,0.1)"
+
     };
     const towerImg = {
       image: this.selectedTowerType.SPRITE,
@@ -136,10 +161,47 @@ class UI {
   }
 
   placeTower() {
-    const pos = [this.cursorPos[0], this.cursorPos[1] - 150];
+    const pos = [this.cursorPos[0], this.cursorPos[1]];
     const options = { pos, game: this.game };
-    this.game.add(new this.selectedTowerType(options));
+    const tower = new this.selectedTowerType(options);
+    this.game.add(tower);
+    this.addTowerEle(tower);
     this.cancelTower();
+  }
+
+  addTowerEle(tower) {
+    const uiTowerRange = {};
+    uiTowerRange.type = "circle";
+    uiTowerRange.x = tower.pos[0];
+    uiTowerRange.y = tower.pos[1];
+    uiTowerRange.r = tower.range;
+    uiTowerRange.f = "transparent";
+    const uiTower = {};
+    uiTower.type = "image";
+    uiTower.tag = "button";
+    uiTower.a = "showTowerOptions";
+    uiTower.id = this.towerId;
+    uiTower.image = tower.sprite;
+    uiTower.x = tower.pos[0] - tower.sprite.width * 0.5 * tower.scale;
+    uiTower.y = tower.pos[1] - tower.sprite.height * 0.5 * tower.scale;
+    uiTower.dx = 0;
+    uiTower.dy = 0;
+    uiTower.s = tower.scale;
+    uiTower.w = tower.sprite.width * tower.scale;
+    uiTower.h = tower.sprite.height * tower.scale;
+    uiTowerRange.innerObjs = { uiTower };
+    UIElements[this.towerId] = uiTowerRange;
+    this.towerId++;
+  }
+
+  showTowerOptions() {
+    this.activeEle = UIElements[this.hoveredEle.id];
+    this.activeEle.f = "rgb(0,0,0,0.75)";
+  }
+  
+  hideTowerOptions() {
+    this.activeEle.f = "transparent";
+    this.activeEle = null;
   }
 
   isInBounds() {
@@ -147,6 +209,13 @@ class UI {
     && this.cursorPos[0] <= 1500
     && this.cursorPos[1] >= 150
     && this.cursorPos[1] <= 1150
+  }
+
+  checkHover(ele) {
+    return this.cursorPos[0] >= ele.x
+      && this.cursorPos[0] <= ele.x + ele.w
+      && this.cursorPos[1] >= ele.y
+      && this.cursorPos[1] <= ele.y + ele.h;
   }
 
   sendWave() {
@@ -207,8 +276,7 @@ class UI {
     ctx.closePath();
 
     if (f) {
-      if (this.checkHover(ele) && ele.tag === "button") {
-        this.hoveredEle = ele;
+      if (ele === this.hoveredEle) {
         ctx.fillStyle = hF;
       } else {
         ctx.fillStyle = f;
@@ -254,13 +322,6 @@ class UI {
       ctx.fillStyle = ele.f;
       ctx.fill();
     }
-  }
-
-  checkHover(ele) {
-    return this.cursorPos[0] >= ele.x 
-    && this.cursorPos[0] <= ele.x + ele.w 
-    && this.cursorPos[1] >= ele.y 
-    && this.cursorPos[1] <= ele.y + ele.h;
   }
 }
 

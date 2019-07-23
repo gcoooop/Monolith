@@ -17,13 +17,13 @@ class Tower {
   } 
 
   draw(ctx) {
-    const x = this.pos[0];
-    const y = this.pos[1];
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.scale(this.scale, this.scale);
-    ctx.drawImage(this.sprite, - this.sprite.width * 0.5, - this.sprite.height * 0.5 );
-    ctx.restore();
+    // const x = this.pos[0];
+    // const y = this.pos[1];
+    // ctx.save();
+    // ctx.translate(x, y);
+    // ctx.scale(this.scale, this.scale);
+    // ctx.drawImage(this.sprite, - this.sprite.width * 0.5, - this.sprite.height * 0.5 );
+    // ctx.restore();
   }
 
   allTargets() {
