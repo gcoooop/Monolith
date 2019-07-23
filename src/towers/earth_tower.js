@@ -8,6 +8,7 @@ class EarthTower extends Tower {
     options.damage = EarthTower.DAMAGE;
     options.reload = EarthTower.RELOAD;
     options.flint = EarthTower.FLINT;
+    options.sprite = EarthTower.SPRITE;
     options.artillery = Boulder;
     super(options);
     EarthTower.FLINT += 20;
@@ -35,5 +36,6 @@ EarthTower.RANGE = 225;
 EarthTower.DAMAGE = 1;
 EarthTower.RELOAD = 1000;
 EarthTower.FLINT = 100;
+EarthTower.SPRITE = document.getElementById("earth-tower");
 
 module.exports = EarthTower;

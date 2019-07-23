@@ -6,182 +6,24 @@ body {
   display: none;
 }
 
-.selected-tower-img {
-  width: 75px;
-  height: 75px;
-}
-
-.selected-tower-container {
-  pointer-events: none;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.dom-tower {
-  position: absolute;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-}
-
-.dom-tower-img {
-  width: 75px;
-  height: 75px;
-}
-
-.dom-tower-selected {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.title-container {
-  display: flex;
-  justify-content: center;
-}
-
-.title-container h1 {
-  font-size: 64px;
-}
-
 #monolith-game {
-  display: flex; 
-  justify-content: center;
-}
-
-.monolith-canvas {
-  border: 15px solid black;
-  border-right: none;
-  border-bottom: none;
-}
-
-.control-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 350px;
-  box-sizing: border-box;
-  border: 15px solid black;
-  padding: 15px;
-  font-size: 24px;
-  color: white;
-  background: gray;
-}
-
-.wave-counter {
-  text-align: center;
-}
-
-.tower-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  padding: 30px 40px 66px 40px;
-  border: 5px solid black;
-  cursor: pointer;
-  border-radius: 20px;
-}
-
-#earth:hover {
-  background: rgb(86, 154, 37);
-}
-
-#earth {
-  background: rgb(53, 128, 0);
-}
-
-#water:hover {
-  background: rgb(38, 103, 183);
-}
-
-#water {
-  background: rgb(0, 65, 145);
-}
-
-#fire:hover {
-  background: rgb(201, 41, 41);
-}
-
-#fire {
-  background: rgb(125, 0, 0);
-}
-
-.tower-price {
   position: absolute;
-  bottom: 0px;
-  background: rgba(0, 0, 0, 0.3);
+  top: 50%;
+  left: 50%;
+}
+
+canvas {
+  position: absolute;
+  height: 100%;
   width: 100%;
-  line-height: 36px;
-  text-align: center;
-  font-weight: 500;
-  border-top: 5px solid black;
 }
 
-.tower-flint-img {
-  width: 20px;
-}
-
-.bank-flint-img {
-  width: 30px;
-  padding-right: 10px;
-}
-
-.flint-bank {
-  padding-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.controls-pane {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-.wave-button:hover {
-  cursor: pointer;
-  background: rgb(255, 35, 35);
-  border: 2px inset;
-}
-
-.wave-button {
-  padding: 10px 30px;
-  background: red;
-  border-radius: 15px;
-  border: 2px outset;
-}
-
-
-.instructions-controls {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.story-button:hover, .htp-button:hover {
-  cursor: pointer;
-  background: rgb(35, 35, 35);
-  border: 2px inset;
-}
-
-.story-button, .htp-button {
-  padding: 10px 20px;
-  border-radius: 30px;
-  background: black;
-  border: 2px outset;
+.monolith-background {
+  position: absolute;
+  width: 100%; 
+  height: 100%;
+  z-index: 1; 
+  background: no-repeat url("./assets/map/MonolithMap_wide.png");
 }
 
 [class*="instructions-window"] {
@@ -201,13 +43,13 @@ body {
   position: absolute;
   top: 24px;
   left: 24px;
-  font-size: 64px;
-  line-height: 58px;
+  font-size: 42px;
+  line-height: 38px;
   text-align: center;
   font-weight: 500;
   color: white;
-  width: 64px;
-  height: 64px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
 }
 
@@ -229,6 +71,6 @@ body {
   align-items: center;
   width: 75%;
   height: 100%;
-  font-size: 56px;
+  font-size: 3vmin;
   color: white;
 }

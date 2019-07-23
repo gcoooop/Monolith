@@ -1,15 +1,16 @@
 const Game = require("./game");
 const GameView = require("./game_view");
-const UI = require("./ui");
+const CUI = require("./ui/canvas_ui");
 const HowToPlayAnimation = require("./instructions/instructions_animation");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const canvasEl = document.getElementById("monolith-canvas");
+  const canvasGame = document.getElementById("monolith-canvas-game");
+  const canvasUI = document.getElementById("monolith-canvas-ui");
 
-  const ctx = canvasEl.getContext("2d");
   const game = new Game();
-  const ui = new UI(canvasEl, game);
-  const htp = new HowToPlayAnimation(canvasEl, ctx);
-  const gameView = new GameView(game, ui, htp, ctx);
+  const htp = new HowToPlayAnimation();
+  const ui = new CUI(canvasUI.getContext("2d"), game, htp);
+  game.ui = ui;
+  const gameView = new GameView(game, ui, htp);
   gameView.start();
 });

@@ -18,8 +18,10 @@ class Game {
   }
 
   sendWave() {
-    Waves[this.wave](this);
-    this.waveProgress = "incomplete";
+    if (this.waveProgress === "complete") {
+      Waves[this.wave](this);
+      this.waveProgress = "incomplete";
+    }
   }
 
   add(object) {
@@ -44,9 +46,7 @@ class Game {
   }
 
   draw(ctx) {
-    // clears the canvas area
-    ctx.clearRect(0, 0, 1500, 1000);
-
+    ctx.clearRect(0, 0, 1850, 1200);
     this.allObjects().forEach(object => {
       object.draw(ctx);
     });
@@ -76,6 +76,7 @@ class Game {
 
   earnFlint(amount) {
     this.flint += amount;
+    this.ui.draw()
   }
   
   spendFlint(amount) {
