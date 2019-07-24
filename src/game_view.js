@@ -1,7 +1,11 @@
+const Util = require("./util/util");
+
 const gameContainer = document.getElementById("monolith-game");
 const gameBackground = document.getElementById("monolith-background");
 const canvasUI = document.getElementById("monolith-canvas-ui");
 const canvasGame = document.getElementById("monolith-canvas-game");
+
+const personalLinksContainer = document.getElementById("personal-links");
 
 const gameAspectRatio = 1850 / 1200;
 
@@ -12,6 +16,8 @@ class GameView {
     this.htp = htp;
     this.UICtx = canvasUI.getContext("2d");
     this.gameCtx = canvasGame.getContext("2d");
+
+    this.scaleWindow = this.scaleWindow.bind(this);
   }
 
   start() {
@@ -22,6 +28,20 @@ class GameView {
   animate(time) {
     const dt = time - this.lastTime;
 
+    this.scaleWindow();
+
+    this.game.step(dt);
+    this.game.draw(this.gameCtx);
+    // pass in gameCTX instead of uiCTX because game clears the canvas every frame
+    this.htp.draw(this.gameCtx);
+    this.lastTime = time;
+
+    if (this.game.running) {
+      requestAnimationFrame(this.animate.bind(this));
+    }
+  }
+
+  scaleWindow() {
     const windowW = window.innerWidth;
     const windowH = window.innerHeight;
     const windowAspectRatio = windowW / windowH;
@@ -45,16 +65,11 @@ class GameView {
     gameBackground.style.backgroundPositionY = `${150 * scale}px`;
     gameBackground.style.backgroundSize = `${1500 * scale}px`;
 
-    this.game.step(dt);
-    this.game.draw(this.gameCtx);
+    personalLinksContainer.style.width = `${500 * scale}px`;
+    personalLinksContainer.style.height = `${(150 - 15) * scale}px`;
+    personalLinksContainer.style.top = `${15 * scale}px`;
+    personalLinksContainer.style.right = `${30 * scale}px`
     this.cui.setScale(scale);
-    // pass in gameCTX instead of uiCTX because game clears the canvas every frame
-    this.htp.draw(this.gameCtx);
-    this.lastTime = time;
-
-    if (this.game.running) {
-      requestAnimationFrame(this.animate.bind(this));
-    }
   }
 };
 
