@@ -12,6 +12,32 @@ body {
   left: 50%;
 }
 
+.personal-links p {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0;
+}
+
+.personal-links {
+  position: absolute;
+  z-index: 9;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 2.5vmin;
+}
+
+.personal-links i:hover {
+  color: rgb(200,200,200);
+}
+
+.personal-links i {
+  color: black;
+  font-size: 6vmin;
+}
+
 canvas {
   position: absolute;
   height: 100%;
@@ -73,4 +99,8 @@ canvas {
   height: 100%;
   font-size: 3vmin;
   color: white;
+}
+
+.icon:before {
+  font-family: 'Font Awesome 5 Free';
 }
