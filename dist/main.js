@@ -258,7 +258,7 @@ eval("const MovingObject = __webpack_require__(/*! ../moving_object */ \"./src/m
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/moving_objects/npcs/npc.js\");\n\nclass Spider extends NPC {\n  constructor(options) {\n    options.speed = Spider.SPEED;\n    options.hitRadius = Spider.HIT_RADIUS;\n    options.health = Spider.HEALTH;\n    options.damage = Spider.DAMAGE;\n    options.flint = Spider.FLINT;\n    options.scale = Spider.SCALE;\n    options.sprite = \"spider\";\n    super(options);\n  }\n}\n\nSpider.SPEED = 4;\nSpider.HIT_RADIUS = 20;\nSpider.HEALTH = 2;\nSpider.DAMAGE = 5;\nSpider.FLINT = 5;\nSpider.SCALE = 1;\n\nmodule.exports = Spider;\n\n//# sourceURL=webpack:///./src/moving_objects/npcs/spider.js?");
+eval("const NPC = __webpack_require__(/*! ./npc */ \"./src/moving_objects/npcs/npc.js\");\n\nclass Spider extends NPC {\n  constructor(options) {\n    options.speed = Spider.SPEED;\n    options.hitRadius = Spider.HIT_RADIUS;\n    options.health = Spider.HEALTH;\n    options.damage = Spider.DAMAGE;\n    options.flint = Spider.FLINT;\n    options.scale = Spider.SCALE;\n    options.sprite = \"spider\";\n    super(options);\n  }\n}\n\nSpider.SPEED = 4;\nSpider.HIT_RADIUS = 20;\nSpider.HEALTH = 1;\nSpider.DAMAGE = 5;\nSpider.FLINT = 5;\nSpider.SCALE = 1;\n\nmodule.exports = Spider;\n\n//# sourceURL=webpack:///./src/moving_objects/npcs/spider.js?");
 
 /***/ }),
 
