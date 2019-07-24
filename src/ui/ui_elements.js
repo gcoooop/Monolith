@@ -4,6 +4,8 @@ const FireTower = require("../towers/fire_tower");
 
 const flintImgEle = document.getElementById("flint");
 
+const gillSans = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
+
 const flintFontColor = tower => game => {
   return game.flint < tower.FLINT ? "red" : "white";
 };
@@ -80,7 +82,7 @@ const uiElements = {
           towerPrice: {
             type: "text",
             text: () => `${EarthTower.FLINT}`,
-            font: "24px Arial",
+            font: `24px ${gillSans}`,
             f: flintFontColor(EarthTower),
             x: 1675,
             y: 460
@@ -141,7 +143,7 @@ const uiElements = {
           towerPrice: {
             type: "text",
             text: () => `${WaterTower.FLINT}`,
-            font: "24px Arial",
+            font: `24px ${gillSans}`,
             f: flintFontColor(WaterTower),
             x: 1675,
             y: 685
@@ -202,7 +204,7 @@ const uiElements = {
           towerPrice: {
             type: "text",
             text: () => `${FireTower.FLINT}`,
-            font: "24px Arial",
+            font: `24px ${gillSans}`,
             f: flintFontColor(FireTower),
             x: 1675,
             y: 910
@@ -214,7 +216,7 @@ const uiElements = {
   waveCounter: {
     type: "text",
     text: game => `Wave ${game.wave}`,
-    font: "36px Arial",
+    font: `36px ${gillSans}`,
     f: "white",
     x: 1675,
     y: 225
@@ -222,7 +224,7 @@ const uiElements = {
   flintBank: {
     type: "text",
     text: game => `${game.flint}`,
-    font: "24px Arial",
+    font: `24px ${gillSans}`,
     f: "white",
     x: 1680,
     y: 975,
@@ -256,7 +258,7 @@ const uiElements = {
       attackText: {
         type: "text",
         text: "Attack!",
-        font: "24px Arial",
+        font: `24px ${gillSans}`,
         f: "white",
         x: 1675,
         y: 1050
@@ -280,7 +282,7 @@ const uiElements = {
       storyText: {
         type: "text",
         text: "Story",
-        font: "24px Arial",
+        font: `24px ${gillSans}`,
         f: "white",
         x: 1575,
         y: 1150
@@ -304,7 +306,7 @@ const uiElements = {
       htpText: {
         type: "text",
         text: "How To Play",
-        font: "24px Arial",
+        font: `24px ${gillSans}`,
         f: "white",
         x: 1737.5,
         y: 1150
@@ -321,8 +323,8 @@ const uiElements = {
     innerObjs: {
       headerText: {
         type: "text",
-        text: "Monolith",
-        font: "72px Arial",
+        text: "MONOLITH",
+        font: `100px ${gillSans}`,
         f: "white",
         x: 1850 * 0.5,
         y: 90,

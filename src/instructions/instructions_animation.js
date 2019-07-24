@@ -1,3 +1,5 @@
+const gillSans = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
+
 class HowToPlayAnimation {
   constructor() {
     this.page = 0;
@@ -87,10 +89,10 @@ class HowToPlayAnimation {
   }
 
   monolithIntro(ctx) {
-    ctx.font = "64px Arial";
+    ctx.font = `64px ${gillSans}`;
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
-    ctx.fillText("This is the monolith", 750, 500);
+    ctx.fillText("This is the monolith.", 750, 500);
     this.arrow(ctx, 1150, 215, 0);
   }
 
@@ -102,7 +104,7 @@ class HowToPlayAnimation {
   healthBarIntro(ctx) {
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
-    ctx.fillText("This is the monolith's health bar", 750, 500);
+    ctx.fillText("This is the monolith's health bar.", 750, 500);
     this.arrow(ctx, 250, 950, Math.PI * 0.5);
     this.arrow(ctx, 1250, 950, Math.PI * 0.5);
     this.arrow(ctx, 750, 950, Math.PI * 0.5);
@@ -116,7 +118,7 @@ class HowToPlayAnimation {
   enemiesIntro(ctx) {
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
-    ctx.fillText("Enemies will attack from these four paths", 750, 500);
+    ctx.fillText("Enemies will attack from these four paths.", 750, 500);
     this.arrow(ctx, 250, 100, Math.PI * 0.1);
     this.arrow(ctx, 175, 750, -Math.PI * 0.15);
     this.arrow(ctx, 650, 825, -Math.PI * 0.35);
@@ -134,13 +136,13 @@ class HowToPlayAnimation {
 
   towersUtility(ctx) {
     this.towersIntro(ctx);
-    ctx.fillText("Towers will target and damage enemies in range", 750, 600);
+    ctx.fillText("Towers will target and damage enemies in range.", 750, 600);
   }
   
   towersHint(ctx) { 
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
-    ctx.fillText("Each tower has its own srengths and weaknesses", 750, 500);
+    ctx.fillText("Each tower has its own srengths and weaknesses.", 750, 500);
   }
 
   experimentHint(ctx) { 
@@ -151,28 +153,28 @@ class HowToPlayAnimation {
   towerSelection(ctx) {
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
-    ctx.fillText("Click to select a tower", 750, 400);
+    ctx.fillText("Click to select a tower.", 750, 400);
   }
 
   towerPlacement(ctx) {
     this.towerSelection(ctx);
-    ctx.fillText("Then, click on the map to place the tower", 750, 500);
+    ctx.fillText("Then, click on the map to place the tower.", 750, 500);
   }
 
   towerCancel(ctx) {
     this.towerPlacement(ctx);
-    ctx.fillText("Or, click outside the map to cancel", 750, 600);
+    ctx.fillText("Or, click outside the map to cancel.", 750, 600);
   }
 
   towerPurchasing(ctx) {
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
-    ctx.fillText("Towers are not free! You must have enough flint", 750, 500);
+    ctx.fillText("Towers are not free! You must have enough flint.", 750, 500);
   }
 
   earningFlint(ctx) {
     this.towerPurchasing(ctx);
-    ctx.fillText("Stopping enemies rewards you with more flint", 750, 600);
+    ctx.fillText("Stopping enemies rewards you with more flint.", 750, 600);
   }
 
   purchaseMechanics1(ctx) {
@@ -183,18 +185,18 @@ class HowToPlayAnimation {
 
   purchaseMechanics2(ctx) {
     this.purchaseMechanics1(ctx)
-    ctx.fillText("the more expensive they get", 750, 500);
+    ctx.fillText("the more expensive they get.", 750, 500);
   }
 
   purchaseHint(ctx) {
     this.purchaseMechanics2(ctx);
-    ctx.fillText("Spend wisely and diversify your arsenal!", 750, 600);
+    ctx.fillText("Spend wisely!", 750, 600);
   }
 
   conclusion1(ctx) {
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
-    ctx.fillText("Place towers strategically around the map!", 750, 500);
+    ctx.fillText("Place towers strategically around the map.", 750, 500);
   }
 
   conclusion2(ctx) {

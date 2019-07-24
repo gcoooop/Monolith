@@ -1,4 +1,5 @@
 body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   margin: 0;
 }
 
@@ -27,6 +28,7 @@ body {
   justify-content: space-around;
   align-items: center;
   font-size: 2.5vmin;
+  color: white;
 }
 
 .personal-links i:hover {
@@ -34,8 +36,8 @@ body {
 }
 
 .personal-links i {
-  color: black;
   font-size: 6vmin;
+  color: white;
 }
 
 canvas {
@@ -70,7 +72,7 @@ canvas {
   top: 24px;
   left: 24px;
   font-size: 42px;
-  line-height: 38px;
+  line-height: 43px;
   text-align: center;
   font-weight: 500;
   color: white;
