@@ -14,6 +14,7 @@ class NPC extends MovingObject {
     this.path = new Path(options.path);
     this.pos = this.path.dequeue();
     this.dest = this.path.dequeue();
+    this.finalPos = this.path.finalPos();
     this.throttledDealDamage = Util.throttle(this.dealDamage.bind(this), 1000);
     this.followPath();
   }
@@ -96,6 +97,12 @@ class NPC extends MovingObject {
       this.dest = null;
       this.vel = [0, 0];
     }
+  }
+
+  distToFinalPos() {
+    const dx = this.pos[0] - this.finalPos[0];
+    const dy = this.pos[1] - this.finalPos[1];
+    return Math.sqrt(dx**2 + dy**2);
   }
   
   takeDamage(artilleryDamage) {

@@ -7,6 +7,7 @@ class Tower {
     this.sprite = options.sprite;
     this.scale = Tower.SCALE;
     this.pos = options.pos;
+    this.targetOrder = "first";
     this.range = options.range;
     this.damage = options.damage;
     this.reload = options.reload;

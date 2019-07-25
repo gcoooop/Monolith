@@ -19,6 +19,10 @@ class Path {
     return this.points.length();
   }
 
+  finalPos() {
+    return this.points.atIndex(this.points.length - 1);
+  }
+
   path1() {
     // randomly determine which coordinate of the staring position is negative
     // this is necessary because the path starts in a corner

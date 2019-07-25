@@ -15,6 +15,10 @@ class Queue {
   length() {
     return this.queue.length;
   }
+
+  atIndex(i) {
+    return this.queue[i];
+  }
 }
 
 module.exports = Queue;

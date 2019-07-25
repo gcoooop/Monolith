@@ -30,7 +30,7 @@ class TargetingQueue {
   }
 
   reorder(order) {
-
+    // NPCs have a distToFinalPos function that should be called to reorder the queue
   }
 }
 
