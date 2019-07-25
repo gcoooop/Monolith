@@ -108,7 +108,10 @@ class Game {
   }
 
   checkForLost() {
-    if (this.monolith.health <= 0) this.running = false;
+    if (this.monolith.health <= 0) {
+      this.running = false;
+      this.ui.youLose();
+    }
   }
 
   waveComplete() {

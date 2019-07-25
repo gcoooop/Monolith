@@ -2,6 +2,9 @@ const Tower = require("../towers/tower");
 const UIElements = require("./ui_elements");
 const Story = require("../instructions/story");
 const gameContainer = document.getElementById("monolith-game");
+const retryButtonContainer = document.getElementById("retry-button-container");
+
+const gillSans = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
 
 class UI {
   constructor(ctx, game, htp) {
@@ -220,6 +223,22 @@ class UI {
 
   sendWave() {
     this.game.sendWave();
+  }
+
+  youLose() {
+    document.documentElement.removeEventListener("click", this.handleClick);
+    document.documentElement.removeEventListener("mousemove", this.getCursorPosition);
+    gameContainer.style.cursor = "default";
+    retryButtonContainer.className = retryButtonContainer.className.replace("-hide", "-show");
+
+    const loseMessage = {
+      text: "You lose!",
+      font: `100px ${gillSans}`,
+      f: "black",
+      x: 750,
+      y: 600,
+    }
+    this.drawText(this.ctx, loseMessage);
   }
 
   drawImage(ctx, ele) {

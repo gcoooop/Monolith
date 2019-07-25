@@ -6,6 +6,7 @@ const canvasUI = document.getElementById("monolith-canvas-ui");
 const canvasGame = document.getElementById("monolith-canvas-game");
 
 const personalLinksContainer = document.getElementById("personal-links");
+const retryButtonContainer = document.getElementById("retry-button-container");
 
 const gameAspectRatio = 1850 / 1200;
 
@@ -69,6 +70,10 @@ class GameView {
     personalLinksContainer.style.height = `${(150 - 15) * scale}px`;
     personalLinksContainer.style.top = `${15 * scale}px`;
     personalLinksContainer.style.right = `${30 * scale}px`
+    
+    retryButtonContainer.style.top = `${750 * scale}px`;
+    retryButtonContainer.style.left = `${750 * scale}px`
+
     this.cui.setScale(scale);
   }
 };

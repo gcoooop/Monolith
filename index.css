@@ -103,6 +103,34 @@ canvas {
   color: white;
 }
 
-.icon:before {
-  font-family: 'Font Awesome 5 Free';
+.retry-button-container-show {
+  position: absolute;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.retry-button:focus { 
+  outline: none;
+}
+
+.retry-button:hover { 
+  cursor: pointer;
+  color: white;
+}
+
+.retry-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+  border-radius: 30px;
+  font-size: 4vmin;
+  letter-spacing: 0.5px;
 }
