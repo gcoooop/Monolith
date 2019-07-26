@@ -9,10 +9,10 @@ class HowToPlayAnimation {
   nextPage(origin) {
     if (this.page === 0 && origin === "click") {
       this.page++;
-      setTimeout(() => this.nextPage("timeout"), 4000);
+      setTimeout(() => this.nextPage("timeout"), 2500);
     } else if (this.page > 0 && origin === "timeout") {
       this.page++;
-      setTimeout(() => this.nextPage("timeout"), 4000);
+      setTimeout(() => this.nextPage("timeout"), 2500);
     }
   }
 
