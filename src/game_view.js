@@ -47,7 +47,7 @@ class GameView {
     const windowH = window.innerHeight;
     const windowAspectRatio = windowW / windowH;
 
-    let newWidth
+    let newWidth;
     let newHeight;
     if (windowAspectRatio > gameAspectRatio) {
       newWidth = windowH * gameAspectRatio;
