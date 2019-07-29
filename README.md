@@ -53,7 +53,7 @@ I decided that the simplest solution was to refactor the UI to be created entire
   }
 ```
 
-When the code shown above is ran, it calculates and compares the window aspect ratio to the game aspect ratio. If the window aspect ratio is greater than the game aspect ratio, the game height is set to fit the window height and a new width is calculated. If the window aspect ratio is less than the game aspect ratio, the game width is set to the window width and the new height is calculated.
+When the code above is ran, it calculates and compares the window aspect ratio to the game aspect ratio. If the window aspect ratio is greater than the game aspect ratio, the game height is set to fit the window height and a new width is calculated. If the window aspect ratio is less than the game aspect ratio, the game width is set to the window width and the new height is calculated.
 
 ## Future Features
 
