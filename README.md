@@ -1,6 +1,6 @@
 # Monolith
 
-Monolith is a tower defense game created with vanilla JavaScript. The player's objective is to protect the monolith by building towers to damage the invaders. [Play it now!](gordycooper.com/Monolith)
+Monolith is a tower defense game created with vanilla JavaScript. The player's objective is to protect the monolith by building towers to damage the invaders. [Play it now!](http://gordycooper.com/Monolith)
 
 ![alt text](./assets/screenshot/screenshot.png)
 
